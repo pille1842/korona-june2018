@@ -1,0 +1,27 @@
+{
+  "name": "Korona",
+  "homepage": "https://github.com/pille1842/korona",
+  "authors": [
+    "Eric Haberstroh <gpg@erixpage.de>"
+  ],
+  "description": "Community Management System für Studentenverbindungen",
+  "main": "index.php",
+  "keywords": [
+    "Community",
+    "Social",
+    "Network",
+    "Fraternity",
+    "Studentenverbindung",
+    "Schülerverbindung",
+    "Korporation"
+  ],
+  "license": "GPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
