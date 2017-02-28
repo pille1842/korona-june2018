@@ -1,2 +1,59 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body.k-body-public {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
+.k-body-public {
+    .header {
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 40px;
+        }
+    }
+
+    .footer {
+        padding-top: 19px;
+        color: #777;
+    }
+
+    /* Customize container */
+    @media (min-width: 768px) {
+        .container {
+            max-width: 730px;
+        }
+    }
+
+    .container-narrow > hr {
+        margin: 30px 0;
+    }
+}
+
+.k-body-authentication {
+    .header {
+        text-align: center;
+        padding: 15px;
+
+        img {
+            width: 200px;
+        }
+    }
+
+    .footer {
+        padding-top: 19px;
+        color: #777;
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            max-width: 730px;
+        }
+    }
+
+    .container-narrow > hr {
+        margin: 30px 0;
+    }
+}
