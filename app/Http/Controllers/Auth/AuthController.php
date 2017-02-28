@@ -6,7 +6,7 @@ use Korona\User;
 use Validator;
 use Korona\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
