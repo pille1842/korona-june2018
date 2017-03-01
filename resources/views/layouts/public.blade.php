@@ -26,7 +26,7 @@
               @if (Auth::guest())
                   <li><a href="{{ url('login') }}">Anmelden</a></li>
               @else
-                  <li><a href="#">Interner Bereich</a></li>
+                  <li><a href="{{ url('home') }}">Interner Bereich</a></li>
               @endif
           </ul>
         </nav>

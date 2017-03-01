@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     use AuthenticatesUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = 'home';
     protected $username = 'login';
 
     public function __construct()
