@@ -53,6 +53,12 @@
 
         <div id="k-main-container" class="container">
 
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             @yield('content')
 
             <footer class="footer">

@@ -45,6 +45,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
+            return redirect()->back()->with('error', trans('auth.role_denied'));
+        }
+
+        if ($e instanceof \Bican\Roles\Exceptions\PermissionDeniedException) {
+            return redirect()->back()->with('error', trans('auth.permission_denied'));
+        }
+
+        if ($e instanceof \Bican\Roles\Exceptions\LevelDeniedException) {
+            return redirect()->back()->with('error', trans('auth.level_denied'));
+        }
+
         return parent::render($request, $e);
     }
 }
