@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'role_denied' => "You don't have the necessary role to access this area.",
-    'permission_denied' => "You don't have the necessary permission to access this area.",
-    'level_denied' => "You don't have the necessary access level to access this area.",
+    'failed' => 'Benutzername und/oder Passwort sind falsch.',
+    'throttle' => 'Zu viele Anmeldeversuche. Bitte probiere es in :seconds Sekunden erneut.',
+    'role_denied' => "Du hast nicht die nötige Rolle, um auf diesen Bereich zuzugreifen.",
+    'permission_denied' => "Du hast nicht die nötige Berechtigung, um auf diesen Bereich zuzugreifen.",
+    'level_denied' => "Du hast nicht die nötige Zugriffsebene, um auf diesen Bereich zuzugreifen.",
 
 ];
