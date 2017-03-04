@@ -14,6 +14,11 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
         'password', 'remember_token',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function getShortName()
     {
         if ($this->nickname != '') {

@@ -10,6 +10,8 @@
         <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+        @yield('stylesheets')
+
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -31,7 +33,18 @@
                 </div>
                 <div id="k-navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Benutzer
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @permission('backend.manage.users')
+                                    <li><a href="{{ action('Backend\UserController@index') }}">Benutzer verwalten</a></li>
+                                @endpermission
+                                <li><a href="#">Seitenrollen</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -67,6 +80,8 @@
 
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+        @yield('scripts')
 
     </body>
 </html>

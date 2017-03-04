@@ -16,4 +16,9 @@ Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::get('home', 'Internal\HomeController@index');
 
 // Backend routes
-Route::get('backend', 'Backend\DashboardController@index');
+Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
+    Route::get('/', 'DashboardController@index');
+
+    // Users
+    Route::resource('user', 'UserController');
+});
