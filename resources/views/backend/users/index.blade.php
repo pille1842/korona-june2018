@@ -67,16 +67,23 @@
                 zeroRecords:    "Keine Datensätze vorhanden",
                 emptyTable:     "Tabelle ist leer",
                 paginate: {
-                first:      "Anfang",
-                previous:   "Zurück",
-                next:       "Weiter",
-                last:       "Ende"
+                    first:      "Anfang",
+                    previous:   "Zurück",
+                    next:       "Weiter",
+                    last:       "Ende"
+                },
+                aria: {
+                    sortAscending:  ": anklicken, um nach dieser Spalte aufsteigend zu sortieren",
+                    sortDescending: ": anklicken, um nach dieser Spalte absteigend zu sortieren"
+                }
             },
-            aria: {
-                sortAscending:  ": anklicken, um nach dieser Spalte aufsteigend zu sortieren",
-                sortDescending: ": anklicken, um nach dieser Spalte absteigend zu sortieren"
-            }
-            }
+            columns: [
+                {orderable: false},
+                null,
+                null,
+                null,
+                {orderable: false}
+            ]
         });
     </script>
 @endsection
