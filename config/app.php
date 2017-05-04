@@ -159,6 +159,7 @@ return [
          */
         Korona\Providers\AppServiceProvider::class,
         Korona\Providers\AuthServiceProvider::class,
+        Korona\Providers\BootstrapFormsProvider::class,
         Korona\Providers\EventServiceProvider::class,
         Korona\Providers\RouteServiceProvider::class,
 
