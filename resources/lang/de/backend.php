@@ -21,5 +21,7 @@ return [
     'password' => 'Passwort',
     'generate_random_password' => 'Zufallspasswort erzeugen',
     'password_email_sent' => 'Das geänderte Passwort wurde dem Benutzer zugemailt.',
+    'newaccount_email_sent' => 'Der neue Benutzer hat eine E-Mail mit seinen Zugangsdaten erhalten.',
+    'create_account' => 'Neues Benutzerkonto erstellen',
 
 ];

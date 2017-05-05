@@ -21,5 +21,7 @@ return [
     'password' => 'Password',
     'generate_random_password' => 'Generate a random password',
     'password_email_sent' => 'The new password has been emailed to the user.',
+    'newaccount_email_sent' => 'The new user has received an email with his credentials.',
+    'create_account' => 'Create new account',
 
 ];

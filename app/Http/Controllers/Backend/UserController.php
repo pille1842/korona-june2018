@@ -26,12 +26,36 @@ class UserController extends Controller
 
     public function create()
     {
-        //
+        return view('backend.users.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'login' => 'required|max:255|unique:users,login',
+            'slug'  => 'required|max:255|alpha_dash|unique:users,slug',
+            'email' => 'required|max:255|email|unique:users,email',
+            'password' => 'required|confirmed|string|min:8|max:255'
+        ]);
+
+        $user = new User;
+        $user->login = $request->login;
+        $user->slug = $request->slug;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->active = $request->has('active');
+        $user->force_password_change = $request->has('force_password_change');
+
+        $user->save();
+
+        $success = trans('backend.saved');
+        if ($request->has('send_newaccount_email')) {
+            $this->sendNewAccountEmail($user, $request->password);
+            $success .= ' ' . trans('backend.newaccount_email_sent');
+        }
+
+        return redirect()->route('backend.user.edit', $user)
+               ->with('success', $success);
     }
 
     public function show(User $user)
@@ -84,6 +108,17 @@ class UserController extends Controller
             function ($m) use ($user) {
                 $m->to($user->email, $user->login);
                 $m->subject(trans('mail.password_email_subject'));
+            }
+        );
+    }
+
+    public function sendNewAccountEmail(User $user, $password)
+    {
+        Mail::send(['mail.new_account', 'mail.plain.new_account'],
+            ['user' => $user, 'password' => $password],
+            function ($m) use ($user) {
+                $m->to($user->email, $user->login);
+                $m->subject(trans('mail.newaccount_email_subject'));
             }
         );
     }

@@ -13,5 +13,6 @@ return [
     */
 
     'password_email_subject' => 'Your password has changed',
+    'newaccount_email_subject' => 'Your account is ready',
 
 ];

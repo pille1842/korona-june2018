@@ -116,7 +116,8 @@ return [
         'password_confirmation' => 'Confirm Password',
         'force_password_change' => 'Force password change after login',
         'send_password_email' => 'Send password via email',
-        'slug' => 'SEO URL'
+        'slug' => 'SEO URL',
+        'send_newaccount_email' => 'Send an email with the credentials to the user',
     ],
 
 ];

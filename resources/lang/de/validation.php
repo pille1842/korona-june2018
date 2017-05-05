@@ -116,7 +116,8 @@ return [
         'password_confirmation' => 'Passwort bestätigen',
         'force_password_change' => 'Passwortänderung nach Anmeldung erzwingen',
         'send_password_email' => 'Passwort per E-Mail zusenden',
-        'slug' => 'SEO-URL'
+        'slug' => 'SEO-URL',
+        'send_newaccount_email' => 'E-Mail mit den Zugangsdaten senden',
     ],
 
 ];
