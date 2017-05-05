@@ -23,7 +23,6 @@
                     </div>
                     <div class="panel-body">
                         {{ Form::bsText('login') }}
-                        {{ Form::bsSlug('slug', null, 'login') }}
                         {{ Form::bsEmail('email') }}
                         {{ Form::bsCheckbox('active', '1', true) }}
                         {{ Form::bsCheckbox('send_newaccount_email', '1', true) }}
