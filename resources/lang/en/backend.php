@@ -34,5 +34,7 @@ return [
     'normal_view' => 'Normal View',
     'info' => 'Information',
     'enable_password_change' => 'Enable changes',
+    'accounts_trash' => 'Trashed User Accounts',
+    'user_restored' => 'The account :account has been restored.',
 
 ];

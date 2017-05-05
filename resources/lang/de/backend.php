@@ -34,5 +34,7 @@ return [
     'normal_view' => 'Normale Ansicht',
     'info' => 'Information',
     'enable_password_change' => 'Änderung erlauben',
+    'accounts_trash' => 'Gelöschte Benutzerkonten',
+    'user_restored' => 'Das Benutzerkonto :account wurde wiederhergestellt.',
 
 ];
