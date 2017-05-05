@@ -120,6 +120,8 @@ return [
         'send_newaccount_email' => 'E-Mail mit den Zugangsdaten senden',
         'id' => 'ID',
         'deleted_at' => 'Löschdatum',
+        'created_at' => 'Erstellungsdatum',
+        'updated_at' => 'Änderungsdatum',
     ],
 
 ];

@@ -32,5 +32,7 @@ return [
     'trash' => 'Papierkorb',
     'accounts' => 'Benutzerkonten',
     'normal_view' => 'Normale Ansicht',
+    'info' => 'Information',
+    'enable_password_change' => 'Änderung erlauben',
 
 ];

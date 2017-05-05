@@ -120,6 +120,8 @@ return [
         'send_newaccount_email' => 'Send an email with the credentials to the user',
         'id' => 'ID',
         'deleted_at' => 'Date of deletion',
+        'created_at' => 'Date of creation',
+        'updated_at' => 'Last updated',
     ],
 
 ];

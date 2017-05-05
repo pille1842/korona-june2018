@@ -32,5 +32,7 @@ return [
     'trash' => 'Trash',
     'accounts' => 'User Accounts',
     'normal_view' => 'Normal View',
+    'info' => 'Information',
+    'enable_password_change' => 'Enable changes',
 
 ];
