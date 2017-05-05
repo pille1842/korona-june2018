@@ -40,14 +40,12 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login',
-            'slug'  => 'required|max:255|alpha_dash|unique:users,slug',
             'email' => 'required|max:255|email|unique:users,email',
             'password' => 'required|confirmed|string|min:8|max:255'
         ]);
 
         $user = new User;
         $user->login = $request->login;
-        $user->slug = $request->slug;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->active = $request->has('active');
@@ -79,13 +77,11 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login,'.$user->id,
-            'slug'  => 'required|max:255|alpha_dash|unique:users,slug,'.$user->id,
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
             'password' => 'confirmed|string|min:8|max:255'
         ]);
 
         $user->login = $request->login;
-        $user->slug  = $request->slug;
         $user->email = $request->email;
         $user->active = $request->has('active');
         $user->password = Hash::make($request->password);

@@ -22,7 +22,6 @@
                     </div>
                     <div class="panel-body">
                         {{ Form::bsText('login') }}
-                        {{ Form::bsSlug('slug', $user->slug, 'login') }}
                         {{ Form::bsEmail('email') }}
                         {{ Form::bsCheckbox('active', '1', $user->active) }}
                     </div>
