@@ -108,6 +108,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'login' => 'Username',
+        'email' => 'Email Address',
+        'active' => 'Active',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm Password',
+        'force_password_change' => 'Force password change after login',
+        'send_password_email' => 'Send password via email',
+        'slug' => 'SEO URL'
+    ],
 
 ];
