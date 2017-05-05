@@ -15,9 +15,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nachname</th>
-                    <th>Vorname</th>
-                    <th>Biername</th>
+                    <th>Benutzername</th>
+                    <th>aktiv</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -25,16 +24,21 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->lastname }}</td>
-                        <td>{{ $user->firstname }}</td>
-                        <td>{{ $user->nickname }}</td>
+                        <td>{{ $user->login }}</td>
+                        <td>
+                            @if($user->active)
+                                <span class="glyphicon glyphicon-ok text-success"></span>
+                            @else
+                                <span class="glyphicon glyphicon-remove text-danger"></span>
+                            @endif
+                        </td>
                         <td style="text-align:right;">
                             {!! Form::open(['action' => ['Backend\UserController@destroy', $user], 'method' => 'delete']) !!}
                                 <a href="{{ action('Backend\UserController@edit', $user) }}" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                                 <button type="button" class="btn btn-danger"
-                                        onclick="confirm('{{ trans('backend.really_delete_user', ['user' => $user->getShortName()]) }}') &amp;&amp; form.submit();">
+                                        onclick="confirm('{{ trans('backend.really_delete_user', ['user' => $user->login]) }}') &amp;&amp; form.submit();">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             {!! Form::close() !!}
@@ -78,10 +82,9 @@
                 }
             },
             columns: [
+                null,
+                null,
                 {orderable: false},
-                null,
-                null,
-                null,
                 {orderable: false}
             ]
         });

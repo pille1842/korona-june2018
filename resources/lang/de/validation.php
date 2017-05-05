@@ -111,7 +111,12 @@ return [
     'attributes' => [
         'login' => 'Benutzername',
         'email' => 'E-Mail-Adresse',
-        'active' => 'aktiv'
+        'active' => 'aktiv',
+        'password' => 'Passwort',
+        'password_confirmation' => 'Passwort bestätigen',
+        'force_password_change' => 'Passwortänderung nach Anmeldung erzwingen',
+        'send_password_email' => 'Passwort per E-Mail zusenden',
+        'slug' => 'SEO-URL'
     ],
 
 ];

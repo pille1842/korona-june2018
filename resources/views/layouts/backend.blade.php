@@ -70,6 +70,24 @@
                 </div>
             @endif
 
+            @if (session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            @endif
+
+            @if (session('info'))
+                <div class="alert alert-info">
+                    {{ session('info') }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             @yield('content')
 
             <footer class="footer">
@@ -80,6 +98,7 @@
 
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
 
         @yield('scripts')
 
