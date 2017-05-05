@@ -22,3 +22,10 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     // Users
     Route::resource('user', 'UserController');
 });
+
+// Simple API routines
+Route::group(['prefix' => 'ajax'], function () {
+    Route::get('slug', function (Request $request) {
+        return str_slug($request::input('input'));
+    })->name('slug');
+});
