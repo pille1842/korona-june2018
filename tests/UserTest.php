@@ -87,8 +87,8 @@ class UserTest extends TestCase
             'email' => $user->email,
             'password' => $user->password,
             'remember_token' => $user->remember_token,
-            'active' => true,
-            'force_password_change' => false
+            'active' => $user->active,
+            'force_password_change' => $user->force_password_change
         ]);
     }
 }

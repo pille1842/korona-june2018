@@ -3,8 +3,6 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Bican\Roles\Models\Permission;
-use Bican\Roles\Models\Role;
 
 class PermissionAndRoleTest extends TestCase
 {
@@ -34,7 +32,7 @@ class PermissionAndRoleTest extends TestCase
     }
 
     /**
-     * Test that a user has all permissions attached to a role
+     * Test that a user has all permissions attached to a role.
      *
      * @return void
      */
@@ -67,5 +65,41 @@ class PermissionAndRoleTest extends TestCase
         // to see if the user has them
         $permissionString = trim($permissionString, '|');
         $this->assertTrue($user->can($permissionString, true));
+    }
+
+    /**
+     * Test that force-deleting a user gets rid of all his role and permission
+     * attachments.
+     *
+     * @return void
+     */
+    public function testDeletingUserDeletesAllRoleAndPermissionAttachments()
+    {
+        $role        = factory(Bican\Roles\Models\Role::class)->create();
+        $permissions = factory(Bican\Roles\Models\Permission::class, 10)->create();
+        $directPerm  = factory(Bican\Roles\Models\Permission::class, 10)->create();
+        $user        = factory(Korona\User::class)->create();
+
+        foreach ($permissions as $permission) {
+            $role->attachPermission($permission);
+        }
+
+        foreach ($directPerm as $permission) {
+            $user->attachPermission($permission);
+        }
+
+        $user->attachRole($role);
+
+        // Start fresh from the database because permissions are cached like hell
+        $user = Korona\User::first();
+
+        // Now delete the user and see what happens
+        $user->forceDelete();
+        $this->dontSeeInDatabase('permission_user', [
+            'user_id' => $user->id
+        ]);
+        $this->dontSeeInDatabase('role_user', [
+            'user_id' => $user->id
+        ]);
     }
 }
