@@ -51,12 +51,10 @@ class RolesAndPermissionsSeeder extends Seeder
         // Create the first user to be a superuser
         $user = User::create([
             'login'     => 'Superuser',
+            'slug'      => 'superuser',
             'email'     => 'test@example.com',
             'password'  => Hash::make('12345'),
-            'firstname' => 'Max',
-            'lastname'  => 'Mustermann',
-            'active'    => true,
-            'slug'      => 'superuser'
+            'active'    => true
         ]);
         $user->attachRole($superuserRole);
     }
