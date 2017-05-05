@@ -38,7 +38,7 @@
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                                 <button type="button" class="btn btn-danger"
-                                        onclick="confirm('{{ trans('backend.really_delete_user', ['user' => $user->login]) }}') &amp;&amp; form.submit();">
+                                        onclick="confirm('{{ trans('backend.really_delete_user', ['account' => $user->login]) }}') &amp;&amp; form.submit();">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             {!! Form::close() !!}

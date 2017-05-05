@@ -23,5 +23,7 @@ return [
     'password_email_sent' => 'Das geänderte Passwort wurde dem Benutzer zugemailt.',
     'newaccount_email_sent' => 'Der neue Benutzer hat eine E-Mail mit seinen Zugangsdaten erhalten.',
     'create_account' => 'Neues Benutzerkonto erstellen',
+    'user_deleted' => 'Das Benutzerkonto :account wurde in den Papierkorb verschoben.',
+    'really_delete_user' => 'Soll das Benutzerkonto :account wirklich gelöscht werden?',
 
 ];

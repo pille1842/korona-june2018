@@ -98,7 +98,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('backend.user.index')
+               ->with('success', trans('backend.user_deleted', ['account' => $user->login]));
     }
 
     public function sendPasswordEmail(User $user, $password)

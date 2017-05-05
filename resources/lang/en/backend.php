@@ -23,5 +23,7 @@ return [
     'password_email_sent' => 'The new password has been emailed to the user.',
     'newaccount_email_sent' => 'The new user has received an email with his credentials.',
     'create_account' => 'Create new account',
+    'user_deleted' => 'The account :account has been moved to the trash.',
+    'really_delete_user' => 'Do you really want to delete the account :account?',
 
 ];
