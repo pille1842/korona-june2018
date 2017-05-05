@@ -26,7 +26,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @permission('backend.manage.users')
-                                    <li><a href="{{ action('Backend\UserController@index') }}">Benutzer verwalten</a></li>
+                                    <li><a href="{{ action('Backend\UserController@index') }}">{{ trans('backend.accounts') }}</a></li>
                                 @endpermission
                                 <li><a href="#">Seitenrollen</a></li>
                             </ul>
@@ -35,7 +35,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->getShortName() }}
+                                {{ Auth::user()->login }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">

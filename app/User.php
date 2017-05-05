@@ -22,27 +22,4 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     {
         return 'slug';
     }
-
-    public function getShortName()
-    {
-        if ($this->nickname != '') {
-            return $this->nickname;
-        } else {
-            return $this->firstname . ' ' . $this->lastname . ' s.n.';
-        }
-    }
-
-    public function getFullName()
-    {
-        if ($this->nickname != '') {
-            return $this->firstname . ' ' . $this->lastname . ' v ' . $this->nickname;
-        } else {
-            return $this->firstname . ' ' . $this->lastname . ' s.n.';
-        }
-    }
-
-    public function getCivilName()
-    {
-        return $this->firstname . ' ' . $this->lastname;
-    }
 }

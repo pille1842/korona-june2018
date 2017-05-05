@@ -30,6 +30,7 @@ return [
     'empty_trash' => 'Empty Trash',
     'really_empty_trash' => 'Do you really want to empty the trash? This cannot be undone!',
     'trash' => 'Trash',
+    'accounts' => 'User Accounts',
     'normal_view' => 'Normal View',
 
 ];

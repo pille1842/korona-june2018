@@ -30,6 +30,7 @@ return [
     'empty_trash' => 'Papierkorb leeren',
     'really_empty_trash' => 'Soll der Papierkorb wirklich geleert werden? Dies kann nicht rückgängig gemacht werden!',
     'trash' => 'Papierkorb',
+    'accounts' => 'Benutzerkonten',
     'normal_view' => 'Normale Ansicht',
 
 ];
