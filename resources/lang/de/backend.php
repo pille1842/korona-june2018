@@ -25,5 +25,11 @@ return [
     'create_account' => 'Neues Benutzerkonto erstellen',
     'user_deleted' => 'Das Benutzerkonto :account wurde in den Papierkorb verschoben.',
     'really_delete_user' => 'Soll das Benutzerkonto :account wirklich gelöscht werden?',
+    'really_purge_user' => 'Soll das Benutzerkonto :account endgültig gelöscht werden? Dies kann nicht rückgängig gemacht werden!',
+    'restore' => 'Wiederherstellen',
+    'empty_trash' => 'Papierkorb leeren',
+    'really_empty_trash' => 'Soll der Papierkorb wirklich geleert werden? Dies kann nicht rückgängig gemacht werden!',
+    'trash' => 'Papierkorb',
+    'normal_view' => 'Normale Ansicht',
 
 ];

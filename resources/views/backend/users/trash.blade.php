@@ -2,15 +2,20 @@
 
 @section('content')
     <h1>
-        {{ trans('backend.accounts') }}
-        <a href="{{ action('Backend\UserController@create') }}" class="btn btn-success"
-            data-toggle="tooltip" title="{{ trans('backend.create_account') }}">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
+        {{ trans('backend.accounts_trash') }}
+        @if($users->count() > 0)
+            {{ Form::open(['action' => 'Backend\UserController@emptyTrash', 'method' => 'delete', 'style' => 'display:inline;']) }}
+                <button type="button" class="btn btn-danger"
+                        onclick="confirm('{{ trans('backend.really_empty_trash') }}') &amp;&amp; form.submit();"
+                        data-toggle="tooltip" title="{{ trans('backend.empty_trash') }}">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            {{ Form::close() }}
+        @endif
         <span class="pull-right">
-            <a href="{{ route('backend.user.trash') }}" class="btn btn-default">
-                <span class="glyphicon glyphicon-trash"></span>
-                {{ trans('backend.trash') }}
+            <a href="{{ route('backend.user.index') }}" class="btn btn-default">
+                <span class="glyphicon glyphicon-list"></span>
+                {{ trans('backend.normal_view') }}
             </a>
         </span>
     </h1>
@@ -21,7 +26,7 @@
                 <tr>
                     <th>{{ trans('validation.attributes.id') }}</th>
                     <th>{{ trans('validation.attributes.login') }}</th>
-                    <th>{{ trans('validation.attributes.active') }}</th>
+                    <th>{{ trans('validation.attributes.deleted_at') }}</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -30,23 +35,21 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->login }}</td>
-                        <td>
-                            @if($user->active)
-                                <span class="glyphicon glyphicon-ok text-success"></span>
-                            @else
-                                <span class="glyphicon glyphicon-remove text-danger"></span>
-                            @endif
-                        </td>
+                        <td>{{ $user->deleted_at->diffForHumans() }}</td>
                         <td style="text-align:right;">
-                            {!! Form::open(['action' => ['Backend\UserController@destroy', $user], 'method' => 'delete']) !!}
-                                <a href="{{ action('Backend\UserController@edit', $user) }}" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
+                            {{ Form::open(['action' => ['Backend\UserController@restore', $user->id], 'style' => 'display:inline;']) }}
+                                <button type="submit" class="btn btn-primary"
+                                    data-toggle="tooltip" title="{{ trans('backend.restore') }}"
+                                    data-placement="left">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                </button>
+                            {{ Form::close() }}
+                            {{ Form::open(['action' => ['Backend\UserController@purge', $user->id], 'method' => 'delete', 'style' => 'display:inline;']) }}
                                 <button type="button" class="btn btn-danger"
-                                        onclick="confirm('{{ trans('backend.really_delete_user', ['account' => $user->login]) }}') &amp;&amp; form.submit();">
+                                        onclick="confirm('{{ trans('backend.really_purge_user', ['account' => $user->login]) }}') &amp;&amp; form.submit();">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
-                            {!! Form::close() !!}
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach
@@ -89,7 +92,7 @@
             columns: [
                 null,
                 null,
-                {orderable: false},
+                null,
                 {orderable: false}
             ]
         });

@@ -118,6 +118,8 @@ return [
         'send_password_email' => 'Send password via email',
         'slug' => 'SEO URL',
         'send_newaccount_email' => 'Send an email with the credentials to the user',
+        'id' => 'ID',
+        'deleted_at' => 'Date of deletion',
     ],
 
 ];

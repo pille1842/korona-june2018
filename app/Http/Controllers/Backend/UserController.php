@@ -24,6 +24,13 @@ class UserController extends Controller
         return view('backend.users.index', compact('users'));
     }
 
+    public function trash()
+    {
+        $users = User::onlyTrashed()->get();
+
+        return view('backend.users.trash', compact('users'));
+    }
+
     public function create()
     {
         return view('backend.users.create');
@@ -102,6 +109,34 @@ class UserController extends Controller
 
         return redirect()->route('backend.user.index')
                ->with('success', trans('backend.user_deleted', ['account' => $user->login]));
+    }
+
+    public function purge($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->forceDelete();
+
+        return redirect()->route('backend.user.trash')
+               ->with('success', trans('backend.user_purged', ['account' => $user->login]));
+    }
+
+    public function emptyTrash()
+    {
+        $user = User::onlyTrashed()->forceDelete();
+
+        return redirect()->route('backend.user.trash')
+               ->with('success', trans('backend.trash_emptied'));
+    }
+
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->restore();
+
+        return redirect()->route('backend.user.trash')
+               ->with('success', trans('backend.user_restored', ['account' => $user->login]));
     }
 
     public function sendPasswordEmail(User $user, $password)

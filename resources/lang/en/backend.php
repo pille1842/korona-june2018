@@ -25,5 +25,11 @@ return [
     'create_account' => 'Create new account',
     'user_deleted' => 'The account :account has been moved to the trash.',
     'really_delete_user' => 'Do you really want to delete the account :account?',
+    'really_purge_user' => 'Do you really want to purge account :account? This cannot be undone!',
+    'restore' => 'Restore',
+    'empty_trash' => 'Empty Trash',
+    'really_empty_trash' => 'Do you really want to empty the trash? This cannot be undone!',
+    'trash' => 'Trash',
+    'normal_view' => 'Normal View',
 
 ];

@@ -118,6 +118,8 @@ return [
         'send_password_email' => 'Passwort per E-Mail zusenden',
         'slug' => 'SEO-URL',
         'send_newaccount_email' => 'E-Mail mit den Zugangsdaten senden',
+        'id' => 'ID',
+        'deleted_at' => 'Löschdatum',
     ],
 
 ];
