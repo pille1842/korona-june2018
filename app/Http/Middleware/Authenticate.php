@@ -25,6 +25,24 @@ class Authenticate
             }
         }
 
+        // If the user account is inactive, deny access to all internal areas.
+        // Note that this does not prevent users from accessing the backend, so
+        // as not to accidentally lock out the superuser, for example. If a
+        // user with access to the backend needs to be locked out, their backend
+        // access privileges should be revoked first.
+        if (! Auth::user()->active) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->to('/')->with('error', trans('auth.account_inactive'));
+            }
+        }
+
+        // @TODO: Passwortänderung implementieren
+        /* if (Auth::user()->force_password_change) {
+            return redirect()->to('/')->with('warning', trans('auth.please_change_password'));
+        } */
+
         return $next($request);
     }
 }

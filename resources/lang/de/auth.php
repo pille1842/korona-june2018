@@ -18,5 +18,7 @@ return [
     'role_denied' => "Du hast nicht die nötige Rolle, um auf diesen Bereich zuzugreifen.",
     'permission_denied' => "Du hast nicht die nötige Berechtigung, um auf diesen Bereich zuzugreifen.",
     'level_denied' => "Du hast nicht die nötige Zugriffsebene, um auf diesen Bereich zuzugreifen.",
+    'account_inactive' => 'Dieses Benutzerkonto ist deaktiviert.',
+    'please_change_password' => 'Bitte ändere dein Passwort, um fortzufahren.',
 
 ];
