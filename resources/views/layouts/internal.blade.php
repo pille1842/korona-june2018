@@ -29,9 +29,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @permission('access.backend')
-                                    <li><a href="{{ url('backend') }}">Zum Backend</a></li>
+                                    <li><a href="{{ url('backend') }}">{{ trans('internal.go_to_backend') }}</a></li>
                                 @endpermission
-                                <li><a href="{{ url('logout') }}">Abmelden</a></li>
+                                <li><a href="{{ url('logout') }}">{{ trans('internal.logout') }}</a></li>
                             </ul>
                         </li>
                     </ul>

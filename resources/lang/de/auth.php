@@ -20,5 +20,7 @@ return [
     'level_denied' => "Du hast nicht die nötige Zugriffsebene, um auf diesen Bereich zuzugreifen.",
     'account_inactive' => 'Dieses Benutzerkonto ist deaktiviert.',
     'please_change_password' => 'Bitte ändere dein Passwort, um fortzufahren.',
+    'login' => 'Anmelden',
+    'password_forgotten' => 'Passwort vergessen?',
 
 ];

@@ -20,5 +20,7 @@ return [
     'level_denied' => "You don't have the necessary access level to access this area.",
     'account_inactive' => 'This user account has been deactivated.',
     'please_change_password' => 'Please change your password to proceed.',
+    'login' => 'Login',
+    'password_forgotten' => 'Forgot your password?',
 
 ];

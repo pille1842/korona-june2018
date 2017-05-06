@@ -122,6 +122,7 @@ return [
         'deleted_at' => 'Löschdatum',
         'created_at' => 'Erstellungsdatum',
         'updated_at' => 'Änderungsdatum',
+        'remember' => 'Angemeldet bleiben',
     ],
 
 ];

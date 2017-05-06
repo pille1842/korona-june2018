@@ -122,6 +122,7 @@ return [
         'deleted_at' => 'Date of deletion',
         'created_at' => 'Date of creation',
         'updated_at' => 'Last updated',
+        'remember' => 'Remember Me',
     ],
 
 ];
