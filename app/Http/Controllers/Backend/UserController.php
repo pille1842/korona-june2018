@@ -9,6 +9,7 @@ use Mail;
 use Korona\Http\Requests;
 use Korona\Http\Controllers\Controller;
 use Korona\User;
+use Korona\Events\UserCreated;
 
 class UserController extends Controller
 {
@@ -55,9 +56,10 @@ class UserController extends Controller
 
         $success = trans('backend.saved');
         if ($request->has('send_newaccount_email')) {
-            $this->sendNewAccountEmail($user, $request->password);
             $success .= ' ' . trans('backend.newaccount_email_sent');
         }
+
+        event(new UserCreated($user, $request->password, $request->has('send_newaccount_email')));
 
         return redirect()->route('backend.user.edit', $user)
                ->with('success', $success);
@@ -142,17 +144,6 @@ class UserController extends Controller
             function ($m) use ($user) {
                 $m->to($user->email, $user->login);
                 $m->subject(trans('mail.password_email_subject'));
-            }
-        );
-    }
-
-    public function sendNewAccountEmail(User $user, $password)
-    {
-        Mail::send(['mail.new_account', 'mail.plain.new_account'],
-            ['user' => $user, 'password' => $password],
-            function ($m) use ($user) {
-                $m->to($user->email, $user->login);
-                $m->subject(trans('mail.newaccount_email_subject'));
             }
         );
     }

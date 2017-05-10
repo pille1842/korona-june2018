@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Korona\Events\SomeEvent' => [
-            'Korona\Listeners\EventListener',
+        'Korona\Events\UserCreated' => [
+            'Korona\Listeners\SendNewAccountEmail',
         ],
     ];
 
