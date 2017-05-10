@@ -4,7 +4,8 @@
     <h1>
         {{ trans('backend.accounts') }}
         <a href="{{ action('Backend\UserController@create') }}" class="btn btn-success"
-            data-toggle="tooltip" title="{{ trans('backend.create_account') }}">
+            data-toggle="tooltip" title="{{ trans('backend.create_account') }}"
+            id="btn-create-user">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
         <span class="pull-right">
