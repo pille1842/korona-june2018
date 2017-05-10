@@ -35,7 +35,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->login }}
+                                {{ Auth::user()->member->getShortName() }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">

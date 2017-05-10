@@ -17,4 +17,9 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     ];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
+    }
 }

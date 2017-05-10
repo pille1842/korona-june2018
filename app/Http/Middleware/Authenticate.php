@@ -38,6 +38,17 @@ class Authenticate
             }
         }
 
+        // If there is no member associated with the user account, deny access.
+        // Some features in the internal and backend areas depend on a working
+        // relationship between user and member.
+        if (Auth::user()->member === null) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response('Internal Server Error', 500);
+            } else {
+                return redirect()->to('/')->with('error', trans('auth.account_has_no_member'));
+            }
+        }
+
         // @TODO: Passwortänderung implementieren
         /* if (Auth::user()->force_password_change) {
             return redirect()->to('/')->with('warning', trans('auth.please_change_password'));

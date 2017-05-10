@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Bican\Roles\Models\Role;
 use Bican\Roles\Models\Permission;
 use Korona\User;
+use Korona\Member;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -56,5 +57,15 @@ class RolesAndPermissionsSeeder extends Seeder
             'active'    => true
         ]);
         $user->attachRole($superuserRole);
+
+        // Create a member so that the superuser can login
+        $member = Member::create([
+            'user_id' => $user->id,
+            'slug' => 'superuser',
+            'nickname' => 'Superuser',
+            'firstname' => 'Super',
+            'lastname' => 'User',
+            'active' => true
+        ]);
     }
 }

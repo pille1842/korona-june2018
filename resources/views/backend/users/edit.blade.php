@@ -58,6 +58,13 @@
                     <div class="panel-body">
                         {{ Form::bsText('created_at', $user->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $user->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
+                        @if ($user->member !== null)
+                            <a href="#">
+                                <span class="glyphicon glyphicon-link"></span>
+                                Verknüpftes Mitglied:
+                                {{ $user->member->getFullName() }}
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
