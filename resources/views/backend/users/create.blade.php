@@ -52,7 +52,7 @@
 @section('scripts')
     <script>
         $("#btnGeneratePassword").click(function () {
-            var chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ023456789";
+            var chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
             var password = "";
             var length = 8;
             for (i = 0; i < length; i++) {
