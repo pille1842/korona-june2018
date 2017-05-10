@@ -78,4 +78,60 @@ class AllPermissionsTest extends TestCase
              ->visit('backend')
              ->seePageIs('backend');
     }
+
+    /**
+     * Test that a user with permission backend.manage.users can access the
+     * user management page.
+     *
+     * @return void
+     */
+    public function testBackendManageUsersPermissionSuccessful()
+    {
+        $user = factory(Korona\User::class)->create();
+
+        $backendPermission = Bican\Roles\Models\Permission::create([
+            'name' => 'Backend Access',
+            'slug' => 'access.backend'
+        ]);
+
+        $manageUsersPermission = Bican\Roles\Models\Permission::create([
+            'name' => 'Manage Users',
+            'slug' => 'backend.manage.users'
+        ]);
+
+        $user->attachPermission($backendPermission);
+        $user->attachPermission($manageUsersPermission);
+
+        // Get user fresh from the database to avoid cached permissions
+        $user = Korona\User::first();
+
+        $this->actingAs($user)
+             ->visit('backend/user')
+             ->seePageIs('backend/user');
+    }
+
+    /**
+     * Test that a user without permission backend.manage.users sees an error
+     * message when he tries to visit the users management page.
+     *
+     * @return void
+     */
+    public function testBackendManageUsersPermissionFailure()
+    {
+        $user = factory(Korona\User::class)->create();
+
+        $backendPermission = Bican\Roles\Models\Permission::create([
+            'name' => 'Backend Access',
+            'slug' => 'access.backend'
+        ]);
+
+        $user->attachPermission($backendPermission);
+
+        // Get user fresh from the database to avoid cached permissions
+        $user = Korona\User::first();
+
+        $this->actingAs($user)
+             ->visit('backend/user')
+             ->see(trans('auth.permission_denied'));
+    }
 }
