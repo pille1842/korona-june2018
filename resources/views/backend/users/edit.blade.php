@@ -111,7 +111,7 @@
                 </div>
                 <div class="modal-body">
                     <ul>
-                        @foreach($effectivePermissions as $group => $groups)
+                        @forelse($effectivePermissions as $group => $groups)
                             <li>
                                 <strong>{{ $group }}</strong>
                                 <ul>
@@ -120,7 +120,9 @@
                                     @endforeach
                                 </ul>
                             </li>
-                        @endforeach
+                        @empty
+                            <li><em>{{ trans('backend.has_no_permissions') }}</em></li>
+                        @endforelse
                     </ul>
                 </div>
                 <div class="modal-footer">

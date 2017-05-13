@@ -53,6 +53,7 @@ return [
     'logout' => 'Abmelden',
     'roles_and_permissions' => 'Seitenrollen und Berechtigungen',
     'effective_permissions' => 'Effektive Berechtigungen',
+    'has_no_permissions' => 'Dieser Benutzer hat keine Berechtigungen.',
 
 
     'permissions' => [

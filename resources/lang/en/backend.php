@@ -53,6 +53,7 @@ return [
     'logout' => 'Logout',
     'roles_and_permissions' => 'Roles and Permissions',
     'effective_permissions' => 'Effective permissions',
+    'has_no_permissions' => 'This user has no permissions.',
 
 
     'permissions' => [
