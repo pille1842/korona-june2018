@@ -1,5 +1,5 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
-    {{ Form::label($name, trans("validation.attributes.$name"), ['class' => 'control-label']) }}
+    {{ Form::label($name, $label ? $label : trans("validation.attributes.$name"), ['class' => 'control-label']) }}
     <div class="input-group">
         {{ Form::text($name, $value, array_merge(['class' => 'form-control', 'aria-describedby' => $name.'HelpBlock'], $attributes)) }}
         <span class="input-group-btn">
