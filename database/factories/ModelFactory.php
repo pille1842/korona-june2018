@@ -28,6 +28,9 @@ $factory->define(Korona\Member::class, function (Faker\Generator $faker) {
         'nickname' => $faker->firstname,
         'firstname' => $faker->firstname,
         'lastname' => $faker->lastname,
+        'birthname' => $faker->lastname,
+        'title' => $faker->titleMale,
+        'profession' => $faker->word,
         'birthday' => new \Carbon\Carbon($faker->date),
         'active' => true,
     ];
