@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
 use Carbon\Carbon;
+use Collective\Html\Eloquent\FormAccessible;
 
 class Member extends Model
 {
     use RevisionableTrait;
     use SoftDeletes;
+    use FormAccessible;
 
     protected $revisionCreationsEnabled = true;
     protected $dontKeepRevisionOf = [
@@ -68,7 +70,7 @@ class Member extends Model
         return $this->hasMany(Member::class, 'parent_id');
     }
 
-    public function getBirthdayAttribute($value)
+    public function formBirthdayAttribute($value)
     {
         return Carbon::parse($value)->format('d.m.Y');
     }
