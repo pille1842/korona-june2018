@@ -46,5 +46,10 @@ return [
     'really_purge_member' => 'Soll das Mitglied :member wirklich endgültig gelöscht werden? Dies kann nicht rückgängig gemacht werden!',
     'member_restored' => 'Das Mitglied :member wurde wiederhergestellt.',
     'create_member' => 'Neues Mitglied erstellen',
+    'toggle_navigation' => 'Navigation ein-/ausblenden',
+    'backend' => 'Backend',
+    'core_data' => 'Stammdaten',
+    'go_to_internal' => 'Zum internen Bereich',
+    'logout' => 'Abmelden',
 
 ];

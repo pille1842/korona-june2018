@@ -14,5 +14,6 @@ return [
 
     'go_to_backend' => 'Go to backend',
     'logout' => 'Logout',
+    'toggle_navigation' => 'Toggle navigation',
 
 ];

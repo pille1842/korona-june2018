@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#k-navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Navigation ein-/ausblenden</span>
+                        <span class="sr-only">{{ trans('internal.toggle_navigation') }}</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>

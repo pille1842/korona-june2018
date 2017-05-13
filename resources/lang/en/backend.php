@@ -46,5 +46,10 @@ return [
     'really_purge_member' => 'Do you really want to purge member :member? This cannot be undone!',
     'member_restored' => 'The member :member has been restored.',
     'create_member' => 'Create new member',
+    'toggle_navigation' => 'Toggle navigation',
+    'backend' => 'Backend',
+    'core_data' => 'Core Data',
+    'go_to_internal' => 'Go to internal area',
+    'logout' => 'Logout',
 
 ];

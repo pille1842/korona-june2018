@@ -10,25 +10,28 @@
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#k-navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Navigation ein-/ausblenden</span>
+                        <span class="sr-only">{{ trans('backend.toggle_navigation') }}</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('backend') }}">{{ config('fraternity.name') }} &ndash; Backend</a>
+                    <a class="navbar-brand" href="{{ url('backend') }}">{{ config('fraternity.name') }} &ndash; {{ trans('backend.backend') }}</a>
                 </div>
                 <div id="k-navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Benutzer
+                                {{ trans('backend.core_data') }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 @permission('backend.manage.users')
-                                    <li><a href="{{ action('Backend\UserController@index') }}">{{ trans('backend.accounts') }}</a></li>
+                                    <li><a href="{{ route('backend.user.index') }}">{{ trans('backend.accounts') }}</a></li>
                                 @endpermission
                                 <li><a href="#">Seitenrollen</a></li>
+                                @permission('backend.manage.members')
+                                    <li><a href="{{ route('backend.member.index') }}">{{ trans('backend.members') }}</a></li>
+                                @endpermission
                             </ul>
                         </li>
                     </ul>
@@ -39,8 +42,8 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('home') }}">Zum internen Bereich</a></li>
-                                <li><a href="{{ url('logout') }}">Abmelden</a></li>
+                                <li><a href="{{ url('home') }}">{{ trans('backend.go_to_internal') }}</a></li>
+                                <li><a href="{{ url('logout') }}">{{ trans('backend.logout') }}</a></li>
                             </ul>
                         </li>
                     </ul>
