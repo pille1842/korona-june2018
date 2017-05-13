@@ -45,6 +45,12 @@ class AuthControllerTest extends TestCase
             'password' => bcrypt('12345')
         ]);
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $this->visit('login')
              ->type($user->login, 'login')
              ->type('abcde', 'password')
@@ -65,6 +71,12 @@ class AuthControllerTest extends TestCase
             'password' => bcrypt('12345')
         ]);
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $this->visit('login')
              ->type($user->login, 'login')
              ->type('12345', 'password')
@@ -84,6 +96,12 @@ class AuthControllerTest extends TestCase
             'password' => bcrypt('12345')
         ]);
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $this->visit('login')
              ->type(strtoupper($user->login), 'login')
              ->type('12345', 'password')
@@ -102,6 +120,12 @@ class AuthControllerTest extends TestCase
         $user = factory(Korona\User::class)->create([
             'password' => bcrypt('12345')
         ]);
+
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
 
         $this->actingAs($user)
              ->visit('home')

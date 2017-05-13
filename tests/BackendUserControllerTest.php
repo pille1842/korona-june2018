@@ -65,6 +65,12 @@ class BackendUserControllerTest extends TestCase
     {
         $user = factory(Korona\User::class)->create();
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $backendPermission = Bican\Roles\Models\Permission::create([
             'name' => 'Backend Access',
             'slug' => 'access.backend'

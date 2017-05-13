@@ -20,6 +20,12 @@ class AllPermissionsTest extends TestCase
             'password' => bcrypt('12345')
         ]);
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $this->actingAs($user)
              ->visit('home')
              ->dontSee(trans('internal.go_to_backend'));
@@ -36,6 +42,12 @@ class AllPermissionsTest extends TestCase
         $user = factory(Korona\User::class)->create([
             'password' => bcrypt('12345')
         ]);
+
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
 
         $permission = Bican\Roles\Models\Permission::create([
             'name' => 'Backend Access',
@@ -64,6 +76,12 @@ class AllPermissionsTest extends TestCase
             'password' => bcrypt('12345')
         ]);
 
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
+
         $permission = Bican\Roles\Models\Permission::create([
             'name' => 'Backend Access',
             'slug' => 'access.backend'
@@ -88,6 +106,12 @@ class AllPermissionsTest extends TestCase
     public function testBackendManageUsersPermissionSuccessful()
     {
         $user = factory(Korona\User::class)->create();
+
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
 
         $backendPermission = Bican\Roles\Models\Permission::create([
             'name' => 'Backend Access',
@@ -119,6 +143,12 @@ class AllPermissionsTest extends TestCase
     public function testBackendManageUsersPermissionFailure()
     {
         $user = factory(Korona\User::class)->create();
+
+        $member = factory(Korona\Member::class)->create();
+
+        $member->user()->associate($user);
+
+        $member->save();
 
         $backendPermission = Bican\Roles\Models\Permission::create([
             'name' => 'Backend Access',
