@@ -24,6 +24,7 @@ class CreateMembersTable extends Migration
             $table->string('birthname');
             $table->string('title');
             $table->string('profession');
+            $table->date('birthday');
             $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();

@@ -3,18 +3,26 @@
 namespace Korona;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
+use Carbon\Carbon;
 
 class Member extends Model
 {
     use RevisionableTrait;
+    use SoftDeletes;
 
     protected $revisionCreationsEnabled = true;
     protected $dontKeepRevisionOf = [
         'user_id'
     ];
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'birthday'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function identifiableName()
     {
@@ -58,5 +66,19 @@ class Member extends Model
     public function children()
     {
         return $this->hasMany(Member::class, 'parent_id');
+    }
+
+    public function getBirthdayAttribute($value)
+    {
+        return Carbon::parse($value)->format('d.m.Y');
+    }
+
+    public function setBirthdayAttribute($value)
+    {
+        if (! $value instanceof \Carbon\Carbon) {
+            $this->attributes['birthday'] = Carbon::createFromFormat('d.m.Y', $value);
+        } else {
+            $this->attributes['birthday'] = $value;
+        }
     }
 }
