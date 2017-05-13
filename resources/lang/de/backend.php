@@ -54,6 +54,17 @@ return [
     'roles_and_permissions' => 'Seitenrollen und Berechtigungen',
     'effective_permissions' => 'Effektive Berechtigungen',
     'has_no_permissions' => 'Dieser Benutzer hat keine Berechtigungen.',
+    'settings' => 'Systemeinstellungen',
+    'settings_fraternity' => 'Verbindung',
+    'system' => 'System',
+
+
+    'setting' => [
+        'fraternity' => [
+            'name' => 'Name der Verbindung',
+            'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
+        ],
+    ],
 
 
     'permissions' => [

@@ -19,7 +19,7 @@
                         @endif
                     </ul>
                 </nav>
-                <h3 class="text-muted"><img src="{{ asset(config('fraternity.zirkel')) }}" alt=""> {{ config('fraternity.name') }}</h3>
+                <h3 class="text-muted"><img src="{{ asset('images/zirkel.png') }}" alt=""> {{ settings('fraternity.name') }}</h3>
             </div>
 
             @include('partials.messages')
@@ -27,7 +27,7 @@
             @yield('content')
 
             <footer class="footer">
-                <p>&copy; {{ date('Y') }} {{ config('fraternity.name') }}</p>
+                <p>&copy; {{ date('Y') }} {{ settings('fraternity.name') }}</p>
             </footer>
 
         </div> <!-- /container -->

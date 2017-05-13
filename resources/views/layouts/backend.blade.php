@@ -15,7 +15,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('backend') }}">{{ config('fraternity.name') }} &ndash; {{ trans('backend.backend') }}</a>
+                    <a class="navbar-brand" href="{{ url('backend') }}">{{ settings('fraternity.name') }} &ndash; {{ trans('backend.backend') }}</a>
                 </div>
                 <div id="k-navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -31,6 +31,17 @@
                                 <li><a href="#">Seitenrollen</a></li>
                                 @permission('backend.manage.members')
                                     <li><a href="{{ route('backend.member.index') }}">{{ trans('backend.members') }}</a></li>
+                                @endpermission
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ trans('backend.system') }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @permission('backend.manage.settings')
+                                    <li><a href="{{ route('backend.settings.index') }}">{{ trans('backend.settings') }}</a></li>
                                 @endpermission
                             </ul>
                         </li>
@@ -58,7 +69,7 @@
             @yield('content')
 
             <footer class="footer">
-                <p>&copy; {{ date('Y') }} {{ config('fraternity.name') }}</p>
+                <p>&copy; {{ date('Y') }} {{ settings('fraternity.name') }}</p>
             </footer>
 
         </di v> <!-- /container -->

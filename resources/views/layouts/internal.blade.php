@@ -15,7 +15,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('home') }}">{{ config('fraternity.name') }}</a>
+                    <a class="navbar-brand" href="{{ url('home') }}">{{ settings('fraternity.name') }}</a>
                 </div>
                 <div id="k-navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -46,7 +46,7 @@
             @yield('content')
 
             <footer class="footer">
-                <p>&copy; {{ date('Y') }} {{ config('fraternity.name') }}</p>
+                <p>&copy; {{ date('Y') }} {{ settings('fraternity.name') }}</p>
             </footer>
 
         </di v> <!-- /container -->

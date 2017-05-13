@@ -17,7 +17,7 @@
             @yield('content')
 
             <footer class="footer">
-                <p>&copy; {{ date('Y') }} {{ config('fraternity.name') }}</p>
+                <p>&copy; {{ date('Y') }} {{ settings('fraternity.name') }}</p>
             </footer>
 
         </div> <!-- /container -->

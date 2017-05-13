@@ -54,6 +54,17 @@ return [
     'roles_and_permissions' => 'Roles and Permissions',
     'effective_permissions' => 'Effective permissions',
     'has_no_permissions' => 'This user has no permissions.',
+    'settings' => 'System Settings',
+    'settings_fraternity' => 'Fraternity',
+    'system' => 'System',
+
+
+    'setting' => [
+        'fraternity' => [
+            'name' => 'Name of the fraternity',
+            'member_status_enum' => 'Possible values for the member status',
+        ],
+    ],
 
 
     'permissions' => [
