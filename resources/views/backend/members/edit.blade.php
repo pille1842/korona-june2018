@@ -38,7 +38,7 @@
                         {{ Form::bsText('title') }}
                         {{ Form::bsText('profession') }}
                         {{ Form::bsDate('birthday') }}
-                        {{ Form::bsSelect('parent_id', $members, $member->parent_id, ['data-live-search' => 'true']) }}
+                        {{ Form::bsSelect('parent_id', $members, $member->parent_id, ['data-live-search' => 'true', 'data-size' => 5]) }}
                     </div>
                 </div>
             </div>
