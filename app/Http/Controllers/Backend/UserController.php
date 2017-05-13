@@ -10,6 +10,7 @@ use Korona\Http\Requests;
 use Korona\Http\Controllers\Controller;
 use Korona\User;
 use Korona\Events\UserCreated;
+use Korona\Repositories\UserRepository;
 
 class UserController extends Controller
 {
@@ -18,16 +19,16 @@ class UserController extends Controller
         $this->middleware('permission:backend.manage.users');
     }
 
-    public function index()
+    public function index(UserRepository $repository)
     {
-        $users = User::all();
+        $users = $repository->getAll();
 
         return view('backend.users.index', compact('users'));
     }
 
-    public function trash()
+    public function trash(UserRepository $repository)
     {
-        $users = User::onlyTrashed()->get();
+        $users = $repository->getTrashed();
 
         return view('backend.users.trash', compact('users'));
     }
