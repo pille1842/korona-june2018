@@ -22,6 +22,17 @@ $factory->define(Korona\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(Korona\Member::class, function (Faker\Generator $faker) {
+    return [
+        'slug' => str_slug($faker->firstname),
+        'nickname' => $faker->firstname,
+        'firstname' => $faker->firstname,
+        'lastname' => $faker->lastname,
+        'birthday' => new \Carbon\Carbon($faker->date),
+        'active' => true,
+    ];
+});
+
 $factory->define(Bican\Roles\Models\Permission::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->words(rand(3, 5), true),
