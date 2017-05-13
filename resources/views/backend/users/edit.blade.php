@@ -77,7 +77,7 @@
                         {{ Form::bsSelect('roles', $roles, $currentRoles, ['multiple' => true, 'data-live-search' => 'true']) }}
                         <div class="form-group">
                             <label for="permissions">{{ trans('validation.attributes.permissions') }}</label>
-                            <select id="permissions" name="permissions[]" class="form-control selectpicker" aria-describedby="permissionsHelpBlock" data-live-search="true" multiple>
+                            <select id="permissions" name="permissions[]" class="form-control selectpicker" aria-describedby="permissionsHelpBlock" data-live-search="true" data-actions-box="true" multiple>
                                 @foreach($permissions as $label => $group)
                                     <optgroup label="{{ $label }}">
                                         @foreach ($group as $key => $item)
