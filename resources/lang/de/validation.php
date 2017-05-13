@@ -132,6 +132,8 @@ return [
         'user_id' => 'Benutzerkonto',
         'parent_id' => 'Leibbursch',
         'birthday' => 'Geburtstag',
+        'roles' => 'Seitenrollen',
+        'permissions' => 'Berechtigungen',
     ],
 
 ];

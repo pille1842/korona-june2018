@@ -51,5 +51,13 @@ return [
     'core_data' => 'Core Data',
     'go_to_internal' => 'Go to internal area',
     'logout' => 'Logout',
+    'roles_and_permissions' => 'Roles and Permissions',
+    'effective_permissions' => 'Effective permissions',
+
+
+    'permissions' => [
+        'access' => 'Areas',
+        'backend' => 'Backend',
+    ],
 
 ];

@@ -132,6 +132,8 @@ return [
         'user_id' => 'User account',
         'parent_id' => 'Parent',
         'birthday' => 'Birthday',
+        'roles' => 'Roles',
+        'permissions' => 'Permissions',
     ],
 
 ];

@@ -51,5 +51,13 @@ return [
     'core_data' => 'Stammdaten',
     'go_to_internal' => 'Zum internen Bereich',
     'logout' => 'Abmelden',
+    'roles_and_permissions' => 'Seitenrollen und Berechtigungen',
+    'effective_permissions' => 'Effektive Berechtigungen',
+
+
+    'permissions' => [
+        'access' => 'Bereiche',
+        'backend' => 'Backend',
+    ],
 
 ];

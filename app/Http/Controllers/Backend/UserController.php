@@ -11,6 +11,8 @@ use Korona\Http\Controllers\Controller;
 use Korona\User;
 use Korona\Events\UserCreated;
 use Korona\Repositories\UserRepository;
+use Bican\Roles\Models\Role;
+use Bican\Roles\Models\Permission;
 
 class UserController extends Controller
 {
@@ -73,7 +75,43 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('backend.users.edit', compact('user'));
+        $roles = Role::all()->pluck('name', 'id')->all();
+
+        if ($user->roles !== null) {
+            $currentRoles = $user->roles->map(function ($item) {
+                return $item->id;
+            })->all();
+        } else {
+            $currentRoles = [];
+        }
+
+        $permissionsCollection = Permission::all();
+
+        $permissions = [];
+        foreach ($permissionsCollection as $permission) {
+            $group = explode('.', $permission->slug)[0];
+            $permissions[trans('backend.permissions.'.$group)][$permission->id] = $permission->name;
+        }
+
+        if ($user->userPermissions !== null) {
+            $currentPermissions = $user->userPermissions->map(function ($item) {
+                return $item->id;
+            })->all();
+        } else {
+            $currentPermissions = [];
+        }
+
+        $permissionsCollection = $user->getPermissions();
+
+        $effectivePermissions = [];
+        if ($permissionsCollection !== null) {
+            foreach ($permissionsCollection as $permission) {
+                $group = explode('.', $permission->slug)[0];
+                $effectivePermissions[trans('backend.permissions.'.$group)][$permission->id] = $permission->name;
+            }
+        }
+
+        return view('backend.users.edit', compact('user', 'roles', 'currentRoles', 'permissions', 'currentPermissions', 'effectivePermissions'));
     }
 
     public function update(Request $request, User $user)
@@ -81,7 +119,9 @@ class UserController extends Controller
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login,'.$user->id,
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
-            'password' => 'confirmed|string|min:8|max:255'
+            'password' => 'confirmed|string|min:8|max:255',
+            'roles' => 'array|exists:roles,id',
+            'permissions' => 'array|exists:permissions,id',
         ]);
 
         $user->login = $request->login;
@@ -91,6 +131,20 @@ class UserController extends Controller
         $user->force_password_change = $request->has('force_password_change');
 
         $user->save();
+
+        $user->detachAllRoles();
+        if ($request->roles !== null) {
+            foreach ($request->roles as $role) {
+                $user->attachRole(Role::find($role));
+            }
+        }
+
+        $user->detachAllPermissions();
+        if ($request->permissions !== null) {
+            foreach ($request->permissions as $permission) {
+                $user->attachPermission(Permission::find($permission));
+            }
+        }
 
         $success = trans('backend.saved');
         if ($request->has('password') && $request->has('send_password_email')) {
