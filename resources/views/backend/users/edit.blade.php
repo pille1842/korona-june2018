@@ -59,7 +59,7 @@
                         {{ Form::bsText('created_at', $user->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $user->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
                         @if ($user->member !== null)
-                            <a href="#">
+                            <a href="{{ route('backend.member.edit', $user->member) }}">
                                 <span class="glyphicon glyphicon-link"></span>
                                 Verknüpftes Mitglied:
                                 {{ $user->member->getFullName() }}

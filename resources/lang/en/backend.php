@@ -36,5 +36,15 @@ return [
     'enable_password_change' => 'Enable changes',
     'accounts_trash' => 'Trashed User Accounts',
     'user_restored' => 'The account :account has been restored.',
+    'edit_member' => 'Edit member :member',
+    'profile_picture' => 'Profile picture',
+    'personal_details' => 'Personal details',
+    'system_details' => 'System properties',
+    'members' => 'Members',
+    'members_trash' => 'Trashed Members',
+    'really_delete_member' => 'Do you really want to delete member :member?',
+    'really_purge_member' => 'Do you really want to purge member :member? This cannot be undone!',
+    'member_restored' => 'The member :member has been restored.',
+    'create_member' => 'Create new member',
 
 ];

@@ -123,6 +123,15 @@ return [
         'created_at' => 'Erstellungsdatum',
         'updated_at' => 'Änderungsdatum',
         'remember' => 'Angemeldet bleiben',
+        'firstname' => 'Vorname',
+        'lastname' => 'Nachname',
+        'nickname' => 'Biername',
+        'birthname' => 'Geburtsname',
+        'title' => 'Akadem. Titel',
+        'profession' => 'Beruf',
+        'user_id' => 'Benutzerkonto',
+        'parent_id' => 'Leibbursch',
+        'birthday' => 'Geburtstag',
     ],
 
 ];

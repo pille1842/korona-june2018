@@ -5,6 +5,7 @@ use Bican\Roles\Models\Role;
 use Bican\Roles\Models\Permission;
 use Korona\User;
 use Korona\Member;
+use Carbon\Carbon;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -23,6 +24,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $backendManageUsersPermission = Permission::create([
             'name' => 'Kann Benutzerzugänge verwalten',
             'slug' => 'backend.manage.users'
+        ]);
+        $backendManageMembersPermission = Permission::create([
+            'name' => 'Kann Mitglieder verwalten',
+            'slug' => 'backend.manage.members'
         ]);
 
         // Create some pre-defined sensible roles
@@ -48,6 +53,7 @@ class RolesAndPermissionsSeeder extends Seeder
         // Attach permissions to roles
         $adminRole->attachPermission($accessBackendPermission);
         $adminRole->attachPermission($backendManageUsersPermission);
+        $adminRole->attachPermission($backendManageMembersPermission);
 
         // Create the first user to be a superuser
         $user = User::create([

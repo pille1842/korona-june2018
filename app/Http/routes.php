@@ -25,6 +25,13 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     Route::delete('trash/user/{id}', 'UserController@purge')->name('backend.user.purge');
     Route::delete('trash/user', 'UserController@emptyTrash')->name('backend.user.empty_trash');
     Route::post('trash/user/{id}', 'UserController@restore')->name('backend.user.restore');
+
+    // Members
+    Route::resource('member', 'MemberController');
+    Route::get('trash/member', 'MemberController@trash')->name('backend.member.trash');
+    Route::delete('trash/member/{id}', 'MemberController@purge')->name('backend.member.purge');
+    Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');
+    Route::post('trash/member/{id}', 'MemberController@restore')->name('backend.member.restore');
 });
 
 // Simple API routines

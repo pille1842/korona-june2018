@@ -123,6 +123,15 @@ return [
         'created_at' => 'Date of creation',
         'updated_at' => 'Last updated',
         'remember' => 'Remember Me',
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'nickname' => 'Nickname',
+        'birthname' => 'Birth name',
+        'title' => 'Academic title',
+        'profession' => 'Profession',
+        'user_id' => 'User account',
+        'parent_id' => 'Parent',
+        'birthday' => 'Birthday',
     ],
 
 ];

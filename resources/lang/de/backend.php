@@ -36,5 +36,15 @@ return [
     'enable_password_change' => 'Änderung erlauben',
     'accounts_trash' => 'Gelöschte Benutzerkonten',
     'user_restored' => 'Das Benutzerkonto :account wurde wiederhergestellt.',
+    'edit_member' => 'Mitglied :member bearbeiten',
+    'profile_picture' => 'Profilbild',
+    'personal_details' => 'Persönliche Details',
+    'system_details' => 'Systemeigenschaften',
+    'members' => 'Mitglieder',
+    'members_trash' => 'Gelöschte Mitglieder',
+    'really_delete_member' => 'Soll das Mitglied :member wirklich gelöscht werden?',
+    'really_purge_member' => 'Soll das Mitglied :member wirklich endgültig gelöscht werden? Dies kann nicht rückgängig gemacht werden!',
+    'member_restored' => 'Das Mitglied :member wurde wiederhergestellt.',
+    'create_member' => 'Neues Mitglied erstellen',
 
 ];
