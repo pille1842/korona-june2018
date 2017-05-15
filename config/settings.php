@@ -33,7 +33,7 @@ return [
     | If it is enabled all values gets encrypted and decrypted.
     |
     */
-    'encryption' => true,
+    'encryption' => false,
 
     /*
     |--------------------------------------------------------------------------
