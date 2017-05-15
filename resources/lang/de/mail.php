@@ -14,5 +14,6 @@ return [
 
     'password_email_subject' => 'Dein Passwort wurde geändert',
     'newaccount_email_subject' => 'Dein Benutzerkonto steht bereit',
+    'memberchanged_email_subject' => 'Datenänderung bei :member',
 
 ];

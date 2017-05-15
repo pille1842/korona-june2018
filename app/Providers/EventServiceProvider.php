@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Korona\Events\UserCreated' => [
             'Korona\Listeners\SendNewAccountEmail',
         ],
+        'Korona\Events\MemberChanged' => [
+            'Korona\Listeners\SendMemberChangedEmail',
+        ],
     ];
 
     /**
@@ -28,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        $events->listen('revisionable.*', function($model, $revisions) {
+            if ($model instanceof \Korona\Member) {
+                event(new \Korona\Events\MemberChanged($model, $revisions));
+            }
+        });
     }
 }
