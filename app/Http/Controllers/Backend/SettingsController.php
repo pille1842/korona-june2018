@@ -41,7 +41,7 @@ class SettingsController extends Controller
         sort($member_changed_receivers);
         settings(['mail.member_changed_receivers' => $member_changed_receivers]);
 
-        return view('backend.settings.index')
+        return redirect()->route('backend.settings.index')
                ->with('success', trans('backend.saved'));
     }
 }
