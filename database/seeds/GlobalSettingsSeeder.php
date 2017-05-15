@@ -22,6 +22,10 @@ class GlobalSettingsSeeder extends Seeder
                 'AH h.c.',
                 'EAH',
             ],
+            'mail.member_changed_receivers' => [
+                'test@example.com',
+                'another@example.com',
+            ],
         ];
 
         foreach($settings as $key => $value) {

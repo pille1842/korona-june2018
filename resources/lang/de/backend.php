@@ -67,12 +67,16 @@ return [
     'model_restored' => 'Hat den Datensatz wiederhergestellt.',
     'history' => 'Versionsgeschichte',
     'fraternity_details' => 'Verbindungsdetails',
+    'settings_mail' => 'E-Mails',
 
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name der Verbindung',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
+        ],
+        'mail' => [
+            'member_changed_receivers' => 'E-Mail-Empfänger bei Änderungen an Mitgliedern',
         ],
     ],
 

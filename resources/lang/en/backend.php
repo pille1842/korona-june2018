@@ -67,12 +67,16 @@ return [
     'model_restored' => 'Has restored the record.',
     'history' => 'Version History',
     'fraternity_details' => 'Fraternity Details',
+    'settings_mail' => 'Emails',
 
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name of the fraternity',
             'member_status_enum' => 'Possible values for the member status',
+        ],
+        'mail' => [
+            'member_changed_receivers' => 'Email receivers to notify when a member is changed',
         ],
     ],
 
