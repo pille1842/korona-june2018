@@ -15,9 +15,33 @@ class Member extends Model
     use FormAccessible;
 
     protected $revisionCreationsEnabled = true;
+
     protected $dontKeepRevisionOf = [
         'user_id'
     ];
+
+    protected $revisionFormattedFields = [
+        'slug' => '<tt>%s</tt>',
+        'birthday' => 'datetime:d.m.Y',
+        'active' => 'boolean:Nein|Ja'
+    ];
+
+    protected $revisionFormattedFieldNames = [
+        'parent_id' => 'Leibbursch',
+        'slug' => 'SEO-URL',
+        'nickname' => 'Biername',
+        'firstname' => 'Vorname',
+        'lastname' => 'Nachname',
+        'birthname' => 'Geburtsname',
+        'title' => 'Akadem. Titel',
+        'profession' => 'Beruf',
+        'birthday' => 'Geburtstag',
+        'active' => 'aktiv'
+    ];
+
+    protected $revisionNullString = 'nichts';
+
+    protected $revisionUnknownString = 'unbekannt';
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'birthday'];
 

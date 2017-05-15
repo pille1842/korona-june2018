@@ -57,6 +57,16 @@ return [
     'settings' => 'Systemeinstellungen',
     'settings_fraternity' => 'Verbindung',
     'system' => 'System',
+    'date' => 'Datum',
+    'user' => 'Benutzer',
+    'field_name' => 'Feldname',
+    'old_value' => 'alter Wert',
+    'new_value' => 'neuer Wert',
+    'model_created' => 'Hat den Datensatz erstellt.',
+    'model_deleted' => 'Hat den Datensatz gelöscht.',
+    'model_restored' => 'Hat den Datensatz wiederhergestellt.',
+    'history' => 'Versionsgeschichte',
+    'fraternity_details' => 'Verbindungsdetails',
 
 
     'setting' => [

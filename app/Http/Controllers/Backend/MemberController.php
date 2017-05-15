@@ -97,6 +97,12 @@ class MemberController extends Controller
             'birthday' => 'date_format:d.m.Y'
         ]);
 
+        if ($request->birthday == $member->birthday->format('d.m.Y')) {
+            // Disable revision history of the birthday if it hasn't changed.
+            // Revisionable doesn't work well with Carbon instances of dates.
+            $member->disableRevisionField('birthday');
+        }
+
         $member->user_id = $request->has('user_id') ? $request->user_id : null;
         $member->parent_id = $request->has('parent_id') ? $request->parent_id : null;
         $member->slug = $request->slug;

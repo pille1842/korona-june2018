@@ -57,6 +57,16 @@ return [
     'settings' => 'System Settings',
     'settings_fraternity' => 'Fraternity',
     'system' => 'System',
+    'date' => 'Date',
+    'user' => 'User',
+    'field_name' => 'Field',
+    'old_value' => 'Old Value',
+    'new_value' => 'New Value',
+    'model_created' => 'Has created the record.',
+    'model_deleted' => 'Has deleted the record.',
+    'model_restored' => 'Has restored the record.',
+    'history' => 'Version History',
+    'fraternity_details' => 'Fraternity Details',
 
 
     'setting' => [
