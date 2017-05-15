@@ -104,4 +104,16 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Model for Authentication
+    |--------------------------------------------------------------------------
+    |
+    | The Bican\Roles package needs auth.model to determine which model to use
+    | as the User model for permissions and roles. Set it here to the same
+    | value as providers.users.model.
+    |
+    */
+    'model' => Korona\User::class,
+
 ];
