@@ -75,6 +75,8 @@ return [
         'fraternity' => [
             'name' => 'Name der Verbindung',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
+            'vulgo' => 'Präfix für Biernamen (z.B. ṽ., v, al.)',
+            'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)'
         ],
         'mail' => [
             'member_changed_receivers' => 'E-Mail-Empfänger bei Änderungen an Mitgliedern',

@@ -25,6 +25,8 @@ class SettingsController extends Controller
 
         // Name of the fraternity
         settings(['fraternity.name' => $request->fraternity_name]);
+        settings(['fraternity.vulgo' => $request->fraternity_vulgo]);
+        settings(['fraternity.sine_nomine' => $request->fraternity_sine_nomine]);
         // Possible values for the status field of members
         $member_status_enum = explode(',', $request->fraternity_member_status_enum);
         $member_status_enum = array_map('trim', $member_status_enum);

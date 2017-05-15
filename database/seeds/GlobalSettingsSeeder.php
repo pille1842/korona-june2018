@@ -22,6 +22,8 @@ class GlobalSettingsSeeder extends Seeder
                 'AH h.c.',
                 'EAH',
             ],
+            'fraternity.vulgo' => 'ṽ.',
+            'fraternity.sine_nomine' => 's.n.',
             'mail.member_changed_receivers' => [
                 'test@example.com',
                 'another@example.com',

@@ -77,7 +77,7 @@ class Member extends Model
 
     public function getQualifiedNickname()
     {
-        return $this->nickname ? 'ṽ. ' . $this->nickname : 's.n.';
+        return $this->nickname ? settings('fraternity.vulgo') . ' ' . $this->nickname : settings('fraternity.sine_nomine');
     }
 
     public function user()
