@@ -36,6 +36,7 @@ class Member extends Model
         'title' => 'Akadem. Titel',
         'profession' => 'Beruf',
         'birthday' => 'Geburtstag',
+        'status' => 'Status',
         'active' => 'aktiv'
     ];
 

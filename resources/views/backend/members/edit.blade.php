@@ -33,7 +33,6 @@
                     <div class="panel-body">
                         {{ Form::bsText('firstname') }}
                         {{ Form::bsText('lastname') }}
-                        {{ Form::bsText('nickname') }}
                         {{ Form::bsText('birthname') }}
                         {{ Form::bsText('title') }}
                         {{ Form::bsText('profession') }}
@@ -49,6 +48,7 @@
                     <div class="panel-body">
                         {{ Form::bsText('nickname') }}
                         {{ Form::bsSelect('parent_id', $members, $member->parent_id, ['data-live-search' => 'true', 'data-size' => 5]) }}
+                        {{ Form::bsSelect('status', array_combine(settings('fraternity.member_status_enum'), settings('fraternity.member_status_enum')), $member->status) }}
                     </div>
                 </div>
             </div>

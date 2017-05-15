@@ -94,7 +94,8 @@ class MemberController extends Controller
             'birthname' => 'max:255',
             'title' => 'max:255',
             'profession' => 'max:255',
-            'birthday' => 'date_format:d.m.Y'
+            'birthday' => 'date_format:d.m.Y',
+            'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum'))
         ]);
 
         if ($request->birthday == $member->birthday->format('d.m.Y')) {
@@ -113,6 +114,7 @@ class MemberController extends Controller
         $member->title = $request->title;
         $member->profession = $request->profession;
         $member->birthday = $request->birthday;
+        $member->status = $request->status;
         $member->active = $request->has('active');
 
         $member->save();

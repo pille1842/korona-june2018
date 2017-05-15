@@ -134,6 +134,7 @@ return [
         'birthday' => 'Birthday',
         'roles' => 'Roles',
         'permissions' => 'Permissions',
+        'status' => 'Status',
     ],
 
 ];
