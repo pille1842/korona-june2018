@@ -77,6 +77,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'firstname' => 'Super',
             'lastname' => 'User',
             'birthday' => Carbon::create(1970, 01, 01),
+            'status' => 'AH',
             'active' => true
         ]);
     }
