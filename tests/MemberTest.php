@@ -26,6 +26,7 @@ class MemberTest extends TestCase
             'title' => $member->title,
             'profession' => $member->profession,
             'birthday' => $member->birthday->format('Y-m-d'),
+            'status' => $member->status,
             'active' => true
         ]);
     }
@@ -95,6 +96,7 @@ class MemberTest extends TestCase
             'title' => $member->title,
             'profession' => $member->profession,
             'birthday' => $member->birthday,
+            'status' => $member->status,
             'active' => $member->active
         ]);
     }

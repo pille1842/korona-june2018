@@ -23,6 +23,8 @@ $factory->define(Korona\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Korona\Member::class, function (Faker\Generator $faker) {
+    $arrStatus = ['aF', 'aB', 'iaB', 'CK', 'AH', 'AH h.c.', 'EAH', 'VG'];
+
     return [
         'slug' => str_slug($faker->firstname),
         'nickname' => $faker->firstname,
@@ -32,6 +34,7 @@ $factory->define(Korona\Member::class, function (Faker\Generator $faker) {
         'title' => $faker->titleMale,
         'profession' => $faker->word,
         'birthday' => new \Carbon\Carbon($faker->date),
+        'status' => $arrStatus[array_rand($arrStatus)],
         'active' => true,
     ];
 });
