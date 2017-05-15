@@ -43,6 +43,7 @@
                                 @permission('backend.manage.settings')
                                     <li><a href="{{ route('backend.settings.index') }}">{{ trans('backend.settings') }}</a></li>
                                 @endpermission
+                                <li><a href="{{ route('backend.about') }}">{{ trans('backend.about') }}</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -69,6 +69,7 @@ return [
     'fraternity_details' => 'Verbindungsdetails',
     'member' => 'Mitglied',
     'settings_mail' => 'E-Mails',
+    'about' => 'Über Korona',
 
 
     'setting' => [

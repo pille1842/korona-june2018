@@ -36,6 +36,11 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     // Settings
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');
     Route::post('settings', 'SettingsController@save')->name('backend.settings.save');
+
+    // About Korona
+    Route::get('about', function () {
+        return view('backend.about');
+    })->name('backend.about');
 });
 
 // Simple API routines

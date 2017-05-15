@@ -69,12 +69,15 @@ return [
     'fraternity_details' => 'Fraternity Details',
     'member' => 'Member',
     'settings_mail' => 'Emails',
+    'about' => 'Über Korona',
 
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name of the fraternity',
             'member_status_enum' => 'Possible values for the member status',
+            'vulgo' => 'Prefix for nicknames (e.g. ṽ., v, al.)',
+            'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)'
         ],
         'mail' => [
             'member_changed_receivers' => 'Email receivers to notify when a member is changed',
