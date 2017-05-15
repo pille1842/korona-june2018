@@ -67,6 +67,7 @@ return [
     'model_restored' => 'Has restored the record.',
     'history' => 'Version History',
     'fraternity_details' => 'Fraternity Details',
+    'member' => 'Member',
     'settings_mail' => 'Emails',
 
 

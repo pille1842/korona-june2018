@@ -67,6 +67,7 @@ return [
     'model_restored' => 'Hat den Datensatz wiederhergestellt.',
     'history' => 'Versionsgeschichte',
     'fraternity_details' => 'Verbindungsdetails',
+    'member' => 'Mitglied',
     'settings_mail' => 'E-Mails',
 
 
