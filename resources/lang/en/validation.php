@@ -135,6 +135,9 @@ return [
         'roles' => 'Roles',
         'permissions' => 'Permissions',
         'status' => 'Status',
+        'name' => 'Name',
+        'level' => 'Level',
+        'description' => 'Description',
     ],
 
 ];

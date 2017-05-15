@@ -135,6 +135,9 @@ return [
         'roles' => 'Seitenrollen',
         'permissions' => 'Berechtigungen',
         'status' => 'Status',
+        'name' => 'Name',
+        'level' => 'Ebene',
+        'description' => 'Beschreibung',
     ],
 
 ];

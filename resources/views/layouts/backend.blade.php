@@ -28,7 +28,9 @@
                                 @permission('backend.manage.users')
                                     <li><a href="{{ route('backend.user.index') }}">{{ trans('backend.accounts') }}</a></li>
                                 @endpermission
-                                <li><a href="#">Seitenrollen</a></li>
+                                @permission('backend.manage.roles')
+                                    <li><a href="{{ route('backend.role.index') }}">{{ trans('backend.roles') }}</a></li>
+                                @endpermission
                                 @permission('backend.manage.members')
                                     <li><a href="{{ route('backend.member.index') }}">{{ trans('backend.members') }}</a></li>
                                 @endpermission

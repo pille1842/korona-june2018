@@ -70,6 +70,15 @@ return [
     'member' => 'Member',
     'settings_mail' => 'Emails',
     'about' => 'Über Korona',
+    'role_deleted' => 'Role :role has been deleted.',
+    'create_role' => 'Create new role',
+    'role' => 'Role',
+    'edit_role' => 'Edit role :role',
+    'role_permissions' => 'Permissions of this role',
+    'role_users' => 'Attached users',
+    'role_has_no_permissions' => 'This role has no permissions.',
+    'really_delete_role' => 'Do you really want to delete role :role? This cannot be undone!',
+    'roles' => 'Roles',
 
 
     'setting' => [

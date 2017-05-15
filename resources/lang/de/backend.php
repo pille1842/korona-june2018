@@ -70,6 +70,15 @@ return [
     'member' => 'Mitglied',
     'settings_mail' => 'E-Mails',
     'about' => 'Über Korona',
+    'role_deleted' => 'Seitenrolle :role wurde gelöscht.',
+    'create_role' => 'Neue Seitenrolle erstellen',
+    'role' => 'Seitenrolle',
+    'edit_role' => 'Seitenrolle :role bearbeiten',
+    'role_permissions' => 'Berechtigungen dieser Rolle',
+    'role_users' => 'Zugeordnete Benutzer',
+    'role_has_no_permissions' => 'Diese Rolle hat keine Berechtigungen.',
+    'really_delete_role' => 'Seitenrolle :role wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
+    'roles' => 'Seitenrollen',
 
 
     'setting' => [

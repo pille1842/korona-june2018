@@ -29,6 +29,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Kann Mitglieder verwalten',
             'slug' => 'backend.manage.members'
         ]);
+        $backendManageRolesPermission = Permission::create([
+            'name' => 'Kann Seitenrollen verwalten',
+            'slug' => 'backend.manage.roles'
+        ]);
         $backendManageSettingsPermission = Permission::create([
             'name' => 'Kann Systemeinstellungen verwalten',
             'slug' => 'backend.manage.settings'
@@ -58,6 +62,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole->attachPermission($accessBackendPermission);
         $adminRole->attachPermission($backendManageUsersPermission);
         $adminRole->attachPermission($backendManageMembersPermission);
+        $adminRole->attachPermission($backendManageRolesPermission);
         $adminRole->attachPermission($backendManageSettingsPermission);
 
         // Create the first user to be a superuser

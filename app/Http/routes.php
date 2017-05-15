@@ -33,6 +33,9 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');
     Route::post('trash/member/{id}', 'MemberController@restore')->name('backend.member.restore');
 
+    // Roles
+    Route::resource('role', 'RolesController');
+
     // Settings
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');
     Route::post('settings', 'SettingsController@save')->name('backend.settings.save');
