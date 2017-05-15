@@ -54,6 +54,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ trans('backend.info') }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ Form::bsText('created_at', $role->created_at->formatLocalized('%c'), ['readonly' => true]) }}
+                        {{ Form::bsText('updated_at', $role->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
+                    </div>
+                </div>
+            </div>
         {{ Form::close() }}
         <div class="col-md-8">
             <div class="panel panel-default">
