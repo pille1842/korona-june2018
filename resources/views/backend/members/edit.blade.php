@@ -59,7 +59,7 @@
                     </div>
                     <div class="panel-body">
                         {{ Form::bsSlug('slug', $member->slug, 'nickname') }}
-                        {{ Form::bsCheckbox('active', '1', $member->active) }}
+                        {{ Form::bsToggle('active', '1', $member->active, ['data-on' => trans('backend.active'), 'data-off' => trans('backend.inactive'), 'data-onstyle' => 'success']) }}
                         {{ Form::bsSelect('user_id', $users, $member->user_id, ['data-live-search' => 'true']) }}
                         {{ Form::bsText('created_at', $member->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $member->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
@@ -140,3 +140,4 @@
 
 @include('components.tool.datatable', ['target' => '#k-history-table', 'params' => "order: [[1, 'desc'], [0, 'desc']]"])
 @include('components.tool.select')
+@include('components.tool.toggle')

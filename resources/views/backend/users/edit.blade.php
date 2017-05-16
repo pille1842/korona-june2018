@@ -23,7 +23,7 @@
                     <div class="panel-body">
                         {{ Form::bsText('login') }}
                         {{ Form::bsEmail('email') }}
-                        {{ Form::bsCheckbox('active', '1', $user->active) }}
+                        {{ Form::bsToggle('active', '1', $user->active, ['data-on' => trans('backend.active'), 'data-off' => trans('backend.inactive'), 'data-onstyle' => 'success']) }}
                     </div>
                 </div>
             </div>
@@ -161,3 +161,4 @@
 @endpush
 
 @include('components.tool.select')
+@include('components.tool.toggle')

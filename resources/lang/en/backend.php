@@ -79,6 +79,8 @@ return [
     'role_has_no_permissions' => 'This role has no permissions.',
     'really_delete_role' => 'Do you really want to delete role :role? This cannot be undone!',
     'roles' => 'Roles',
+    'active' => 'enabled',
+    'inactive' => 'disabled',
 
 
     'setting' => [

@@ -79,6 +79,8 @@ return [
     'role_has_no_permissions' => 'Diese Rolle hat keine Berechtigungen.',
     'really_delete_role' => 'Seitenrolle :role wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
     'roles' => 'Seitenrollen',
+    'active' => 'aktiv',
+    'inactive' => 'inaktiv',
 
 
     'setting' => [
