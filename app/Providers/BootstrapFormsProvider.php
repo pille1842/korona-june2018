@@ -15,6 +15,7 @@ class BootstrapFormsProvider extends ServiceProvider
     public function boot()
     {
         Form::component('bsCheckbox', 'components.form.checkbox', ['name', 'value' => null, 'checked' => false, 'label' => null]);
+        Form::component('bsToggle', 'components.form.toggle', ['name', 'value' => null, 'checked' => false, 'attributes' => []]);
         Form::component('bsEmail', 'components.form.email', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
         Form::component('bsTextarea', 'components.form.textarea', ['name', 'value' => null, 'attributes' => [], 'label' => null]);

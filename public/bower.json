@@ -30,6 +30,7 @@
     "datatables.net-bs": "^2.1.1",
     "font-awesome": "fontawesome#^4.7.0",
     "bootstrap-select": "^1.12.2",
-    "bootstrap-tokenfield": "^0.12.1"
+    "bootstrap-tokenfield": "^0.12.1",
+    "bootstrap-toggle": "^2.2.2"
   }
 }
