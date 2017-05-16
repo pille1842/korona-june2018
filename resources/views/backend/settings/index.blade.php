@@ -40,12 +40,7 @@
     {{ Form::close() }}
 @endsection
 
-@section('stylesheets')
-    <link href="{{ asset('bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.min.css') }}" rel="stylesheet">
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js') }}"></script>
+@push('scripts')
     <script>
         $('#fraternity_member_status_enum').tokenfield();
 
@@ -71,4 +66,6 @@
             }
         });
     </script>
-@endsection
+@endpush
+
+@include('components.tool.tokenfield')

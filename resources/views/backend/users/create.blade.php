@@ -49,7 +49,7 @@
 
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script>
         $("#btnGeneratePassword").click(function () {
             var chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -63,4 +63,4 @@
             $("[name='password_confirmation']").val(password);
         });
     </script>
-@endsection
+@endpush

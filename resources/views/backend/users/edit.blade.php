@@ -134,11 +134,7 @@
 
 @endsection
 
-@section('stylesheets')
-    <link href="{{ asset('bower_components/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
-@endsection
-
-@section('scripts')
+@push('scripts')
     <script>
         $("#btnGeneratePassword").click(function () {
             if ($("[name='password']").attr('readonly')) {
@@ -162,7 +158,6 @@
             $(this).attr("disabled", true);
         })
     </script>
+@endpush
 
-    <script src="{{ asset('bower_components/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
-    <script src="{{ asset('bower_components/bootstrap-select/dist/js/i18n/defaults-de_DE.min.js') }}"></script>
-@endsection
+@include('components.tool.select')

@@ -20,7 +20,9 @@
                 <p>&copy; {{ date('Y') }} {{ settings('fraternity.name') }}</p>
             </footer>
 
-        </div> <!-- /container -->
+        </div>
+
+        @stack('scripts')
 
     </body>
 </html>

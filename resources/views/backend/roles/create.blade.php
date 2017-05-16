@@ -31,9 +31,3 @@
         {{ Form::close() }}
     </div>
 @endsection
-
-@section('stylesheets')
-@endsection
-
-@section('scripts')
-@endsection
