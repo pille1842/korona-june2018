@@ -81,6 +81,9 @@ return [
     'roles' => 'Roles',
     'active' => 'enabled',
     'inactive' => 'disabled',
+    'upload_picture' => 'Upload picture',
+    'choose_picture' => 'Choose picture',
+    'adopt' => 'Adopt',
 
 
     'setting' => [

@@ -81,6 +81,9 @@ return [
     'roles' => 'Seitenrollen',
     'active' => 'aktiv',
     'inactive' => 'inaktiv',
+    'upload_picture' => 'Bild hochladen',
+    'choose_picture' => 'Bild auswählen',
+    'adopt' => 'Übernehmen',
 
 
     'setting' => [

@@ -9,6 +9,7 @@ use Korona\Http\Controllers\Controller;
 use Korona\Member;
 use Korona\Repositories\UserRepository;
 use Carbon\Carbon;
+use Image;
 
 class MemberController extends Controller
 {
@@ -95,7 +96,9 @@ class MemberController extends Controller
             'title' => 'max:255',
             'profession' => 'max:255',
             'birthday' => 'date_format:d.m.Y',
-            'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum'))
+            'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum')),
+            'picture' => 'string',
+            'profile_picture' => 'exists:images,id,member_id,'.$member->id,
         ]);
 
         if ($request->birthday == $member->birthday->format('d.m.Y')) {
@@ -116,6 +119,23 @@ class MemberController extends Controller
         $member->birthday = $request->birthday;
         $member->status = $request->status;
         $member->active = $request->has('active');
+
+        if ($request->has('picture')) {
+            $imageData = Image::make($request->picture);
+            $image = new \Korona\Media\Image();
+            $image->name = 'picture_'.$member->id.'_'.date('Y-m-d_H-i-s');
+            $image->type = 'jpg';
+            $image->public = false;
+            $image->member_id = $member->id;
+            $image->generatePath();
+            $image->saveFile($imageData);
+            $image->save();
+            $member->profile_picture = $image->id;
+        }
+
+        if ($request->has('profile_picture')) {
+            $member->profile_picture = $request->profile_picture;
+        }
 
         $member->save();
 

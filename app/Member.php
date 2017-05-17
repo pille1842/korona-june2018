@@ -17,7 +17,8 @@ class Member extends Model
     protected $revisionCreationsEnabled = true;
 
     protected $dontKeepRevisionOf = [
-        'user_id'
+        'user_id',
+        'profile_picture'
     ];
 
     protected $revisionFormattedFields = [
@@ -93,6 +94,16 @@ class Member extends Model
     public function children()
     {
         return $this->hasMany(Member::class, 'parent_id');
+    }
+
+    public function picture()
+    {
+        return $this->BelongsTo(Media\Image::class, 'profile_picture');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Media\Image::class);
     }
 
     public function formBirthdayAttribute($value)

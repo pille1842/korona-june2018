@@ -51,4 +51,12 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('slug', function (Request $request) {
         return str_slug($request::input('input'));
     })->name('slug');
+
+    Route::get('image/{image}', function (\Korona\Media\Image $image) {
+        if (Auth::user() === null && ! $image->public) {
+            return response()->json(['error' => 'Permission denied.'], 403);
+        }
+
+        return response()->file(storage_path($image->getStoragePath().$image->getFileName()));
+    })->name('image');
 });

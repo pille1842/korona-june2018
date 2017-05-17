@@ -10,7 +10,9 @@
         "bican/roles": "^2.1",
         "laravelcollective/html": "^5.2.0",
         "venturecraft/revisionable": "^1.28",
-        "edvinaskrucas/settings": "^2.0"
+        "edvinaskrucas/settings": "^2.0",
+        "webpatser/laravel-uuid": "^2.0",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -4,7 +4,7 @@
     <h1>{{ trans('backend.edit_member', ['member' => $member->getFullName()]) }}</h1>
 
     <div class="row">
-        {{ Form::model($member, ['route' => ['backend.member.update', $member], 'method' => 'put', 'class' => 'form']) }}
+        {{ Form::model($member, ['route' => ['backend.member.update', $member], 'method' => 'put', 'class' => 'form', 'id' => 'k-edit-form']) }}
             <div class="col-xs-12">
                 <div class="well">
                     <button type="submit" class="btn btn-primary">
@@ -21,7 +21,29 @@
                         <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
                     </div>
                     <div class="panel-body">
-                        TODO
+                        <div class="text-center">
+                            @if ($member->picture !== null)
+                                <img src="{{ route('image', $member->picture) }}" class="img-responsive img-rounded" id="picture-img">
+                            @else
+                                <img src="" class="img-responsive" style="display:none;" id="picture-img">
+                            @endif
+                        </div>
+                        <div id="image-cropper" style="display:none;">
+                            <div class="cropit-preview"></div>
+                            <input type="range" class="cropit-image-zoom-input" />
+                            <input type="file" class="cropit-image-input" />
+                            <input type="hidden" name="picture" id="picture" value="" />
+                            <input type="hidden" name="profile_picture" id="profile_picture" value="" />
+                        </div>
+                        <div class="form-group">
+                            <br/>
+                            <button type="button" class="btn btn-default btn-block" id="btn-upload-picture">
+                                <span class="glyphicon glyphicon-upload"></span> {{ trans('backend.upload_picture') }}
+                            </button>
+                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#choosePictureModal" id="btn-choose-picture">
+                                <span class="glyphicon glyphicon-th"></span> {{ trans('backend.choose_picture') }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,8 +158,79 @@
         </div>
     </div>
 
+    <div class="modal fade" id="choosePictureModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('backend.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        {{ trans('backend.choose_picture') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @foreach ($member->images as $image)
+                            <div class="col-xs-4">
+                                <a href="#" class="btn-choose-this-picture" data-id="{{ $image->id }}" data-url="{{ route('image', $image) }}">
+                                    <img class="img-responsive img-rounded" src="{{ route('image', $image) }}">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="" id="chosen-picture">
+                    <input type="hidden" value="" id="chosen-picture-url">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('backend.close') }}</button>
+                    <button type="button" class="btn btn-primary" id="btn-set-chosen-picture">{{ trans('backend.adopt') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
+@push('stylesheets')
+    <style>
+        .cropit-preview {
+            width: 350px;
+            height: 350px;
+        }
+    </style>
+@endpush
+
+@push('scripts')
+    <script>
+        $("#btn-upload-picture").click(function () {
+            $("#image-cropper").toggle(true);
+            $(this).toggle(false);
+            $("#btn-choose-picture").toggle(false);
+            $("#picture-img").toggle(false);
+            $('#image-cropper').cropit();
+            $("#k-edit-form").submit(function () {
+                $("#picture").val($("#image-cropper").cropit('export', {
+                    type: 'image/jpeg',
+                    quality: .9,
+                }));
+            });
+        });
+        $(".btn-choose-this-picture").click(function () {
+            $(".chosen-picture").removeClass('chosen-picture');
+            $(this).find('img').addClass('chosen-picture');
+            $("#chosen-picture").val($(this).data('id'));
+            $("#chosen-picture-url").val($(this).data('url'));
+        });
+        $("#btn-set-chosen-picture").click(function () {
+            $("#profile_picture").val($("#chosen-picture").val());
+            $('#choosePictureModal').modal('hide');
+            $("#btn-choose-picture").toggle(false);
+            $("#btn-upload-picture").toggle(false);
+            $("#picture-img").attr('src', $("#chosen-picture-url").val());
+        });
+    </script>
+@endpush
 
 @include('components.tool.datatable', ['target' => '#k-history-table', 'params' => "order: [[1, 'desc'], [0, 'desc']]"])
 @include('components.tool.select')
 @include('components.tool.toggle')
+@include('components.tool.cropit')
