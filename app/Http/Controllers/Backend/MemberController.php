@@ -98,7 +98,7 @@ class MemberController extends Controller
             'birthday' => 'date_format:d.m.Y',
             'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum')),
             'picture' => 'string',
-            'profile_picture' => 'exists:images,id,member_id,'.$member->id,
+            'profile_picture' => 'exists:images,id,imageable_type,Korona\Member,imageable_id,'.$member->id,
         ]);
 
         if ($request->birthday == $member->birthday->format('d.m.Y')) {
@@ -126,7 +126,8 @@ class MemberController extends Controller
             $image->name = 'picture_'.$member->id.'_'.date('Y-m-d_H-i-s');
             $image->type = 'jpg';
             $image->public = false;
-            $image->member_id = $member->id;
+            $image->imageable_type = 'Korona\Member';
+            $image->imageable_id = $member->id;
             $image->generatePath();
             $image->saveFile($imageData);
             $image->save();

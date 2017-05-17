@@ -12,9 +12,9 @@ class Image extends Model
         return 'path';
     }
 
-    public function member()
+    public function imageable()
     {
-        return $this->belongsTo(\Korona\Member::class);
+        return $this->morphTo();
     }
 
     public function saveFile(\Intervention\Image\Image $image)

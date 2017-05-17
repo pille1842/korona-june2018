@@ -112,7 +112,7 @@ class Member extends Model
 
     public function images()
     {
-        return $this->hasMany(Media\Image::class);
+        return $this->morphMany(Media\Image::class, 'imageable');
     }
 
     public function formBirthdayAttribute($value)
