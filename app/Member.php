@@ -101,6 +101,15 @@ class Member extends Model
         return $this->BelongsTo(Media\Image::class, 'profile_picture');
     }
 
+    public function profilePictureRoute()
+    {
+        if ($this->picture !== null) {
+            return route('image', $this->picture);
+        } else {
+            return asset('images/no_profile_picture.jpg');
+        }
+    }
+
     public function images()
     {
         return $this->hasMany(Media\Image::class);
