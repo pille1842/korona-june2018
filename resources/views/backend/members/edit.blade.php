@@ -21,6 +21,16 @@
                         <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
                     </div>
                     <div class="panel-body">
+                        @if ($errors->has('picture'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('picture') }}
+                            </div>
+                        @endif
+                        @if ($errors->has('profile_picture'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('profile_picture') }}
+                            </div>
+                        @endif
                         <div class="text-center">
                             @if ($member->picture !== null)
                                 <img src="{{ route('image', $member->picture) }}" class="img-responsive img-rounded" id="picture-img">
