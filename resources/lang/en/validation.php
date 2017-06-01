@@ -138,6 +138,12 @@ return [
         'name' => 'Name',
         'level' => 'Level',
         'description' => 'Description',
+        'additional' => 'Additional',
+        'street' => 'Street',
+        'zipcode' => 'ZIP code',
+        'city' => 'City',
+        'country_id' => 'Country',
+        'is_main' => 'This is the main address',
     ],
 
 ];

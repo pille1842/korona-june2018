@@ -84,6 +84,10 @@ return [
     'upload_picture' => 'Bild hochladen',
     'choose_picture' => 'Bild auswählen',
     'adopt' => 'Übernehmen',
+    'create_address' => 'Neue Adresse für :member erstellen',
+    'addresses' => 'Postadressen',
+    'edit_address' => 'Adresse :address von :member bearbeiten',
+    'is_main_address' => 'Dies ist die Hauptadresse',
 
 
     'setting' => [

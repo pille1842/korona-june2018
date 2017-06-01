@@ -84,6 +84,10 @@ return [
     'upload_picture' => 'Upload picture',
     'choose_picture' => 'Choose picture',
     'adopt' => 'Adopt',
+    'create_address' => 'Create a new address for :member',
+    'addresses' => 'Postal Addresses',
+    'edit_address' => 'Edit address :address of :member',
+    'is_main_address' => 'This is the main address',
 
 
     'setting' => [

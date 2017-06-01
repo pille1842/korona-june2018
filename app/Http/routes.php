@@ -33,6 +33,9 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');
     Route::post('trash/member/{id}', 'MemberController@restore')->name('backend.member.restore');
 
+    // Addresses
+    Route::resource('member/{member}/address', 'AddressController');
+
     // Roles
     Route::resource('role', 'RolesController');
 

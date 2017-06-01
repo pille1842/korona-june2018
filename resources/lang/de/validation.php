@@ -138,6 +138,12 @@ return [
         'name' => 'Name',
         'level' => 'Ebene',
         'description' => 'Beschreibung',
+        'additional' => 'Adresszusatz',
+        'street' => 'Straße und Hausnummer',
+        'zipcode' => 'Postleitzahl',
+        'city' => 'Ort',
+        'country_id' => 'Land',
+        'is_main' => 'Dies ist die Hauptadresse',
     ],
 
 ];

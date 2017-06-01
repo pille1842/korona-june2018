@@ -38,7 +38,8 @@ class Member extends Model
         'profession' => 'Beruf',
         'birthday' => 'Geburtstag',
         'status' => 'Status',
-        'active' => 'aktiv'
+        'active' => 'aktiv',
+        'address_id' => 'Hauptadresse',
     ];
 
     protected $revisionNullString = 'nichts';
@@ -113,6 +114,16 @@ class Member extends Model
     public function images()
     {
         return $this->morphMany(Media\Image::class, 'imageable');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class, 'address_id');
     }
 
     public function formBirthdayAttribute($value)

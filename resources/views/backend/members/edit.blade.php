@@ -108,6 +108,11 @@
                     {{ trans('backend.history') }}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="#addresses" aria-controls="addresses" role="tab" data-toggle="tab">
+                    {{ trans('backend.addresses') }}
+                </a>
+            </li>
         </ul>
 
         <div class="tab-content">
@@ -164,6 +169,48 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="addresses">
+                <div class="row">
+                    @foreach ($member->addresses as $address)
+                        <div class="col-md-3">
+                            <div class="panel {{ $member->address_id == $address->id ? 'panel-success' : 'panel-default' }}">
+                                <div class="panel-heading clearfix">
+                                    <h3 class="panel-title pull-left" style="padding-top:7.5px;">
+                                        {{ $address->name }}
+                                        @if ($member->address_id == $address->id)
+                                            <a href="#" data-toggle="tooltip" title="{{ trans('backend.is_main_address') }}">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </a>
+                                        @endif
+                                    </h3>
+                                    <span class="btn-group pull-right">
+                                        {{ Form::open(['action' => ['Backend\AddressController@destroy', $member, $address], 'method' => 'delete']) }}
+                                            <a class="btn btn-primary btn-sm" href="{{ action('Backend\AddressController@edit', [$member, $address]) }}">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <button class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        {{ Form::close() }}
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    @if ($address->additional)
+                                        {{ $address->additional }}<br>
+                                    @endif
+                                    {{ $address->street }}<br>
+                                    {{ $address->zipcode }} {{ $address->city }}<br>
+                                    {{ $address->country->name }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <a class="btn btn-success" href="{{ action('Backend\AddressController@create', $member) }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    {{ trans('backend.create_address', ['member' => $member->getShortName()]) }}
+                </a>
             </div>
         </div>
     </div>
@@ -236,6 +283,18 @@
             $("#btn-choose-picture").toggle(false);
             $("#btn-upload-picture").toggle(false);
             $("#picture-img").attr('src', $("#chosen-picture-url").val());
+        });
+
+        $(function() {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('lastBackendMembersTab', $(this).attr('href'));
+            });
+
+            // go to the latest tab, if it exists:
+            var lastTab = localStorage.getItem('lastBackendMembersTab');
+            if (lastTab) {
+                $('[href="' + lastTab + '"]').tab('show');
+            }
         });
     </script>
 @endpush
