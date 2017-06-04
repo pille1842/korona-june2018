@@ -22,5 +22,7 @@ return [
     'please_change_password' => 'Bitte ändere dein Passwort, um fortzufahren.',
     'login' => 'Anmelden',
     'password_forgotten' => 'Passwort vergessen?',
+    'reset_password' => 'Passwort zurücksetzen',
+    'change_password' => 'Passwort ändern',
 
 ];

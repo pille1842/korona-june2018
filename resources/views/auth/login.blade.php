@@ -1,5 +1,9 @@
 @extends('layouts.authentication')
 
+@section('title')
+    {{ trans('auth.login') }}
+@endsection
+
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">{{ trans('auth.login') }}</div>

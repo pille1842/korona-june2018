@@ -15,5 +15,6 @@ return [
     'go_to_backend' => 'Zum Backend',
     'logout' => 'Abmelden',
     'toggle_navigation' => 'Navigation ein-/ausblenden',
+    'home' => 'Startseite',
 
 ];

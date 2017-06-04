@@ -3,14 +3,14 @@
 return [
 
     /*
-    |--------------------------------------------------------------------------
-    | Backend Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following lines are used throughout the backend area of Korona. You
-    | are free to modify these lines according to your fraternity's needs.
-    |
-    */
+       |--------------------------------------------------------------------------
+       | Backend Language Lines
+       |--------------------------------------------------------------------------
+       |
+       | The following lines are used throughout the backend area of Korona. You
+       | are free to modify these lines according to your fraternity's needs.
+       |
+     */
 
     'generate_slug' => 'SEO-URL erzeugen',
     'edit_account' => 'Benutzerzugang :account bearbeiten',
@@ -90,7 +90,8 @@ return [
     'is_main_address' => 'Dies ist die Hauptadresse',
     'really_delete_address' => 'Adresse :address wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
     'address_deleted' => 'Adresse :address wurde gelöscht.',
-
+    'dashboard' => 'Dashboard',
+    'about_korona' => 'Über Korona',
 
     'setting' => [
         'fraternity' => [

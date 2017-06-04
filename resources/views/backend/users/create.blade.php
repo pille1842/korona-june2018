@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.create_account') }}
+@endsection
+
 @section('content')
 
     <h1>{{ trans('backend.create_account') }}</h1>

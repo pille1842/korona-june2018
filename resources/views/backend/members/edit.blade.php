@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.edit_member', ['member' => $member->getFullName()]) }}
+@endsection
+
 @section('content')
     <h1>{{ trans('backend.edit_member', ['member' => $member->getFullName()]) }}</h1>
 

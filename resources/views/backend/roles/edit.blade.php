@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.edit_role', ['role' => $role->name]) }}
+@endsection
+
 @section('content')
     <h1>{{ trans('backend.edit_role', ['role' => $role->name]) }}</h1>
 

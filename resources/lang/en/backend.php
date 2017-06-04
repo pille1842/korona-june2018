@@ -90,7 +90,8 @@ return [
     'is_main_address' => 'This is the main address',
     'really_delete_address' => 'Really delete address :address? This cannot be undone!',
     'address_deleted' => 'Address :address has been deleted.',
-
+    'dashboard' => 'Dashboard',
+    'about_korona' => 'About Korona',
 
     'setting' => [
         'fraternity' => [

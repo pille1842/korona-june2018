@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.edit_account', ['account' => $user->login]) }}
+@endsection
+
 @section('content')
     <h1>{{ trans('backend.edit_account', ['account' => $user->login]) }}</h1>
 

@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.settings') }}
+@endsection
+
 @section('content')
     <h1>{{ trans('backend.settings') }}</h1>
 

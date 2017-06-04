@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.about_korona') }}
+@endsection
+
 @section('content')
     <h1 class="text-center">
         <img src="{{ asset('images/korona.png') }}" alt="Korona" style="width:150px;margin-bottom:15px;"><br/>

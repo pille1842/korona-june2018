@@ -1,5 +1,9 @@
 @extends('layouts.backend')
 
+@section('title')
+    {{ trans('backend.members_trash') }}
+@endsection
+
 @section('content')
     <h1>
         {{ trans('backend.members_trash') }}
