@@ -101,8 +101,17 @@ class AddressController extends Controller
                ->with('success', trans('backend.saved'));
     }
 
-    public function destroy(Address $address)
+    public function destroy(Member $member, Address $address)
     {
-        //
+        $address->delete();
+
+        if ($address->id == $member->address_id) {
+            // Unset the member's main address ID to avoid inconsistent data
+            $member->address_id = null;
+            $member->save();
+        }
+
+        return redirect()->route('backend.member.edit', $member)
+               ->with('success', trans('backend.address_deleted', ['address' => $address->name]));
     }
 }

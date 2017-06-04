@@ -189,19 +189,14 @@
                                             <a class="btn btn-primary btn-sm" href="{{ action('Backend\AddressController@edit', [$member, $address]) }}">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <button class="btn btn-danger btn-sm">
+                                            <button class="btn btn-danger btn-sm" onclick="return confirm('{{ trans('backend.really_delete_address', ['address' => $address->name]) }}');">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </button>
                                         {{ Form::close() }}
                                     </span>
                                 </div>
                                 <div class="panel-body">
-                                    @if ($address->additional)
-                                        {{ $address->additional }}<br>
-                                    @endif
-                                    {{ $address->street }}<br>
-                                    {{ $address->zipcode }} {{ $address->city }}<br>
-                                    {{ $address->country->name }}
+                                    {!! nl2br($address->getFormatted()) !!}
                                 </div>
                             </div>
                         </div>

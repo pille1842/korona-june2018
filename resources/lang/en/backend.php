@@ -3,14 +3,14 @@
 return [
 
     /*
-    |--------------------------------------------------------------------------
-    | Backend Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following lines are used throughout the backend area of Korona. You
-    | are free to modify these lines according to your fraternity's needs.
-    |
-    */
+       |--------------------------------------------------------------------------
+       | Backend Language Lines
+       |--------------------------------------------------------------------------
+       |
+       | The following lines are used throughout the backend area of Korona. You
+       | are free to modify these lines according to your fraternity's needs.
+       |
+     */
 
     'generate_slug' => 'Generate a SEO URL',
     'edit_account' => 'Edit user account :account',
@@ -88,11 +88,14 @@ return [
     'addresses' => 'Postal Addresses',
     'edit_address' => 'Edit address :address of :member',
     'is_main_address' => 'This is the main address',
+    'really_delete_address' => 'Really delete address :address? This cannot be undone!',
+    'address_deleted' => 'Address :address has been deleted.',
 
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name of the fraternity',
+            'home_country' => 'Home country',
             'member_status_enum' => 'Possible values for the member status',
             'vulgo' => 'Prefix for nicknames (e.g. ṽ., v, al.)',
             'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)'

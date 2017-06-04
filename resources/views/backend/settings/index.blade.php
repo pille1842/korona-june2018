@@ -26,6 +26,7 @@
             <div role="tabpanel" class="tab-pane active" id="fraternity">
                 <p>
                     {{ Form::bsText('fraternity_name', settings('fraternity.name'), [], trans('backend.setting.fraternity.name')) }}
+                    {{ Form::bsSelect('fraternity_home_country', $countries, settings('fraternity.home_country'), ['data-live-search' => 'true', 'data-size' => 5], trans('backend.setting.fraternity.home_country')) }}
                     {{ Form::bsText('fraternity_vulgo', settings('fraternity.vulgo'), [], trans('backend.setting.fraternity.vulgo')) }}
                     {{ Form::bsText('fraternity_sine_nomine', settings('fraternity.sine_nomine'), [], trans('backend.setting.fraternity.sine_nomine')) }}
                     {{ Form::bsText('fraternity_member_status_enum', implode(',', settings('fraternity.member_status_enum')), [], trans('backend.setting.fraternity.member_status_enum')) }}
@@ -69,3 +70,4 @@
 @endpush
 
 @include('components.tool.tokenfield')
+@include('components.tool.select')

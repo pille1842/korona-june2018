@@ -88,11 +88,14 @@ return [
     'addresses' => 'Postadressen',
     'edit_address' => 'Adresse :address von :member bearbeiten',
     'is_main_address' => 'Dies ist die Hauptadresse',
+    'really_delete_address' => 'Adresse :address wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
+    'address_deleted' => 'Adresse :address wurde gelöscht.',
 
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name der Verbindung',
+            'home_country' => 'Heimatland',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
             'vulgo' => 'Präfix für Biernamen (z.B. ṽ., v, al.)',
             'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)'

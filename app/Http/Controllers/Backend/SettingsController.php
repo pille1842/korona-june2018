@@ -4,8 +4,9 @@ namespace Korona\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 
-use Korona\Http\Requests;
+use Korona\Country;
 use Korona\Http\Controllers\Controller;
+use Korona\Http\Requests;
 
 class SettingsController extends Controller
 {
@@ -16,7 +17,9 @@ class SettingsController extends Controller
 
     public function index()
     {
-        return view('backend.settings.index');
+        $countries = Country::all()->pluck('name', 'id');
+
+        return view('backend.settings.index', compact('countries'));
     }
 
     public function save(Request $request)
@@ -25,7 +28,11 @@ class SettingsController extends Controller
 
         // Name of the fraternity
         settings(['fraternity.name' => $request->fraternity_name]);
+        // Home country of the fraternity
+        settings(['fraternity.home_country' => $request->fraternity_home_country]);
+        // Character for vulgo
         settings(['fraternity.vulgo' => $request->fraternity_vulgo]);
+        // Name suffix for members without nickname
         settings(['fraternity.sine_nomine' => $request->fraternity_sine_nomine]);
         // Possible values for the status field of members
         $member_status_enum = explode(',', $request->fraternity_member_status_enum);

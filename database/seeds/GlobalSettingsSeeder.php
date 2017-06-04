@@ -13,6 +13,7 @@ class GlobalSettingsSeeder extends Seeder
     {
         $settings = [
             'fraternity.name' => 'PV Korona',
+            'fraternity.home_country' => 43,
             'fraternity.member_status_enum' => [
                 'aF',
                 'aB',

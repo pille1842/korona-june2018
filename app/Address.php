@@ -25,4 +25,19 @@ class Address extends Model
                . $this->zipcode . ' ' . $this->city . ', '
                . $this->country->name . ')';
     }
+
+    public function getFormatted()
+    {
+        $address = "";
+        if ($this->additional) {
+            $address .= $this->additional . "\n";
+        }
+        $address .= $this->street . "\n";
+        $address .= trim($this->zipcode . " " . $this->city);
+        if ($this->country->id != settings("fraternity.home_country")) {
+            $address .= "\n" . $this->country->name;
+        }
+
+        return $address;
+    }
 }
