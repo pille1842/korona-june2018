@@ -24,6 +24,13 @@ class SettingsController extends Controller
 
     public function save(Request $request)
     {
+        $this->validate($request, [
+            'fraternity_name' => 'max:255',
+            'fraternity_home_country' => 'exists:countries,id',
+            'fraternity_vulgo' => 'max:5',
+            'fraternity_sine_nomine' => 'max:25',
+        ]);
+
         /* FRATERNITY SETTINGS */
 
         // Name of the fraternity
