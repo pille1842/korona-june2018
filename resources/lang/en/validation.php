@@ -144,6 +144,7 @@ return [
         'city' => 'City',
         'country_id' => 'Country',
         'is_main' => 'This is the main address',
+        'province' => 'State or province',
     ],
 
 ];

@@ -25,6 +25,7 @@
                 {{ Form::bsText('street') }}
                 {{ Form::bsText('zipcode') }}
                 {{ Form::bsText('city') }}
+                {{ Form::bsText('province') }}
                 {{ Form::bsSelect('country_id', $countries, 43, ['data-live-search' => 'true', 'data-size' => 5]) }}
                 {{ Form::bsCheckbox('is_main', '1', false) }}
             </div>

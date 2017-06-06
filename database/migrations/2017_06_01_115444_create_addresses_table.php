@@ -20,6 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('additional')->nullable();
             $table->string('street');
             $table->string('zipcode', 20);
+            $table->string('province');
             $table->string('city');
             $table->integer('country_id')->unsigned()->index();
             $table->foreign('country_id')->references('id')->on('countries');

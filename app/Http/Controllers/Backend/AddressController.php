@@ -37,6 +37,7 @@ class AddressController extends Controller
             'street' => 'max:255',
             'zipcode' => 'max:20',
             'city' => 'max:255',
+            'province' => 'max:255',
             'country_id' => 'exists:countries,id',
             'is_main' => 'boolean'
         ]);
@@ -47,6 +48,7 @@ class AddressController extends Controller
         $address->street = $request->street;
         $address->zipcode = $request->zipcode;
         $address->city = $request->city;
+        $address->province = $request->province;
         $address->country_id = $request->country_id;
 
         $member->addresses()->save($address);
@@ -80,6 +82,7 @@ class AddressController extends Controller
             'street' => 'max:255',
             'zipcode' => 'max:20',
             'city' => 'max:255',
+            'province' => 'max:255',
             'country_id' => 'exists:countries,id',
             'is_main' => 'boolean'
         ]);
@@ -89,6 +92,7 @@ class AddressController extends Controller
         $address->street = $request->street;
         $address->zipcode = $request->zipcode;
         $address->city = $request->city;
+        $address->province = $request->province;
         $address->country_id = $request->country_id;
         $address->save();
 

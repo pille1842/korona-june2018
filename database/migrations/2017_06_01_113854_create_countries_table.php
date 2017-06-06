@@ -16,6 +16,8 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->string('short', 2);
             $table->string('name');
+            $table->string('phoneprefix', 4);
+            $table->string('cityline');
         });
     }
 
