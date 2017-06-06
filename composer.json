@@ -12,7 +12,8 @@
         "venturecraft/revisionable": "^1.28",
         "edvinaskrucas/settings": "^2.0",
         "webpatser/laravel-uuid": "^2.0",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "giggsey/libphonenumber-for-php": "^8.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

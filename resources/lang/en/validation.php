@@ -59,6 +59,7 @@ return [
     ],
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
+    'phonenumber'          => 'The :attribute must be a valid phone number.',
     'present'              => 'The :attribute field must be present.',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'The :attribute field is required.',
@@ -144,6 +145,8 @@ return [
         'city' => 'City',
         'country_id' => 'Country',
         'is_main' => 'This is the main address',
+        'type' => 'Type',
+        'phonenumber' => 'Phone number',
         'province' => 'State or province',
     ],
 

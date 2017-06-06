@@ -92,13 +92,16 @@ return [
     'address_deleted' => 'Adresse :address wurde gelöscht.',
     'dashboard' => 'Dashboard',
     'about_korona' => 'Über Korona',
+    'really_delete_phonenumber' => 'Diese Telefonnummer wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
+    'phonenumber_deleted' => 'Die Telefonnummer wurde gelöscht.',
+    'phonenumbers' => 'Telefonnummern',
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name der Verbindung',
             'home_country' => 'Heimatland',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
-            'vulgo' => 'Präfix für Biernamen (z.B. ṽ., v, al.)',
+            'vulgo' => 'Präfix für Biernamen (z.B. v, al.)',
             'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)'
         ],
         'mail' => [
@@ -110,6 +113,17 @@ return [
     'permissions' => [
         'access' => 'Bereiche',
         'backend' => 'Backend',
+    ],
+
+    'phonenumbertypes' => [
+        'HOME' => 'Zuhause',
+        'WORK' => 'Arbeitsplatz',
+        'FAX' => 'Fax',
+        'FAX_WORK' => 'Fax (Arbeitsplatz)',
+        'HOME_MOBILE' => 'Mobiltelefon (privat)',
+        'WORK_MOBILE' => 'Mobiltelefon (geschäftlich)',
+        'OTHER' => 'andere',
+        'OTHER_MOBILE' => 'andere (Mobiltelefon)',
     ],
 
 ];

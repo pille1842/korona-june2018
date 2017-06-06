@@ -117,6 +117,11 @@
                     {{ trans('backend.addresses') }}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="#phonenumbers" aria-controls="phonenumbers" role="tab" data-toggle="tab">
+                    {{ trans('backend.phonenumbers') }}
+                </a>
+            </li>
         </ul>
 
         <div class="tab-content">
@@ -200,6 +205,7 @@
                                     </span>
                                 </div>
                                 <div class="panel-body">
+                                    {{ $member->getCivilName(true) }}<br>
                                     {!! nl2br($address->getFormatted()) !!}
                                 </div>
                             </div>
@@ -210,6 +216,85 @@
                     <span class="glyphicon glyphicon-plus"></span>
                     {{ trans('backend.create_address', ['member' => $member->getShortName()]) }}
                 </a>
+            </div>
+            <div role="tabpanel" class="table-responsive tab-pane" id="phonenumbers">
+                <table class="table" id="k-phonenumbers-table">
+                    <thead>
+                        <tr>
+                            <th>Typ</th>
+                            <th>Land</th>
+                            <th>Nummer</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($member->phonenumbers as $phonenumber)
+                            <tr>
+                                <td>
+                                    @if ($phonenumber->type == "HOME")
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "WORK")
+                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "FAX")
+                                        <i class="fa fa-fax" aria-hidden="true"></i>
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "FAX_WORK")
+                                        <i class="fa fa-fax" aria-hidden="true"></i>
+                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "HOME_MOBILE")
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "WORK_MOBILE")
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "OTHER")
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    @elseif ($phonenumber->type == "OTHER_MOBILE")
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    @endif
+                                    {{ trans('backend.phonenumbertypes.' . $phonenumber->type) }}
+                                </td>
+                                <td>
+                                    <img src="{{ asset('images/flags/' . strtolower($phonenumber->country->short) . '.png') }}" alt="{{ $phonenumber->country->short }}">
+                                    {{ $phonenumber->country->name }}
+                                </td>
+                                <td>{{ $phonenumber->getFormatted() }}</td>
+                                <td>
+                                    {{ Form::open(['action' => ['Backend\PhonenumberController@destroy', $member, $phonenumber], 'method' => 'delete']) }}
+                                    <button class="btn btn-danger" onclick="return confirm('{{ trans('backend.really_delete_phonenumber', ['phonenumber' => $phonenumber->phonenumber]) }}')">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    {{ Form::close() }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ Form::open(['action' => ['Backend\PhonenumberController@store', $member]]) }}
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    {{ Form::bsSelect('type', \Korona\Phonenumber::getTypeArray(), 'HOME') }}
+                                </td>
+                                <td>
+                                    {{ Form::bsSelect('country_id', $countries, settings('fraternity.home_country'), ['data-live-search' => 'true', 'data-size' => 5]) }}
+                                </td>
+                                <td>
+                                    {{ Form::bsText('phonenumber') }}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label>&nbsp;</label><br>
+                                        <button class="btn btn-success">Eintragen</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

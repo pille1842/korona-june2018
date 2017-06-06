@@ -4,12 +4,13 @@ namespace Korona\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 
-use Korona\Http\Requests;
-use Korona\Http\Controllers\Controller;
-use Korona\Member;
-use Korona\Repositories\UserRepository;
 use Carbon\Carbon;
 use Image;
+use Korona\Country;
+use Korona\Http\Controllers\Controller;
+use Korona\Http\Requests;
+use Korona\Member;
+use Korona\Repositories\UserRepository;
 
 class MemberController extends Controller
 {
@@ -80,7 +81,9 @@ class MemberController extends Controller
             return $item;
         })->pluck('displayName', 'id')->prepend('', '')->all();
 
-        return view('backend.members.edit', compact('member', 'members', 'users'));
+        $countries = Country::all()->pluck('name', 'id');
+
+        return view('backend.members.edit', compact('member', 'members', 'users', 'countries'));
     }
 
     public function update(Request $request, Member $member)

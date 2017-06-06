@@ -165,6 +165,7 @@ return [
         Korona\Providers\BootstrapFormsProvider::class,
         Korona\Providers\EventServiceProvider::class,
         Korona\Providers\RouteServiceProvider::class,
+        Korona\Providers\ValidationServiceProvider::class,
 
     ],
 

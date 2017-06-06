@@ -36,6 +36,9 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     // Addresses
     Route::resource('member/{member}/address', 'AddressController');
 
+    // Phone numbers
+    Route::resource('member/{member}/phonenumber', 'PhonenumberController');
+
     // Roles
     Route::resource('role', 'RolesController');
 

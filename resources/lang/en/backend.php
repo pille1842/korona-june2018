@@ -92,13 +92,16 @@ return [
     'address_deleted' => 'Address :address has been deleted.',
     'dashboard' => 'Dashboard',
     'about_korona' => 'About Korona',
+    'really_delete_phonenumber' => 'Do you really want to delete this phone number? This cannot be undone!',
+    'phonenumber_deleted' => 'The phone number has been deleted.',
+    'phonenumbers' => 'Phone numbers',
 
     'setting' => [
         'fraternity' => [
             'name' => 'Name of the fraternity',
             'home_country' => 'Home country',
             'member_status_enum' => 'Possible values for the member status',
-            'vulgo' => 'Prefix for nicknames (e.g. ṽ., v, al.)',
+            'vulgo' => 'Prefix for nicknames (e.g. v, al.)',
             'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)'
         ],
         'mail' => [
@@ -110,6 +113,18 @@ return [
     'permissions' => [
         'access' => 'Areas',
         'backend' => 'Backend',
+    ],
+
+    
+    'phonenumbertypes' => [
+        'HOME' => 'Home',
+        'WORK' => 'Workplace',
+        'FAX' => 'Fax',
+        'FAX_WORK' => 'Fax (workplace)',
+        'HOME_MOBILE' => 'Mobile',
+        'WORK_MOBILE' => 'Mobile (business)',
+        'OTHER' => 'other',
+        'OTHER_MOBILE' => 'other (mobile)',
     ],
 
 ];
