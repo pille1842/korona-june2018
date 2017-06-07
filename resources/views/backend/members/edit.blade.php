@@ -257,7 +257,7 @@
                                 </td>
                                 <td>
                                     <img src="{{ asset('images/flags/' . strtolower($phonenumber->country->short) . '.png') }}" alt="{{ $phonenumber->country->short }}">
-                                    {{ $phonenumber->country->name }}
+                                    {{ $phonenumber->country->name }} (+{{ $phonenumber->country->phoneprefix }})
                                 </td>
                                 <td>{{ $phonenumber->getFormatted() }}</td>
                                 <td>
