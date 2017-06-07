@@ -14,60 +14,48 @@
             </button>
         </div>
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#fraternity" aria-controls="fraternity" role="tab" data-toggle="tab">
-                    {{ trans('backend.settings_fraternity') }}
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#mail" aria-controls="mail" role="tab" data-toggle="tab">
-                    {{ trans('backend.settings_mail') }}
-                </a>
-            </li>
+            @foreach($settings['system'] as $group)
+                <li role="presentation">
+                    <a href="#group_{{ $group['name'] }}" aria-controls="group_{{ $group['name'] }}" role="tab" data-toggle="tab">
+                        {{ trans($group['trans']) }}
+                    </a>
+                </li>
+            @endforeach
         </ul>
 
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="fraternity">
-                <p>
-                    {{ Form::bsText('fraternity_name', settings('fraternity.name'), [], trans('backend.setting.fraternity.name')) }}
-                    {{ Form::bsSelect('fraternity_home_country', $countries, settings('fraternity.home_country'), ['data-live-search' => 'true', 'data-size' => 5], trans('backend.setting.fraternity.home_country')) }}
-                    {{ Form::bsText('fraternity_vulgo', settings('fraternity.vulgo'), [], trans('backend.setting.fraternity.vulgo')) }}
-                    {{ Form::bsText('fraternity_sine_nomine', settings('fraternity.sine_nomine'), [], trans('backend.setting.fraternity.sine_nomine')) }}
-                    {{ Form::bsText('fraternity_member_status_enum', implode(',', settings('fraternity.member_status_enum')), [], trans('backend.setting.fraternity.member_status_enum')) }}
-                </p>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="mail">
-                <p>
-                    {{ Form::bsText('mail_member_changed_receivers', implode(',', settings('mail.member_changed_receivers')), [], trans('backend.setting.mail.member_changed_receivers')) }}
-                </p>
-            </div>
+            @foreach($settings['system'] as $group)
+                <div role="tabpanel" class="tab-pane" id="group_{{ $group['name'] }}">
+                    @foreach($group['settings'] as $setting)
+                        @if ($setting['type'] == 'string')
+                            {{ Form::bsText('settings_'.$group['name'].'_'.$setting['name'], settings($group['name'].'.'.$setting['name']), [], trans($setting['trans'])) }}
+                        @elseif ($setting['type'] == 'csv')
+                            {{ Form::bsText('settings_'.$group['name'].'_'.$setting['name'], implode(',', settings($group['name'].'.'.$setting['name'])), ['data-type' => 'tokenfield'], trans($setting['trans'])) }}
+                        @elseif ($setting['type'] == 'country')
+                            {{ Form::bsSelect('settings_'.$group['name'].'_'.$setting['name'], $countries, settings($group['name'].'.'.$setting['name']), ['data-live-search' => 'true', 'data-size' => 5], trans($setting['trans'])) }}
+                        @endif
+                    @endforeach
+                </div>
+            @endforeach
         </div>
     {{ Form::close() }}
 @endsection
 
 @push('scripts')
     <script>
-        $('#fraternity_member_status_enum').tokenfield();
-
-        $('#mail_member_changed_receivers').tokenfield()
-        .on('tokenfield:createdtoken', function (e) {
-            // Simple email validation
-            var re = /\S+@\S+\.\S+/
-            var valid = re.test(e.attrs.value)
-            if (!valid) {
-              $(e.relatedTarget).addClass('invalid')
-            }
-        });
+        $("[data-type='tokenfield']").tokenfield();
 
         $(function() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 localStorage.setItem('lastBackendSettingsTab', $(this).attr('href'));
             });
 
-            // go to the latest tab, if it exists:
+            // go to the latest tab, if it exists. Otherwise, show the first tab.
             var lastTab = localStorage.getItem('lastBackendSettingsTab');
             if (lastTab) {
                 $('[href="' + lastTab + '"]').tab('show');
+            } else {
+                $("[data-toggle='tab']").first().tab('show');
             }
         });
     </script>

@@ -18,42 +18,47 @@ class SettingsController extends Controller
     public function index()
     {
         $countries = Country::all()->pluck('name', 'id');
+        $settings = json_decode(file_get_contents(resource_path('settings.json')), true);
 
-        return view('backend.settings.index', compact('countries'));
+        return view('backend.settings.index', compact('countries', 'settings'));
     }
 
     public function save(Request $request)
     {
-        $this->validate($request, [
-            'fraternity_name' => 'max:255',
-            'fraternity_home_country' => 'exists:countries,id',
-            'fraternity_vulgo' => 'max:5',
-            'fraternity_sine_nomine' => 'max:25',
-        ]);
+        $settings = json_decode(file_get_contents(resource_path('settings.json')), true);
+        $rules = [];
 
-        /* FRATERNITY SETTINGS */
+        foreach ($settings['system'] as $group) {
+            $prefix = $group['name'] . '_';
 
-        // Name of the fraternity
-        settings(['fraternity.name' => $request->fraternity_name]);
-        // Home country of the fraternity
-        settings(['fraternity.home_country' => $request->fraternity_home_country]);
-        // Character for vulgo
-        settings(['fraternity.vulgo' => $request->fraternity_vulgo]);
-        // Name suffix for members without nickname
-        settings(['fraternity.sine_nomine' => $request->fraternity_sine_nomine]);
-        // Possible values for the status field of members
-        $member_status_enum = explode(',', $request->fraternity_member_status_enum);
-        $member_status_enum = array_map('trim', $member_status_enum);
-        sort($member_status_enum);
-        settings(['fraternity.member_status_enum' => $member_status_enum]);
+            foreach ($group['settings'] as $setting) {
+                $key = $prefix . $setting['name'];
 
-        /* E-MAIL SETTINGS */
+                if (isset($setting['validation'])) {
+                    $rules['settings_'.$key] = $setting['validation'];
+                }
+            }
+        }
 
-        // List of mail receivers to notify of changed members
-        $member_changed_receivers = explode(',', $request->mail_member_changed_receivers);
-        $member_changed_receivers = array_map('trim', $member_changed_receivers);
-        sort($member_changed_receivers);
-        settings(['mail.member_changed_receivers' => $member_changed_receivers]);
+        $this->validate($request, $rules);
+
+        foreach ($settings['system'] as $group) {
+            $prefix = $group['name'] . '.';
+            $requestPrefix = $group['name'] . '_';
+
+            foreach ($group['settings'] as $setting) {
+                $requestKey = $requestPrefix . $setting['name'];
+                $key = $prefix . $setting['name'];
+                $value = trim($request->input('settings_'.$requestKey));
+                if ($setting['type'] == 'csv') {
+                    $value = array_map('trim', explode(',', $value));
+                }
+
+                settings([
+                    $key => $value
+                ]);
+            }
+        }
 
         return redirect()->route('backend.settings.index')
                ->with('success', trans('backend.saved'));

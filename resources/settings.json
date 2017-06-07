@@ -1,0 +1,56 @@
+{
+    "system": [
+        {
+            "name": "fraternity",
+            "trans": "backend.settings_fraternity",
+            "settings": [
+                {
+                    "name": "name",
+                    "trans": "backend.setting.fraternity.name",
+                    "type": "string",
+                    "validation": "max:255",
+                    "value": "PV Korona"
+                },
+                {
+                    "name": "home_country",
+                    "trans": "backend.setting.fraternity.home_country",
+                    "type": "country",
+                    "validation": "exists:countries,id",
+                    "value": "43"
+                },
+                {
+                    "name": "vulgo",
+                    "trans": "backend.setting.fraternity.vulgo",
+                    "type": "string",
+                    "validation": "max:5",
+                    "value": "v"
+                },
+                {
+                    "name": "sine_nomine",
+                    "trans": "backend.setting.fraternity.sine_nomine",
+                    "type": "string",
+                    "validation": "max:25",
+                    "value": "s.n."
+                },
+                {
+                    "name": "member_status_enum",
+                    "trans": "backend.setting.fraternity.member_status_enum",
+                    "type": "csv",
+                    "value": "aF,aB,iaB,CK,AH,AH h.c.,EAH,VG"
+                }
+            ]
+        },
+        {
+            "name": "mail",
+            "trans": "backend.settings_mail",
+            "settings": [
+                {
+                    "name": "member_changed_receivers",
+                    "trans": "backend.setting.mail.member_changed_receivers",
+                    "type": "csv",
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}
