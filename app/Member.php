@@ -128,6 +128,11 @@ class Member extends Model
         return $this->hasMany(Phonenumber::class);
     }
 
+    public function offices()
+    {
+        return $this->hasMany(Office::class);
+    }
+
     public function address()
     {
         return $this->hasOne(Address::class, 'address_id');

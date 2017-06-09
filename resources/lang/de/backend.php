@@ -104,6 +104,7 @@ return [
     'download_logfile' => 'Logdatei herunterladen',
     'delete_logfile' => 'Logdatei löschen',
     'delete_all_logfiles' => 'Alle Logdateien löschen',
+    'offices' => 'Ämter',
 
     'setting' => [
         'fraternity' => [
@@ -111,7 +112,8 @@ return [
             'home_country' => 'Heimatland',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
             'vulgo' => 'Präfix für Biernamen (z.B. v, al.)',
-            'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)'
+            'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)',
+            'member_office_enum' => 'Auswahlliste für Ämter eines Mitglieds',
         ],
         'mail' => [
             'member_changed_receivers' => 'E-Mail-Empfänger bei Änderungen an Mitgliedern',

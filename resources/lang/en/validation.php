@@ -148,6 +148,9 @@ return [
         'type' => 'Type',
         'phonenumber' => 'Phone number',
         'province' => 'State or province',
+        'position' => 'Office',
+        'begin' => 'Begin',
+        'end' => 'End',
     ],
 
 ];

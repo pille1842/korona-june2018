@@ -104,6 +104,7 @@ return [
     'download_logfile' => 'Download logfile',
     'delete_logfile' => 'Delete logfile',
     'delete_all_logfiles' => 'Delete all logfiles',
+    'offices' => 'Offices',
 
     'setting' => [
         'fraternity' => [
@@ -111,7 +112,8 @@ return [
             'home_country' => 'Home country',
             'member_status_enum' => 'Possible values for the member status',
             'vulgo' => 'Prefix for nicknames (e.g. v, al.)',
-            'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)'
+            'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)',
+            'member_office_enum' => 'Possible offices of a member',
         ],
         'mail' => [
             'member_changed_receivers' => 'Email receivers to notify when a member is changed',

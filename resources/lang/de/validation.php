@@ -148,6 +148,9 @@ return [
         'type' => 'Typ',
         'phonenumber' => 'Telefonnummer',
         'province' => 'Staat oder Provinz',
+        'position' => 'Amt',
+        'begin' => 'Beginn',
+        'end' => 'Ende',
     ],
 
 ];

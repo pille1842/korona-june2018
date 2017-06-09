@@ -122,6 +122,11 @@
                     {{ trans('backend.phonenumbers') }}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="#offices" aria-controls="offices" role="tab" data-toggle="tab">
+                    {{ trans('backend.offices') }}
+                </a>
+            </li>
         </ul>
 
         <div class="tab-content">
@@ -284,6 +289,58 @@
                                 </td>
                                 <td>
                                     {{ Form::bsText('phonenumber') }}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label>&nbsp;</label><br>
+                                        <button class="btn btn-success">{{ trans('backend.add') }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {{ Form::close() }}
+            </div>
+            <div role="tabpanel" class="table-responsive tab-pane" id="offices">
+                <table class="table" id="k-offices-table">
+                    <thead>
+                        <tr>
+                            <th>{{ trans('validation.attributes.position') }}</th>
+                            <th>{{ trans('validation.attributes.begin') }}</th>
+                            <th>{{ trans('validation.attributes.end') }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($member->offices()->orderBy('begin', 'desc')->get() as $office)
+                            <tr>
+                                <td>{{ $office->position }}</td>
+                                <td>{{ $office->begin->formatLocalized('%x') }}</td>
+                                <td>{{ $office->end ? $office->end->formatLocalized('%x') : '' }}</td>
+                                <td>
+                                    {{ Form::open(['action' => ['Backend\OfficeController@destroy', $member, $office], 'method' => 'delete']) }}
+                                        <button class="btn btn-danger" onclick="return confirm('{{ trans('backend.really_delete_office', ['office' => $office->position]) }}')">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    {{ Form::close() }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ Form::open(['action' => ['Backend\OfficeController@store', $member]]) }}
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    {{ Form::bsSelect('position', \Korona\Office::getPositionArray(), null) }}
+                                </td>
+                                <td>
+                                    {{ Form::bsDate('begin') }}
+                                </td>
+                                <td>
+                                    {{ Form::bsDate('end') }}
                                 </td>
                                 <td>
                                     <div class="form-group">

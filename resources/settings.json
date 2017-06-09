@@ -37,6 +37,12 @@
                     "trans": "backend.setting.fraternity.member_status_enum",
                     "type": "csv",
                     "value": "aF,aB,iaB,CK,AH,AH h.c.,EAH,VG"
+                },
+                {
+                    "name": "member_office_enum",
+                    "trans": "backend.setting.fraternity.member_office_enum",
+                    "type": "csv",
+                    "value": "Senior,Consenior,Sekretär,Fuxmajor"
                 }
             ]
         },
