@@ -53,7 +53,10 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
 
     // About Korona
     Route::get('about', function () {
-        return view('backend.about');
+        $packages = json_decode(file_get_contents(base_path('composer.lock')), true);
+        $license  = file_get_contents(base_path('LICENSE'));
+
+        return view('backend.about', compact('packages', 'license'));
     })->name('backend.about');
 });
 
