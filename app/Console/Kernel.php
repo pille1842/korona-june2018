@@ -2,6 +2,7 @@
 
 namespace Korona\Console;
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Contracts\Foundation\Application;
