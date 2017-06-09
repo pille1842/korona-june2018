@@ -171,8 +171,8 @@
                                     <td>{{ $history->created_at->format('d.m.Y H:i') }}</td>
                                     <td>{{ $history->userResponsible() !== false ? $history->userResponsible()->login : '' }}</td>
                                     <td>{{ $history->fieldName() }}</td>
-                                    <td><span class="text-danger">{{ $history->oldValue() }}</span></td>
-                                    <td><span class="text-success">{{ $history->newValue() }}</span></td>
+                                    <td{!! $history->oldValue() != '' ? ' class="danger"' : '' !!}>{{ $history->oldValue() }}</td>
+                                    <td{!! $history->newValue() != '' ? ' class="success"' : '' !!}>{{ $history->newValue() }}</td>
                                 </tr>
                             @endif
                         @endforeach
@@ -221,9 +221,9 @@
                 <table class="table" id="k-phonenumbers-table">
                     <thead>
                         <tr>
-                            <th>Typ</th>
-                            <th>Land</th>
-                            <th>Nummer</th>
+                            <th>{{ trans('validation.attributes.type') }}</th>
+                            <th>{{ trans('validation.attributes.country_id') }}</th>
+                            <th>{{ trans('validation.attributes.phonenumber') }}</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -288,7 +288,7 @@
                                 <td>
                                     <div class="form-group">
                                         <label>&nbsp;</label><br>
-                                        <button class="btn btn-success">Eintragen</button>
+                                        <button class="btn btn-success">{{ trans('backend.add') }}</button>
                                     </div>
                                 </td>
                             </tr>

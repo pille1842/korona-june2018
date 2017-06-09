@@ -4,6 +4,9 @@ namespace Korona\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Korona\Address;
+use Korona\Phonenumber;
+use Auth;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -35,6 +38,50 @@ class EventServiceProvider extends ServiceProvider
             if ($model instanceof \Korona\Member) {
                 event(new \Korona\Events\MemberChanged($model, $revisions));
             }
+        });
+
+        Address::creating(function ($address) {
+            $member = $address->member;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'address';
+            $revision->old_value = null;
+            $revision->new_value = $address->identifiableName();
+            $member->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+        });
+
+        Address::deleting(function ($address) {
+            $member = $address->member;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'address';
+            $revision->new_value = null;
+            $revision->old_value = $address->identifiableName();
+            $member->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+        });
+
+        Phonenumber::creating(function ($phonenumber) {
+            $member = $phonenumber->member;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'phonenumber';
+            $revision->old_value = null;
+            $revision->new_value = $phonenumber->identifiableName();
+            $member->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+        });
+
+        Phonenumber::deleting(function ($phonenumber) {
+            $member = $phonenumber->member;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'phonenumber';
+            $revision->new_value = null;
+            $revision->old_value = $phonenumber->identifiableName();
+            $member->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
         });
     }
 }

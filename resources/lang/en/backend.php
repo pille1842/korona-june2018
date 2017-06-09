@@ -95,6 +95,7 @@ return [
     'really_delete_phonenumber' => 'Do you really want to delete this phone number? This cannot be undone!',
     'phonenumber_deleted' => 'The phone number has been deleted.',
     'phonenumbers' => 'Phone numbers',
+    'add' => 'Add',
 
     'setting' => [
         'fraternity' => [
@@ -115,7 +116,7 @@ return [
         'backend' => 'Backend',
     ],
 
-    
+
     'phonenumbertypes' => [
         'HOME' => 'Home',
         'WORK' => 'Workplace',

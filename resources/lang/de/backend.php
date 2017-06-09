@@ -95,6 +95,7 @@ return [
     'really_delete_phonenumber' => 'Diese Telefonnummer wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
     'phonenumber_deleted' => 'Die Telefonnummer wurde gelöscht.',
     'phonenumbers' => 'Telefonnummern',
+    'add' => 'Hinzufügen',
 
     'setting' => [
         'fraternity' => [

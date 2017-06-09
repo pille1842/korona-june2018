@@ -18,7 +18,8 @@ class Member extends Model
 
     protected $dontKeepRevisionOf = [
         'user_id',
-        'profile_picture'
+        'profile_picture',
+        'address_id'
     ];
 
     protected $revisionFormattedFields = [
@@ -39,7 +40,8 @@ class Member extends Model
         'birthday' => 'Geburtstag',
         'status' => 'Status',
         'active' => 'aktiv',
-        'address_id' => 'Hauptadresse',
+        'address' => 'Adresse',
+        'phonenumber' => 'Telefonnummer',
     ];
 
     protected $revisionNullString = 'nichts';

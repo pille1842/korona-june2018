@@ -81,7 +81,10 @@ class MemberController extends Controller
             return $item;
         })->pluck('displayName', 'id')->prepend('', '')->all();
 
-        $countries = Country::all()->pluck('name', 'id');
+        $countries = Country::all()->map(function ($item) {
+            $item->displayName = $item->name . ' (+' . $item->phoneprefix . ')';
+            return $item;
+        })->pluck('displayName', 'id');
 
         return view('backend.members.edit', compact('member', 'members', 'users', 'countries'));
     }

@@ -16,6 +16,14 @@ class Phonenumber extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function identifiableName()
+    {
+        $types = $this->getTypeArray();
+
+        return $types[$this->type] . ' ' .
+               $this->getFormatted();
+    }
+
     public function getFormatted()
     {
         if ($this->country->id == settings('fraternity.home_country')) {

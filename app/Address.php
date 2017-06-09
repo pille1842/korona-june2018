@@ -21,9 +21,9 @@ class Address extends Model
 
     public function identifiableName()
     {
-        return $this->name . ' (' . $this->street . ', '
-               . $this->zipcode . ' ' . $this->city . ', '
-               . $this->country->name . ')';
+        return $this->name . ' (' .
+               str_replace("\n", ', ', $this->getFormatted()) .
+               ')';
     }
 
     public function getFormatted()
