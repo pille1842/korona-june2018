@@ -37,6 +37,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Kann Systemeinstellungen verwalten',
             'slug' => 'backend.manage.settings'
         ]);
+        $backendSeeLogsPermission = Permission::create([
+            'name' => 'Kann Systemlogs einsehen',
+            'slug' => 'backend.see.logs'
+        ]);
 
         // Create some pre-defined sensible roles
         $memberRole = Role::create([
@@ -64,6 +68,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole->attachPermission($backendManageMembersPermission);
         $adminRole->attachPermission($backendManageRolesPermission);
         $adminRole->attachPermission($backendManageSettingsPermission);
+        $adminRole->attachPermission($backendSeeLogsPermission);
 
         // Create the first user to be a superuser
         $user = User::create([

@@ -46,6 +46,11 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');
     Route::post('settings', 'SettingsController@save')->name('backend.settings.save');
 
+    // Logs
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
+        ->middleware(['permission:backend.see.logs'])
+        ->name('backend.logs.index');
+
     // About Korona
     Route::get('about', function () {
         return view('backend.about');

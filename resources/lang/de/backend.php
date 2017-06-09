@@ -96,6 +96,14 @@ return [
     'phonenumber_deleted' => 'Die Telefonnummer wurde gelöscht.',
     'phonenumbers' => 'Telefonnummern',
     'add' => 'Hinzufügen',
+    'logs' => 'Systemlogs',
+    'loglevel' => 'Loglevel',
+    'logcontext' => 'Kontext',
+    'logdate' => 'Datum',
+    'logcontent' => 'Nachricht',
+    'download_logfile' => 'Logdatei herunterladen',
+    'delete_logfile' => 'Logdatei löschen',
+    'delete_all_logfiles' => 'Alle Logdateien löschen',
 
     'setting' => [
         'fraternity' => [

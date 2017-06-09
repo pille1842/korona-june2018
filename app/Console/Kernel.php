@@ -4,6 +4,7 @@ namespace Korona\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Contracts\Foundation\Application;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,5 +27,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+    }
+
+    public function __construct(Application $app, Dispatcher $events)
+    {
+        parent::__construct($app, $events);
+
+        $loggingKey = array_search('Illuminate\Foundation\Bootstrap\ConfigureLogging', $this->bootstrappers);
+        $this->bootstrappers[$loggingKey] = 'Korona\ConfigureLogging';
     }
 }

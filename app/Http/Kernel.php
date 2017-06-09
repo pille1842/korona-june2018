@@ -3,6 +3,8 @@
 namespace Korona\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Routing\Router;
+use Illuminate\Contracts\Foundation\Application;
 
 class Kernel extends HttpKernel
 {
@@ -53,4 +55,12 @@ class Kernel extends HttpKernel
         'permission' => \Bican\Roles\Middleware\VerifyPermission::class,
         'level' => \Bican\Roles\Middleware\VerifyLevel::class,
     ];
+
+    public function __construct(Application $app, Router $router)
+    {
+        parent::__construct($app, $router);
+
+        $loggingKey = array_search('Illuminate\Foundation\Bootstrap\ConfigureLogging', $this->bootstrappers);
+        $this->bootstrappers[$loggingKey] = 'Korona\ConfigureLogging';
+    }
 }
