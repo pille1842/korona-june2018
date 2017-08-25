@@ -36,11 +36,7 @@
                             </div>
                         @endif
                         <div class="text-center">
-                            @if ($member->picture !== null)
-                                <img src="{{ route('image', $member->picture) }}" class="img-responsive img-rounded" id="picture-img">
-                            @else
-                                <img src="" class="img-responsive" style="display:none;" id="picture-img">
-                            @endif
+                            <img src="{{ $member->profilePictureRoute() }}" class="img-responsive img-rounded" id="picture-img">
                         </div>
                         <div id="image-cropper" style="display:none;">
                             <div class="cropit-preview"></div>
@@ -57,6 +53,9 @@
                             <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#choosePictureModal" id="btn-choose-picture">
                                 <span class="glyphicon glyphicon-th"></span> {{ trans('backend.choose_picture') }}
                             </button>
+                            @if ($member->picture !== null)
+                                {{ Form::bsCheckbox('delete_picture', '1', false, trans('backend.delete_picture')) }}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -367,13 +366,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        @foreach ($member->images as $image)
+                        @forelse ($member->images as $image)
                             <div class="col-xs-4">
                                 <a href="#" class="btn-choose-this-picture" data-id="{{ $image->id }}" data-url="{{ route('image', $image) }}">
                                     <img class="img-responsive img-rounded" src="{{ route('image', $image) }}">
                                 </a>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="col-xs-12">
+                                <em>{{ trans('backend.no_pictures') }}</em>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="modal-footer">

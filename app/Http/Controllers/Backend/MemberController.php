@@ -144,6 +144,15 @@ class MemberController extends Controller
             $member->profile_picture = $request->profile_picture;
         }
 
+        if ($request->has('delete_picture')) {
+            $image = \Korona\Media\Image::find($member->profile_picture);
+            if ($image !== null) {
+                $member->profile_picture = null;
+                $member->save();
+                $image->delete();
+            }
+        }
+
         $member->save();
 
         return redirect()->route('backend.member.edit', $member)
