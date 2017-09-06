@@ -84,6 +84,8 @@ return [
     'upload_picture' => 'Bild hochladen',
     'choose_picture' => 'Bild auswählen',
     'adopt' => 'Übernehmen',
+    'delete_picture' => 'Profilbild löschen',
+    'no_pictures' => 'Dieses Mitglied hat keine Bilder hochgeladen.',
     'create_address' => 'Neue Adresse für :member erstellen',
     'addresses' => 'Postadressen',
     'edit_address' => 'Adresse :address von :member bearbeiten',
