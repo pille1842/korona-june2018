@@ -151,6 +151,8 @@ return [
         'position' => 'Office',
         'begin' => 'Begin',
         'end' => 'End',
+        'symbol' => 'Symbol',
+        'template' => 'Template',
     ],
 
 ];

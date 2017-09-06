@@ -45,6 +45,9 @@ Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend'
     // Roles
     Route::resource('role', 'RolesController');
 
+    // Milestone Types
+    Route::resource('milestonetype', 'MilestonetypeController');
+
     // Settings
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');
     Route::post('settings', 'SettingsController@save')->name('backend.settings.save');

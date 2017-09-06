@@ -105,6 +105,12 @@ return [
     'delete_logfile' => 'Logdatei löschen',
     'delete_all_logfiles' => 'Alle Logdateien löschen',
     'offices' => 'Ämter',
+    'edit_milestonetype' => 'Ereignistyp :milestonetype bearbeiten',
+    'create_milestonetype' => 'Neuen Ereignistyp anlegen',
+    'really_delete_milestonetype' => 'Ereignistyp :milestonetype wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
+    'milestonetype_deleted' => 'Der Ereignistyp :milestonetype wurde gelöscht.',
+    'milestonetypes' => 'Ereignistypen',
+    'preview' => 'Vorschau',
 
     'setting' => [
         'fraternity' => [

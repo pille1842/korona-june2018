@@ -105,6 +105,12 @@ return [
     'delete_logfile' => 'Delete logfile',
     'delete_all_logfiles' => 'Delete all logfiles',
     'offices' => 'Offices',
+    'edit_milestonetype' => 'Edit milestone type :milestonetype',
+    'create_milestonetype' => 'Create new milestone type',
+    'really_delete_milestonetype' => 'Do you really want to delete milestone type :milestonetype? This cannot be undone!',
+    'milestonetype_deleted' => 'Milestone type :milestonetype has been deleted.',
+    'milestonetypes' => 'Milestone types',
+    'preview' => 'Preview',
 
     'setting' => [
         'fraternity' => [

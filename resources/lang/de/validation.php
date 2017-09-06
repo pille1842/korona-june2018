@@ -151,6 +151,8 @@ return [
         'position' => 'Amt',
         'begin' => 'Beginn',
         'end' => 'Ende',
+        'symbol' => 'Symbol',
+        'template' => 'Vorlage',
     ],
 
 ];
