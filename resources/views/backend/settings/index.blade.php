@@ -29,6 +29,8 @@
                     @foreach($group['settings'] as $setting)
                         @if ($setting['type'] == 'string')
                             {{ Form::bsText('settings_'.$group['name'].'_'.$setting['name'], settings($group['name'].'.'.$setting['name']), [], trans($setting['trans'])) }}
+                        @elseif ($setting['type'] == 'enum')
+                            {{ Form::bsSelect('settings_'.$group['name'].'_'.$setting['name'], $setting['values'], settings($group['name'].'.'.$setting['name']), [], trans($setting['trans'])) }}
                         @elseif ($setting['type'] == 'csv')
                             {{ Form::bsText('settings_'.$group['name'].'_'.$setting['name'], implode(',', settings($group['name'].'.'.$setting['name'])), ['data-type' => 'tokenfield'], trans($setting['trans'])) }}
                         @elseif ($setting['type'] == 'country')
