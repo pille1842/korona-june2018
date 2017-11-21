@@ -126,6 +126,7 @@ return [
         'remember' => 'Angemeldet bleiben',
         'firstname' => 'Vorname',
         'lastname' => 'Nachname',
+        'inverse_name_order' => 'Umgekehrte Namensreihenfolge',
         'nickname' => 'Biername',
         'birthname' => 'Geburtsname',
         'title' => 'Akadem. Titel',

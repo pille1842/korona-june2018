@@ -25,7 +25,8 @@ class Member extends Model
     protected $revisionFormattedFields = [
         'slug' => '<tt>%s</tt>',
         'birthday' => 'datetime:d.m.Y',
-        'active' => 'boolean:Nein|Ja'
+        'active' => 'boolean:Nein|Ja',
+        'inverse_name_order' => 'boolean:Nein|Ja'
     ];
 
     protected $revisionFormattedFieldNames = [
@@ -34,6 +35,7 @@ class Member extends Model
         'nickname' => 'Biername',
         'firstname' => 'Vorname',
         'lastname' => 'Nachname',
+        'inverse_name_order' => 'Umgekehrte Namensreihenfolge',
         'birthname' => 'Geburtsname',
         'title' => 'Akadem. Titel',
         'profession' => 'Beruf',
@@ -68,7 +70,16 @@ class Member extends Model
     public function getCivilName($withTitle = false)
     {
         if ($withTitle) {
-            return trim($this->title . ' ' . $this->firstname . ' ' . $this->lastname);
+            return trim($this->title . ' ' . $this->getNamesInOrder());
+        } else {
+            return $this->getNamesInOrder();
+        }
+    }
+
+    public function getNamesInOrder()
+    {
+        if ($this->inverse_name_order) {
+            return $this->lastname . ' ' . $this->firstname;
         } else {
             return $this->firstname . ' ' . $this->lastname;
         }

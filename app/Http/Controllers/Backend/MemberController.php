@@ -119,6 +119,7 @@ class MemberController extends Controller
         $member->nickname = $request->nickname;
         $member->firstname = $request->firstname;
         $member->lastname = $request->lastname;
+        $member->inverse_name_order = $request->has('inverse_name_order');
         $member->birthname = $request->birthname;
         $member->title = $request->title;
         $member->profession = $request->profession;

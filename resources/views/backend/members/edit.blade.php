@@ -68,10 +68,11 @@
                     <div class="panel-body">
                         {{ Form::bsText('firstname') }}
                         {{ Form::bsText('lastname') }}
+                        {{ Form::bsCheckbox('inverse_name_order', '1', $member->inverse_name_order) }}
                         {{ Form::bsText('birthname') }}
                         {{ Form::bsText('title') }}
                         {{ Form::bsText('profession') }}
-                        {{ Form::bsDate('birthday') }}
+                        {{ Form::bsText('birthday') }}
                     </div>
                 </div>
             </div>

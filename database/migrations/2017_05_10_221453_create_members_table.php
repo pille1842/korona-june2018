@@ -21,6 +21,7 @@ class CreateMembersTable extends Migration
             $table->string('nickname');
             $table->string('firstname');
             $table->string('lastname');
+            $table->boolean('inverse_name_order')->default(false);
             $table->string('birthname');
             $table->string('title');
             $table->string('profession');

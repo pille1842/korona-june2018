@@ -126,6 +126,7 @@ return [
         'remember' => 'Remember Me',
         'firstname' => 'First name',
         'lastname' => 'Last name',
+        'inverse_name_order' => 'Inverse name order',
         'nickname' => 'Nickname',
         'birthname' => 'Birth name',
         'title' => 'Academic title',
