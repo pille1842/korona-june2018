@@ -87,7 +87,11 @@
                         <h3 class="panel-title">{{ trans('backend.fraternity_details') }}</h3>
                     </div>
                     <div class="panel-body">
-                        {{ Form::bsText('nickname') }}
+                        @if (settings('fraternity.has_nicknames'))
+                            {{ Form::bsText('nickname') }}
+                        @else
+                            <input type="hidden" name="nickname" value="">
+                        @endif
                         {{ Form::bsSelect('parent_id', $members, $member->parent_id, ['data-live-search' => 'true', 'data-size' => 5]) }}
                         {{ Form::bsSelect('status', array_combine(settings('fraternity.member_status_enum'), settings('fraternity.member_status_enum')), $member->status) }}
                     </div>

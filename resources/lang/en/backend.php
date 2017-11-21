@@ -119,6 +119,7 @@ return [
             'name' => 'Name of the fraternity',
             'home_country' => 'Home country',
             'sex_type' => 'Admittable sexes',
+            'has_nicknames' => 'Has nicknames',
             'member_status_enum' => 'Possible values for the member status',
             'vulgo' => 'Prefix for nicknames (e.g. v, al.)',
             'sine_nomine' => 'Suffix für members without nickname (e.g. s.n.)',

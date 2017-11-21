@@ -65,7 +65,7 @@ class Member extends Model
 
     public function getFullName($withTitle = false)
     {
-        return $this->getCivilName($withTitle) . ' ' . $this->getQualifiedNickname();
+        return trim($this->getCivilName($withTitle) . ' ' . $this->getQualifiedNickname());
     }
 
     public function getCivilName($withTitle = false)

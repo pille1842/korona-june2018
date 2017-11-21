@@ -31,7 +31,9 @@
                     <th>{{ trans('validation.attributes.id') }}</th>
                     <th>{{ trans('validation.attributes.firstname') }}</th>
                     <th>{{ trans('validation.attributes.lastname') }}</th>
-                    <th>{{ trans('validation.attributes.nickname') }}</th>
+                    @if (settings('fraternity.has_nicknames'))
+                        <th>{{ trans('validation.attributes.nickname') }}</th>
+                    @endif
                     <th>{{ trans('validation.attributes.deleted_at') }}</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -42,7 +44,9 @@
                         <td>{{ $member->id }}</td>
                         <td>{{ $member->firstname }}</td>
                         <td>{{ $member->lastname }}</td>
-                        <td>{{ $member->nickname }}</td>
+                        @if (settings('fraternity.has_nicknames'))
+                            <td>{{ $member->nickname }}</td>
+                        @endif
                         <td>{{ $member->deleted_at->diffForHumans() }}</td>
                         <td style="text-align:right;">
                             {{ Form::open(['action' => ['Backend\MemberController@restore', $member->id], 'style' => 'display:inline;']) }}
@@ -66,11 +70,21 @@
     </div>
 @endsection
 
-@include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
-    null,
-    null,
-    null,
-    null,
-    null,
-    {orderable: false}
-]'])
+@if (settings('fraternity.has_nicknames'))
+    @include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
+        null,
+        null,
+        null,
+        null,
+        null,
+        {orderable: false}
+    ]'])
+@else
+    @include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
+        null,
+        null,
+        null,
+        null,
+        {orderable: false}
+    ]'])
+@endif

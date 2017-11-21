@@ -28,7 +28,11 @@
                     <div class="panel-body">
                         {{ Form::bsText('firstname') }}
                         {{ Form::bsText('lastname') }}
-                        {{ Form::bsText('nickname') }}
+                        @if (settings('fraternity.has_nicknames'))
+                            {{ Form::bsText('nickname') }}
+                        @else
+                            <input type="hidden" name="nickname" value="">
+                        @endif
                         @if (settings('fraternity.sex_type') == 'BOTH')
                             {{ Form::bsSelect('sex', ['MALE' => 'männlich', 'FEMALE' => 'weiblich'], 'MALE') }}
                         @else

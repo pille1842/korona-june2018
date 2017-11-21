@@ -27,7 +27,9 @@
                     <th>{{ trans('validation.attributes.id') }}</th>
                     <th>{{ trans('validation.attributes.firstname') }}</th>
                     <th>{{ trans('validation.attributes.lastname') }}</th>
-                    <th>{{ trans('validation.attributes.nickname') }}</th>
+                    @if (settings('fraternity.has_nicknames'))
+                        <th>{{ trans('validation.attributes.nickname') }}</th>
+                    @endif
                     <th>{{ trans('validation.attributes.active') }}</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -38,7 +40,9 @@
                         <td>{{ $member->id }}</td>
                         <td>{{ $member->firstname }}</td>
                         <td>{{ $member->lastname }}</td>
-                        <td>{{ $member->nickname }}</td>
+                        @if (settings('fraternity.has_nicknames'))
+                            <td>{{ $member->nickname }}</td>
+                        @endif
                         <td>
                             @if($member->active)
                                 <span class="glyphicon glyphicon-ok text-success"></span>
@@ -64,11 +68,21 @@
     </div>
 @endsection
 
-@include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
-    null,
-    null,
-    null,
-    null,
-    {orderable: false},
-    {orderable: false}
-]'])
+@if (settings('fraternity.has_nicknames'))
+    @include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
+        null,
+        null,
+        null,
+        null,
+        {orderable: false},
+        {orderable: false}
+    ]'])
+@else
+    @include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
+        null,
+        null,
+        null,
+        {orderable: false},
+        {orderable: false}
+    ]'])
+@endif

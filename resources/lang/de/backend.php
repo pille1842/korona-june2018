@@ -121,6 +121,7 @@ return [
             'name' => 'Name der Verbindung',
             'home_country' => 'Heimatland',
             'sex_type' => 'Zugelassene Geschlechter',
+            'has_nicknames' => 'Verbindung hat Biernamen',
             'member_status_enum' => 'Auswahlliste für den Status eines Mitglieds',
             'vulgo' => 'Präfix für Biernamen (z.B. v, al.)',
             'sine_nomine' => 'Suffix für Biernamenlose (z.B. s.n.)',
