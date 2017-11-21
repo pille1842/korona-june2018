@@ -105,6 +105,7 @@ return [
     'delete_logfile' => 'Delete logfile',
     'delete_all_logfiles' => 'Delete all logfiles',
     'offices' => 'Offices',
+    'really_delete_office' => 'Do you really want to delete this term as :office?',
     'edit_milestonetype' => 'Edit milestone type :milestonetype',
     'create_milestonetype' => 'Create new milestone type',
     'really_delete_milestonetype' => 'Do you really want to delete milestone type :milestonetype? This cannot be undone!',

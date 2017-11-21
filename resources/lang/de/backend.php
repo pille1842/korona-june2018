@@ -107,6 +107,7 @@ return [
     'delete_logfile' => 'Logdatei löschen',
     'delete_all_logfiles' => 'Alle Logdateien löschen',
     'offices' => 'Ämter',
+    'really_delete_office' => 'Diese Amtszeit als :office wirklich löschen?',
     'edit_milestonetype' => 'Ereignistyp :milestonetype bearbeiten',
     'create_milestonetype' => 'Neuen Ereignistyp anlegen',
     'really_delete_milestonetype' => 'Ereignistyp :milestonetype wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
