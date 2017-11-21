@@ -29,6 +29,11 @@
                         {{ Form::bsText('firstname') }}
                         {{ Form::bsText('lastname') }}
                         {{ Form::bsText('nickname') }}
+                        @if (settings('fraternity.sex_type') == 'BOTH')
+                            {{ Form::bsSelect('sex', ['MALE' => 'männlich', 'FEMALE' => 'weiblich'], 'MALE') }}
+                        @else
+                            <input type="hidden" name="sex" value="{{ settings('fraternity.sex_type') }}">
+                        @endif
                         {{ Form::bsSlug('slug', null, 'nickname') }}
                         {{ Form::bsCheckbox('active', '1', true) }}
                     </div>

@@ -129,6 +129,7 @@ return [
         'inverse_name_order' => 'Inverse name order',
         'nickname' => 'Nickname',
         'birthname' => 'Birth name',
+        'sex' => 'Sex',
         'title' => 'Academic title',
         'profession' => 'Profession',
         'user_id' => 'User account',

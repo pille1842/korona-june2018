@@ -19,6 +19,18 @@
                     "value": "43"
                 },
                 {
+                    "name": "sex_type",
+                    "trans": "backend.setting.fraternity.sex_type",
+                    "type": "enum",
+                    "validation": "in:MALE,FEMALE,BOTH",
+                    "value": "MALE",
+                    "values": {
+                        "MALE": "Männerbund",
+                        "FEMALE": "Damenverbindung",
+                        "BOTH": "gemischtgeschlechtlicher Bund"
+                    }
+                },
+                {
                     "name": "vulgo",
                     "trans": "backend.setting.fraternity.vulgo",
                     "type": "string",

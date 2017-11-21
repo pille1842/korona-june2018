@@ -45,6 +45,7 @@ class MemberController extends Controller
             'nickname' => 'string|max:255',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
+            'sex' => 'in:MALE,FEMALE'
         ]);
 
         $member = new Member;
@@ -52,6 +53,7 @@ class MemberController extends Controller
         $member->nickname = $request->nickname;
         $member->firstname = $request->firstname;
         $member->lastname = $request->lastname;
+        $member->sex = $request->sex;
         $member->birthday = Carbon::createFromDate(2000, 01, 01);
         $member->active = $request->has('active');
 
@@ -99,6 +101,7 @@ class MemberController extends Controller
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'birthname' => 'max:255',
+            'sex' => 'in:MALE,FEMALE',
             'title' => 'max:255',
             'profession' => 'max:255',
             'birthday' => 'date_format:d.m.Y',
@@ -121,6 +124,7 @@ class MemberController extends Controller
         $member->lastname = $request->lastname;
         $member->inverse_name_order = $request->has('inverse_name_order');
         $member->birthname = $request->birthname;
+        $member->sex = $request->sex;
         $member->title = $request->title;
         $member->profession = $request->profession;
         $member->birthday = $request->birthday;

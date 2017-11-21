@@ -70,6 +70,11 @@
                         {{ Form::bsText('lastname') }}
                         {{ Form::bsCheckbox('inverse_name_order', '1', $member->inverse_name_order) }}
                         {{ Form::bsText('birthname') }}
+                        @if (settings('fraternity.sex_type') == 'BOTH')
+                            {{ Form::bsSelect('sex', ['MALE' => 'männlich', 'FEMALE' => 'weiblich'], $member->sex) }}
+                        @else
+                            <input type="hidden" name="sex" value="{{ settings('fraternity.sex_type') }}">
+                        @endif
                         {{ Form::bsText('title') }}
                         {{ Form::bsText('profession') }}
                         {{ Form::bsText('birthday') }}

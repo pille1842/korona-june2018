@@ -37,6 +37,7 @@ class Member extends Model
         'lastname' => 'Nachname',
         'inverse_name_order' => 'Umgekehrte Namensreihenfolge',
         'birthname' => 'Geburtsname',
+        'sex' => 'Geschlecht',
         'title' => 'Akadem. Titel',
         'profession' => 'Beruf',
         'birthday' => 'Geburtstag',

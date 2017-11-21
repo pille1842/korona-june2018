@@ -23,6 +23,7 @@ class CreateMembersTable extends Migration
             $table->string('lastname');
             $table->boolean('inverse_name_order')->default(false);
             $table->string('birthname');
+            $table->enum('sex', ['MALE', 'FEMALE']);
             $table->string('title');
             $table->string('profession');
             $table->string('status');

@@ -129,6 +129,7 @@ return [
         'inverse_name_order' => 'Umgekehrte Namensreihenfolge',
         'nickname' => 'Biername',
         'birthname' => 'Geburtsname',
+        'sex' => 'Geschlecht',
         'title' => 'Akadem. Titel',
         'profession' => 'Beruf',
         'user_id' => 'Benutzerkonto',
