@@ -342,10 +342,10 @@
                                     {{ Form::bsSelect('position', \Korona\Office::getPositionArray(), null) }}
                                 </td>
                                 <td>
-                                    {{ Form::bsDate('begin') }}
+                                    {{ Form::bsText('begin') }}
                                 </td>
                                 <td>
-                                    {{ Form::bsDate('end') }}
+                                    {{ Form::bsText('end') }}
                                 </td>
                                 <td>
                                     <div class="form-group">
