@@ -26,8 +26,8 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "datatables.net": "^2.1.1",
-    "datatables.net-bs": "^2.1.1",
+    "datatables.net": "^1.10.16",
+    "datatables.net-bs": "^1.10.16",
     "font-awesome": "fontawesome#^4.7.0",
     "bootstrap-select": "^1.12.2",
     "bootstrap-tokenfield": "^0.12.1",
