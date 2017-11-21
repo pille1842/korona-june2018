@@ -111,6 +111,8 @@ return [
     'milestonetype_deleted' => 'Milestone type :milestonetype has been deleted.',
     'milestonetypes' => 'Milestone types',
     'preview' => 'Preview',
+    'yes' => 'Yes',
+    'no' => 'No',
 
     'setting' => [
         'fraternity' => [

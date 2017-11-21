@@ -113,6 +113,8 @@ return [
     'milestonetype_deleted' => 'Der Ereignistyp :milestonetype wurde gelöscht.',
     'milestonetypes' => 'Ereignistypen',
     'preview' => 'Vorschau',
+    'yes' => 'Ja',
+    'no' => 'Nein',
 
     'setting' => [
         'fraternity' => [

@@ -49,11 +49,14 @@ class SettingsController extends Controller
             foreach ($group['settings'] as $setting) {
                 $requestKey = $requestPrefix . $setting['name'];
                 $key = $prefix . $setting['name'];
-                $value = trim($request->input('settings_'.$requestKey));
-                if ($setting['type'] == 'csv') {
-                    $value = array_map('trim', explode(',', $value));
+                if ($setting['type'] != 'boolean') {
+                    $value = trim($request->input('settings_'.$requestKey));
+                    if ($setting['type'] == 'csv') {
+                        $value = array_map('trim', explode(',', $value));
+                    }
+                } else {
+                    $value = $request->has('settings_'.$requestKey);
                 }
-
                 settings([
                     $key => $value
                 ]);

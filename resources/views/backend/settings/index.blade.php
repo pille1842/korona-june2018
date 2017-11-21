@@ -35,6 +35,9 @@
                             {{ Form::bsText('settings_'.$group['name'].'_'.$setting['name'], implode(',', settings($group['name'].'.'.$setting['name'])), ['data-type' => 'tokenfield'], trans($setting['trans'])) }}
                         @elseif ($setting['type'] == 'country')
                             {{ Form::bsSelect('settings_'.$group['name'].'_'.$setting['name'], $countries, settings($group['name'].'.'.$setting['name']), ['data-live-search' => 'true', 'data-size' => 5], trans($setting['trans'])) }}
+                        @elseif ($setting['type'] == 'boolean')
+                            <label for="{{ 'settings_'.$group['name'].'_'.$setting['name'] }}">{{ trans($setting['trans']) }}</label>
+                            {{ Form::bsToggle('settings_'.$group['name'].'_'.$setting['name'], '1', settings($group['name'].'.'.$setting['name']), ['data-on' => trans('backend.yes'), 'data-off' => trans('backend.no')]) }}
                         @endif
                     @endforeach
                 </div>
@@ -65,3 +68,4 @@
 
 @include('components.tool.tokenfield')
 @include('components.tool.select')
+@include('components.tool.toggle')
