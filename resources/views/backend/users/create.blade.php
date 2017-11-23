@@ -28,6 +28,7 @@
                     <div class="panel-body">
                         {{ Form::bsText('login') }}
                         {{ Form::bsEmail('email') }}
+                        {{ Form::bsSelect('member_id', $members, null, ['data-live-search' => 'true', 'data-size' => 5]) }}
                         {{ Form::bsCheckbox('active', '1', true) }}
                         {{ Form::bsCheckbox('send_newaccount_email', '1', true) }}
                     </div>
@@ -68,3 +69,5 @@
         });
     </script>
 @endpush
+
+@include('components.tool.select')

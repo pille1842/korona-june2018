@@ -37,7 +37,12 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('backend.users.create');
+        $members = \Korona\Member::where('user_id', '=', null)->get()->map(function ($item) {
+            $item->displayName = $item->getFullName();
+            return $item;
+        })->pluck('displayName', 'id')->all();
+
+        return view('backend.users.create', compact('members'));
     }
 
     public function store(Request $request)
@@ -45,7 +50,8 @@ class UserController extends Controller
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login',
             'email' => 'required|max:255|email|unique:users,email',
-            'password' => 'required|confirmed|string|min:8|max:255'
+            'password' => 'required|confirmed|string|min:8|max:255',
+            'member_id' => 'exists:members,id'
         ]);
 
         $user = new User;
@@ -56,6 +62,10 @@ class UserController extends Controller
         $user->force_password_change = $request->has('force_password_change');
 
         $user->save();
+
+        $member = \Korona\Member::find($request->member_id);
+        $member->user()->associate($user);
+        $member->save();
 
         $success = trans('backend.saved');
         if ($request->has('send_newaccount_email')) {

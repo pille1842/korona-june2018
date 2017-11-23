@@ -155,6 +155,7 @@ return [
         'end' => 'Ende',
         'symbol' => 'Symbol',
         'template' => 'Vorlage',
+        'member_id' => 'Mitglied',
     ],
 
 ];
