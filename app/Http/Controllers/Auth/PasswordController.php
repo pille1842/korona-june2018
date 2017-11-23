@@ -10,6 +10,7 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     protected $redirectTo = 'home';
+    protected $subject = 'Dein Passwort wurde zurückgesetzt';
 
     public function __construct()
     {
