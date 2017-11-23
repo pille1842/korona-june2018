@@ -49,11 +49,6 @@ class Authenticate
             }
         }
 
-        // @TODO: Passwortänderung implementieren
-        /* if (Auth::user()->force_password_change) {
-            return redirect()->to('/')->with('warning', trans('auth.please_change_password'));
-        } */
-
         return $next($request);
     }
 }

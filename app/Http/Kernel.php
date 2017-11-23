@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
         'auth' => \Korona\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
+        'checkpassword' => \Korona\Http\Middleware\CheckPassword::class,
         'guest' => \Korona\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \Bican\Roles\Middleware\VerifyRole::class,

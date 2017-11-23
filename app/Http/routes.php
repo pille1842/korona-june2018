@@ -13,7 +13,11 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 
 // Strictly internal routes
-Route::get('home', 'Internal\HomeController@index');
+Route::group(['middleware' => ['auth', 'checkpassword']], function () {
+    Route::get('home', 'Internal\HomeController@index');
+    Route::get('password', 'Internal\PasswordController@getForm');
+    Route::post('password', 'Internal\PasswordController@changePassword');
+});
 
 // Backend routes
 Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
