@@ -114,6 +114,7 @@ return [
     'preview' => 'Preview',
     'yes' => 'Yes',
     'no' => 'No',
+    'trash_emptied' => 'The trash has been emptied.',
 
     'setting' => [
         'fraternity' => [

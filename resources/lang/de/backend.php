@@ -116,6 +116,7 @@ return [
     'preview' => 'Vorschau',
     'yes' => 'Ja',
     'no' => 'Nein',
+    'trash_emptied' => 'Der Papierkorb wurde geleert.',
 
     'setting' => [
         'fraternity' => [
