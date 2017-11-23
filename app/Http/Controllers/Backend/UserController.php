@@ -119,7 +119,7 @@ class UserController extends Controller
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login,'.$user->id,
             'email' => 'required|max:255|email|unique:users,email,'.$user->id,
-            'password' => 'confirmed|string|min:8|max:255',
+            'password' => 'confirmed|string|min:6',
             'roles' => 'array|exists:roles,id',
             'permissions' => 'array|exists:permissions,id',
         ]);
@@ -127,7 +127,9 @@ class UserController extends Controller
         $user->login = $request->login;
         $user->email = $request->email;
         $user->active = $request->has('active');
-        $user->password = Hash::make($request->password);
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
         $user->force_password_change = $request->has('force_password_change');
 
         $user->save();
