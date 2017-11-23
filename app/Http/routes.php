@@ -20,7 +20,7 @@ Route::group(['middleware' => ['auth', 'checkpassword']], function () {
 });
 
 // Backend routes
-Route::group(['middleware' => 'permission:access.backend', 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
+Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
     Route::get('/', 'DashboardController@index');
 
     // Users
