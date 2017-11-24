@@ -1,20 +1,20 @@
 @extends('layouts.backend')
 
 @section('title')
-    {{ trans('backend.create_address', ['member' => $member->getShortName()]) }}
+    {{ trans('backend.create_address') }}
 @endsection
 
 @section('content')
-    <h1>{{ trans('backend.create_address', ['member' => $member->getShortName()]) }}</h1>
+    <h1>{{ trans('backend.create_address') }}</h1>
 
     <div class="row">
-        {{ Form::open(['action' => ['Backend\AddressController@store', $member], 'method' => 'post', 'class' => 'form', 'id' => 'k-create-form']) }}
+        {{ Form::open(['action' => 'Backend\AddressController@store', 'method' => 'post', 'class' => 'form', 'id' => 'k-create-form']) }}
             <div class="col-xs-12">
                 <div class="well">
                     <button type="submit" class="btn btn-primary">
                         {{ trans('backend.save') }}
                     </button>
-                    <a href="{{ route('backend.member.edit', $member) }}" class="btn btn-default">
+                    <a href="{{ $redirect }}" class="btn btn-default">
                         {{ trans('backend.close') }}
                     </a>
                 </div>
@@ -28,6 +28,9 @@
                 {{ Form::bsText('province') }}
                 {{ Form::bsSelect('country_id', $countries, 43, ['data-live-search' => 'true', 'data-size' => 5]) }}
                 {{ Form::bsCheckbox('is_main', '1', false) }}
+                <input type="hidden" name="redirect" value="{{ $redirect }}">
+                <input type="hidden" name="addressable_type" value="{{ $addressable_type }}">
+                <input type="hidden" name="addressable_id" value="{{ $addressable_id }}">
             </div>
         {{ Form::close() }}
     </div>

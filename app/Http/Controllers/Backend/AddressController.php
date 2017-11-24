@@ -12,24 +12,30 @@ use Korona\Country;
 
 class AddressController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('permission:backend.manage.members');
-    }
-
     public function index()
     {
         //
     }
 
-    public function create(Member $member)
+    public function create(Request $request)
     {
+        $this->validate($request, [
+            'addressable_type' => 'required',
+            'addressable_id' => 'required',
+            'redirect' => 'required'
+        ]);
+
         $countries = Country::all()->pluck('name', 'id');
 
-        return view('backend.addresses.create', compact('member', 'countries'));
+        return view('backend.addresses.create', [
+            'addressable_type' => $request->addressable_type,
+            'addressable_id' => $request->addressable_id,
+            'redirect' => $request->redirect,
+            'countries' => $countries
+        ]);
     }
 
-    public function store(Member $member, Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'max:255',
@@ -39,7 +45,10 @@ class AddressController extends Controller
             'city' => 'max:255',
             'province' => 'max:255',
             'country_id' => 'exists:countries,id',
-            'is_main' => 'boolean'
+            'is_main' => 'boolean',
+            'addressable_type' => 'required',
+            'addressable_id' => 'required',
+            'redirect' => 'required'
         ]);
 
         $address = new Address;
@@ -50,15 +59,18 @@ class AddressController extends Controller
         $address->city = $request->city;
         $address->province = $request->province;
         $address->country_id = $request->country_id;
+        $address->addressable_type = $request->addressable_type;
+        $address->addressable_id = $request->addressable_id;
 
-        $member->addresses()->save($address);
+        $address->save();
 
         if ($request->has('is_main')) {
-            $member->address_id = $address->id;
-            $member->save();
+            $addressable = $address->addressable;
+            $addressable->address_id = $address->id;
+            $addressable->save();
         }
 
-        return redirect()->route('backend.member.edit', $member)
+        return redirect()->to($request->redirect)
                ->with('success', trans('backend.saved'));
     }
 
@@ -67,14 +79,14 @@ class AddressController extends Controller
         //
     }
 
-    public function edit(Member $member, Address $address)
+    public function edit(Address $address)
     {
         $countries = Country::all()->pluck('name', 'id');
 
         return view('backend.addresses.edit', compact('address', 'countries'));
     }
 
-    public function update(Member $member, Address $address, Request $request)
+    public function update(Address $address, Request $request)
     {
         $this->validate($request, [
             'name' => 'max:255',
@@ -96,26 +108,26 @@ class AddressController extends Controller
         $address->country_id = $request->country_id;
         $address->save();
 
-        if ($request->has('is_main')) {
-            $member->address_id = $address->id;
-            $member->save();
-        }
+        $addressable = $address->addressable;
+        $addressable->address_id = $request->has('is_main') ? $address->id : null;
+        $addressable->save();
 
-        return redirect()->route('backend.member.edit', $member)
+        return redirect()->to($address->addressable->getBackendEditUrl())
                ->with('success', trans('backend.saved'));
     }
 
-    public function destroy(Member $member, Address $address)
+    public function destroy(Address $address)
     {
         $address->delete();
 
-        if ($address->id == $member->address_id) {
+        $addressable = $address->addressable;
+        if ($address->id == $addressable->address_id) {
             // Unset the member's main address ID to avoid inconsistent data
-            $member->address_id = null;
-            $member->save();
+            $addressable->address_id = null;
+            $addressable->save();
         }
 
-        return redirect()->route('backend.member.edit', $member)
+        return redirect()->to($addressable->getBackendEditUrl())
                ->with('success', trans('backend.address_deleted', ['address' => $address->name]));
     }
 }

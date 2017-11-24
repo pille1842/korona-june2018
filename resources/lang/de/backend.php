@@ -86,9 +86,9 @@ return [
     'adopt' => 'Übernehmen',
     'delete_picture' => 'Profilbild löschen',
     'no_pictures' => 'Dieses Mitglied hat keine Bilder hochgeladen.',
-    'create_address' => 'Neue Adresse für :member erstellen',
+    'create_address' => 'Neue Adresse erstellen',
     'addresses' => 'Postadressen',
-    'edit_address' => 'Adresse :address von :member bearbeiten',
+    'edit_address' => 'Adresse :address von :addressable bearbeiten',
     'is_main_address' => 'Dies ist die Hauptadresse',
     'really_delete_address' => 'Adresse :address wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
     'address_deleted' => 'Adresse :address wurde gelöscht.',
@@ -120,6 +120,7 @@ return [
     'member_deleted' => 'Das Mitglied :member wurde gelöscht.',
     'user_purged' => 'Benutzer :user wurde endgültig gelöscht.',
     'member_purged' => 'Das Mitglied :member wurde endgültig gelöscht.',
+    'member_has_no_main_address' => 'Keine der Adressen dieses Mitglieds ist als Hauptadresse für den Postempfang markiert.',
 
     'setting' => [
         'fraternity' => [

@@ -84,9 +84,9 @@ return [
     'upload_picture' => 'Upload picture',
     'choose_picture' => 'Choose picture',
     'adopt' => 'Adopt',
-    'create_address' => 'Create a new address for :member',
+    'create_address' => 'Create a new address',
     'addresses' => 'Postal Addresses',
-    'edit_address' => 'Edit address :address of :member',
+    'edit_address' => 'Edit address :address of :addressable',
     'is_main_address' => 'This is the main address',
     'really_delete_address' => 'Really delete address :address? This cannot be undone!',
     'address_deleted' => 'Address :address has been deleted.',
@@ -118,6 +118,7 @@ return [
     'member_deleted' => 'Member :member has been deleted.',
     'user_purged' => 'User :user has been deleted.',
     'member_purged' => 'Member :member has been permanently deleted.',
+    'member_has_no_main_address' => 'None of this member\'s addresses is marked as the main address for receiving letters.',
 
     'setting' => [
         'fraternity' => [

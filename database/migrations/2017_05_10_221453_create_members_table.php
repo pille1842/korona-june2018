@@ -31,6 +31,7 @@ class CreateMembersTable extends Migration
             $table->boolean('active');
             $table->integer('profile_picture')->unsigned()->nullable();
             $table->foreign('profile_picture')->references('id')->on('images');
+            $table->boolean('address_id');
             $table->timestamps();
             $table->softDeletes();
         });

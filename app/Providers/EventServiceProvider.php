@@ -41,25 +41,25 @@ class EventServiceProvider extends ServiceProvider
         });
 
         Address::creating(function ($address) {
-            $member = $address->member;
+            $addressable = $address->addressable;
             $revision = new \Venturecraft\Revisionable\Revision;
             $revision->user_id = Auth::user() ? Auth::user()->id : null;
             $revision->key = 'address';
             $revision->old_value = null;
             $revision->new_value = $address->identifiableName();
-            $member->revisionHistory()->save($revision);
-            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+            $addressable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $addressable, 'revisions' => [$revision]));
         });
 
         Address::deleting(function ($address) {
-            $member = $address->member;
+            $addressable = $address->addressable;
             $revision = new \Venturecraft\Revisionable\Revision;
             $revision->user_id = Auth::user() ? Auth::user()->id : null;
             $revision->key = 'address';
             $revision->new_value = null;
             $revision->old_value = $address->identifiableName();
-            $member->revisionHistory()->save($revision);
-            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+            $addressable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $addressable, 'revisions' => [$revision]));
         });
 
         Phonenumber::creating(function ($phonenumber) {

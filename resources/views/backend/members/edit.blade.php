@@ -224,6 +224,13 @@
                 </table>
             </div>
             <div role="tabpanel" class="tab-pane" id="addresses">
+                @if (count($member->addresses) > 0 && $member->address_id == null)
+                    <div class="alert alert-warning">
+                        <p>
+                            {{ trans('backend.member_has_no_main_address') }}
+                        </p>
+                    </div>
+                @endif
                 <div class="row">
                     @foreach ($member->addresses as $address)
                         <div class="col-md-3">
@@ -238,8 +245,8 @@
                                         @endif
                                     </h3>
                                     <span class="btn-group pull-right">
-                                        {{ Form::open(['action' => ['Backend\AddressController@destroy', $member, $address], 'method' => 'delete']) }}
-                                            <a class="btn btn-primary btn-sm" href="{{ action('Backend\AddressController@edit', [$member, $address]) }}">
+                                        {{ Form::open(['action' => ['Backend\AddressController@destroy', $address], 'method' => 'delete']) }}
+                                            <a class="btn btn-primary btn-sm" href="{{ action('Backend\AddressController@edit', $address) }}">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
                                             <button class="btn btn-danger btn-sm" onclick="return confirm('{{ trans('backend.really_delete_address', ['address' => $address->name]) }}');">
@@ -256,9 +263,9 @@
                         </div>
                     @endforeach
                 </div>
-                <a class="btn btn-success" href="{{ action('Backend\AddressController@create', $member) }}">
+                <a class="btn btn-success" href="{{ action('Backend\AddressController@create', ['addressable_type' => 'Korona\Member', 'addressable_id' => $member->id, 'redirect' => route('backend.member.edit', $member)]) }}">
                     <span class="glyphicon glyphicon-plus"></span>
-                    {{ trans('backend.create_address', ['member' => $member->getShortName()]) }}
+                    {{ trans('backend.create_address') }}
                 </a>
             </div>
             <div role="tabpanel" class="table-responsive tab-pane" id="phonenumbers">

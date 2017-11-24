@@ -96,6 +96,11 @@ class Member extends Model
         return $this->nickname ? settings('fraternity.vulgo') . ' ' . $this->nickname : settings('fraternity.sine_nomine');
     }
 
+    public function getBackendEditUrl()
+    {
+        return route('backend.member.edit', $this);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -132,7 +137,7 @@ class Member extends Model
 
     public function addresses()
     {
-        return $this->hasMany(Address::class);
+        return $this->morphMany('Korona\Address', 'addressable');
     }
 
     public function phonenumbers()

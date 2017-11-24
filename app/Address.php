@@ -9,9 +9,9 @@ class Address extends Model
     protected $revisionNullString = 'nichts';
     protected $revisionUnknownString = 'unbekannt';
 
-    public function member()
+    public function addressable()
     {
-        return $this->belongsTo(Member::class);
+        return $this->morphTo();
     }
 
     public function country()

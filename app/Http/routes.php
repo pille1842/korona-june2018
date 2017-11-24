@@ -38,7 +38,7 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     Route::post('trash/member/{id}', 'MemberController@restore')->name('backend.member.restore');
 
     // Addresses
-    Route::resource('member/{member}/address', 'AddressController');
+    Route::resource('address', 'AddressController');
 
     // Phone numbers
     Route::resource('member/{member}/phonenumber', 'PhonenumberController');
