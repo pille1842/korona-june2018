@@ -105,7 +105,13 @@
                     <div class="panel-body">
                         {{ Form::bsSlug('slug', $member->slug, 'nickname') }}
                         {{ Form::bsToggle('active', '1', $member->active, ['data-on' => trans('backend.active'), 'data-off' => trans('backend.inactive'), 'data-onstyle' => 'success']) }}
-                        {{ Form::bsSelect('user_id', $users, $member->user_id, ['data-live-search' => 'true']) }}
+                        @if ($member->user !== null)
+                            <a href="{{ route('backend.user.edit', $member->user) }}">
+                                <span class="glyphicon glyphicon-link"></span>
+                                Verknüpfter Benutzer:
+                                {{ $member->user->login }}
+                            </a>
+                        @endif
                         {{ Form::bsText('created_at', $member->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $member->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
                     </div>
@@ -157,7 +163,15 @@
                                 <tr>
                                     <td>{{ $history->id }}</td>
                                     <td>{{ $history->created_at->format('d.m.Y H:i') }}</td>
-                                    <td>{{ $history->userResponsible() !== false ? $history->userResponsible()->login : 'SYSTEM' }}</td>
+                                    <td>
+                                        @if ($history->userResponsible() === false)
+                                            <em>SYSTEM</em>
+                                        @elseif ($history->userResponsible() === null)
+                                            <em>(gelöscht)</em>
+                                        @else
+                                            {{ $history->userResponsible()->login }}
+                                        @endif
+                                    </td>
                                     <td><span class="glyphicon glyphicon-plus"></span> {{ trans('backend.model_created') }}</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -166,7 +180,15 @@
                                 <tr>
                                     <td>{{ $history->id }}</td>
                                     <td>{{ $history->created_at->format('d.m.Y H:i') }}</td>
-                                    <td>{{ $history->userResponsible() !== false ? $history->userResponsible()->login : 'SYSTEM' }}</td>
+                                    <td>
+                                        @if ($history->userResponsible() === false)
+                                            <em>SYSTEM</em>
+                                        @elseif ($history->userResponsible() === null)
+                                            <em>(gelöscht)</em>
+                                        @else
+                                            {{ $history->userResponsible()->login }}
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($history->newValue() === null)
                                             <span class="glyphicon glyphicon-asterisk"></span>
@@ -183,7 +205,15 @@
                                 <tr>
                                     <td>{{ $history->id }}</td>
                                     <td>{{ $history->created_at->format('d.m.Y H:i') }}</td>
-                                    <td>{{ $history->userResponsible() !== false ? $history->userResponsible()->login : '' }}</td>
+                                    <td>
+                                        @if ($history->userResponsible() === false)
+                                            <em>SYSTEM</em>
+                                        @elseif ($history->userResponsible() === null)
+                                            <em>(gelöscht)</em>
+                                        @else
+                                            {{ $history->userResponsible()->login }}
+                                        @endif
+                                    </td>
                                     <td>{{ $history->fieldName() }}</td>
                                     <td{!! $history->oldValue() != '' ? ' class="danger"' : '' !!}>{{ $history->oldValue() }}</td>
                                     <td{!! $history->newValue() != '' ? ' class="success"' : '' !!}>{{ $history->newValue() }}</td>
@@ -291,10 +321,10 @@
                             <tr>
                                 <td>
 
-                                    {{ Form::bsSelect('type', \Korona\Phonenumber::getTypeArray(), 'HOME') }}
+                                    {{ Form::bsSelect('type', \Korona\Phonenumber::getTypeArray(), 'HOME', ['data-container' => 'tab-pane']) }}
                                 </td>
                                 <td>
-                                    {{ Form::bsSelect('country_id', $countries, settings('fraternity.home_country'), ['data-live-search' => 'true', 'data-size' => 5]) }}
+                                    {{ Form::bsSelect('country_id', $countries, settings('fraternity.home_country'), ['data-live-search' => 'true', 'data-size' => 5, 'data-container' => 'tab-pane']) }}
                                 </td>
                                 <td>
                                     {{ Form::bsText('phonenumber') }}
@@ -343,7 +373,7 @@
                             <tr>
                                 <td>
 
-                                    {{ Form::bsSelect('position', \Korona\Office::getPositionArray(), null) }}
+                                    {{ Form::bsSelect('position', \Korona\Office::getPositionArray(), null, ['data-container' => 'tab-pane']) }}
                                 </td>
                                 <td>
                                     {{ Form::bsText('begin') }}

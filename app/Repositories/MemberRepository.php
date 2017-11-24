@@ -2,34 +2,34 @@
 
 namespace Korona\Repositories;
 
-use Korona\User;
+use Korona\Member;
 
-class UserRepository
+class MemberRepository
 {
     public function getAll()
     {
-        return User::all();
+        return Member::all();
     }
 
     public function getTrashed()
     {
-        return User::onlyTrashed()->get();
+        return Member::onlyTrashed()->get();
     }
 
     public function getAllWithTrashed()
     {
-        return User::withTrashed()->get();
+        return Member::withTrashed()->get();
     }
 
     public function getActive()
     {
-        return User::where('active', true)->get();
+        return Member::where('active', true)->get();
     }
 
     public function getSelectData()
     {
         return $this->getAll()->map(function ($item) {
-            $item->displayName = $item->login;
+            $item->displayName = $item->getFullName();
             return $item;
         })->pluck('displayName', 'id')->prepend('', '')->all();
     }
@@ -37,7 +37,7 @@ class UserRepository
     public function getActiveSelectData()
     {
         return $this->getActive()->map(function ($item) {
-            $item->displayName = $item->login;
+            $item->displayName = $item->getFullName();
             return $item;
         })->pluck('displayName', 'id')->prepend('', '')->all();
     }

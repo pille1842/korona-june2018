@@ -10,6 +10,7 @@ use Korona\Http\Requests;
 use Korona\Http\Controllers\Controller;
 use Korona\User;
 use Korona\Events\UserCreated;
+use Korona\Repositories\MemberRepository;
 use Korona\Repositories\UserRepository;
 use Bican\Roles\Models\Role;
 use Bican\Roles\Models\Permission;
@@ -35,12 +36,9 @@ class UserController extends Controller
         return view('backend.users.trash', compact('users'));
     }
 
-    public function create()
+    public function create(MemberRepository $memberRepo)
     {
-        $members = \Korona\Member::where('user_id', '=', null)->get()->map(function ($item) {
-            $item->displayName = $item->getFullName();
-            return $item;
-        })->pluck('displayName', 'id')->all();
+        $members = $memberRepo->getActiveSelectData();
 
         return view('backend.users.create', compact('members'));
     }
@@ -50,7 +48,7 @@ class UserController extends Controller
         $this->validate($request, [
             'login' => 'required|max:255|unique:users,login',
             'email' => 'required|max:255|email|unique:users,email',
-            'password' => 'required|confirmed|string|min:8|max:255',
+            'password' => 'required|confirmed|string|min:6',
             'member_id' => 'exists:members,id'
         ]);
 
@@ -180,6 +178,10 @@ class UserController extends Controller
     {
         $user = User::withTrashed()->findOrFail($id);
 
+        if ($user->member !== null) {
+            $user->member->user()->dissociate();
+            $user->member->save();
+        }
         $user->forceDelete();
 
         return redirect()->route('backend.user.trash')
@@ -188,7 +190,15 @@ class UserController extends Controller
 
     public function emptyTrash()
     {
-        $user = User::onlyTrashed()->forceDelete();
+        $users = User::onlyTrashed()->get();
+
+        foreach ($users as $user) {
+            if ($user->member !== null) {
+                $user->member->user()->dissociate();
+                $user->member->save();
+            }
+            $user->forceDelete();
+        }
 
         return redirect()->route('backend.user.trash')
                ->with('success', trans('backend.trash_emptied'));

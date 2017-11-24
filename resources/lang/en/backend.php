@@ -115,6 +115,9 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'trash_emptied' => 'The trash has been emptied.',
+    'member_deleted' => 'Member :member has been deleted.',
+    'user_purged' => 'User :user has been deleted.',
+    'member_purged' => 'Member :member has been permanently deleted.',
 
     'setting' => [
         'fraternity' => [

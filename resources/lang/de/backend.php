@@ -117,6 +117,9 @@ return [
     'yes' => 'Ja',
     'no' => 'Nein',
     'trash_emptied' => 'Der Papierkorb wurde geleert.',
+    'member_deleted' => 'Das Mitglied :member wurde gelöscht.',
+    'user_purged' => 'Benutzer :user wurde endgültig gelöscht.',
+    'member_purged' => 'Das Mitglied :member wurde endgültig gelöscht.',
 
     'setting' => [
         'fraternity' => [

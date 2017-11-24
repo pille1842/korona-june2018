@@ -10,7 +10,7 @@ use Korona\Country;
 use Korona\Http\Controllers\Controller;
 use Korona\Http\Requests;
 use Korona\Member;
-use Korona\Repositories\UserRepository;
+use Korona\Repositories\MemberRepository;
 
 class MemberController extends Controller
 {
@@ -19,16 +19,16 @@ class MemberController extends Controller
         $this->middleware('permission:backend.manage.members');
     }
 
-    public function index()
+    public function index(MemberRepository $memberRepo)
     {
-        $members = Member::all();
+        $members = $memberRepo->getAll();
 
         return view('backend.members.index', compact('members'));
     }
 
-    public function trash()
+    public function trash(MemberRepository $memberRepo)
     {
-        $members = Member::onlyTrashed()->get();
+        $members = $memberRepo->getTrashed();
 
         return view('backend.members.trash', compact('members'));
     }
@@ -68,33 +68,21 @@ class MemberController extends Controller
         //
     }
 
-    public function edit(UserRepository $repository, Member $member)
+    public function edit(MemberRepository $memberRepo, Member $member)
     {
-        // Get all users from the UserRepository, construct an array of logins
-        // (usernames) keyed with the users' IDs, and prepend an empty element
-        // to allow for no user selection.
-        $users = $repository->getAll()->pluck('login', 'id')->prepend('', '')->all();
-        // Get all members, create a field displayName from the member's
-        // getFullName() method, create an array of displayNames keyed with
-        // the members' IDs, and prepend an empty element to allow for no
-        // member selection. Members are needed to select the member's parent.
-        $members = Member::all()->map(function ($item) {
-            $item->displayName = $item->getFullName();
-            return $item;
-        })->pluck('displayName', 'id')->prepend('', '')->all();
+        $members = $memberRepo->getSelectData();
 
         $countries = Country::all()->map(function ($item) {
             $item->displayName = $item->name . ' (+' . $item->phoneprefix . ')';
             return $item;
         })->pluck('displayName', 'id');
 
-        return view('backend.members.edit', compact('member', 'members', 'users', 'countries'));
+        return view('backend.members.edit', compact('member', 'members', 'countries'));
     }
 
     public function update(Request $request, Member $member)
     {
         $this->validate($request, [
-            'user_id' => 'exists:users,id',
             'parent_id' => 'exists:members,id|not_in:'.$member->id,
             'slug' => 'required|max:255|alpha_dash|unique:members,slug,'.$member->id,
             'nickname' => 'string|max:255',
@@ -116,7 +104,6 @@ class MemberController extends Controller
             $member->disableRevisionField('birthday');
         }
 
-        $member->user_id = $request->has('user_id') ? $request->user_id : null;
         $member->parent_id = $request->has('parent_id') ? $request->parent_id : null;
         $member->slug = $request->slug;
         $member->nickname = $request->nickname;
@@ -174,7 +161,7 @@ class MemberController extends Controller
 
     public function purge($id)
     {
-        $member = Member::withTrashed()->findOrFail($id);
+        $member = Member::onlyTrashed()->findOrFail($id);
 
         $member->forceDelete();
 
@@ -184,7 +171,7 @@ class MemberController extends Controller
 
     public function emptyTrash()
     {
-        $member = Member::onlyTrashed()->forceDelete();
+        Member::onlyTrashed()->forceDelete();
 
         return redirect()->route('backend.member.trash')
                ->with('success', trans('backend.trash_emptied'));
