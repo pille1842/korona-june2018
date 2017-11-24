@@ -75,7 +75,8 @@
                         @else
                             <input type="hidden" name="sex" value="{{ settings('fraternity.sex_type') }}">
                         @endif
-                        {{ Form::bsText('title') }}
+                        {{ Form::bsText('title_prefix') }}
+                        {{ Form::bsText('title_suffix') }}
                         {{ Form::bsText('profession') }}
                         {{ Form::bsText('birthday') }}
                     </div>

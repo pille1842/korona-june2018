@@ -38,7 +38,8 @@ class Member extends Model
         'inverse_name_order' => 'Umgekehrte Namensreihenfolge',
         'birthname' => 'Geburtsname',
         'sex' => 'Geschlecht',
-        'title' => 'Akadem. Titel',
+        'title_prefix' => 'Titel (Präfix)',
+        'title_suffix' => 'Titel (Suffix)',
         'profession' => 'Beruf',
         'birthday' => 'Geburtstag',
         'status' => 'Status',
@@ -71,7 +72,7 @@ class Member extends Model
     public function getCivilName($withTitle = false)
     {
         if ($withTitle) {
-            return trim($this->title . ' ' . $this->getNamesInOrder());
+            return trim($this->title_prefix . ' ' . $this->getNamesInOrder() . ' ' . $this->title_suffix);
         } else {
             return $this->getNamesInOrder();
         }

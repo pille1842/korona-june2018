@@ -90,7 +90,8 @@ class MemberController extends Controller
             'lastname' => 'required|max:255',
             'birthname' => 'max:255',
             'sex' => 'in:MALE,FEMALE',
-            'title' => 'max:255',
+            'title_prefix' => 'max:255',
+            'title_suffix' => 'max:255',
             'profession' => 'max:255',
             'birthday' => 'date_format:d.m.Y',
             'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum')),
@@ -112,7 +113,8 @@ class MemberController extends Controller
         $member->inverse_name_order = $request->has('inverse_name_order');
         $member->birthname = $request->birthname;
         $member->sex = $request->sex;
-        $member->title = $request->title;
+        $member->title_prefix = $request->title_prefix;
+        $member->title_suffix = $request->title_suffix;
         $member->profession = $request->profession;
         $member->birthday = $request->birthday;
         $member->status = $request->status;
