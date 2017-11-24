@@ -16,9 +16,10 @@ class CountriesSeeder extends Seeder
             while (($data = fgetcsv($handle, 1000, ";")) !== false) {
                 $country              = new Country;
                 $country->short       = $data[0];
-                $country->name        = $data[1];
-                $country->phoneprefix = $data[2];
-                $country->cityline    = $data[3];
+                $country->short3      = $data[1];
+                $country->name        = $data[2];
+                $country->phoneprefix = $data[3];
+                $country->cityline    = $data[4];
                 $country->save();
             }
             fclose($handle);
