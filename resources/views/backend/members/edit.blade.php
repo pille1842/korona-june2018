@@ -106,13 +106,15 @@
                     <div class="panel-body">
                         {{ Form::bsSlug('slug', $member->slug, 'nickname') }}
                         {{ Form::bsToggle('active', '1', $member->active, ['data-on' => trans('backend.active'), 'data-off' => trans('backend.inactive'), 'data-onstyle' => 'success']) }}
-                        @if ($member->user !== null)
-                            <a href="{{ route('backend.user.edit', $member->user) }}">
-                                <span class="glyphicon glyphicon-link"></span>
-                                Verknüpfter Benutzer:
-                                {{ $member->user->login }}
-                            </a>
-                        @endif
+                        @permission('backend.manage.users')
+                            @if ($member->user !== null)
+                                <a href="{{ route('backend.user.edit', $member->user) }}">
+                                    <span class="glyphicon glyphicon-link"></span>
+                                    {{ trans('backend.related_user') }}:
+                                    {{ $member->user->login }}
+                                </a>
+                            @endif
+                        @endpermission
                         {{ Form::bsText('created_at', $member->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $member->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
                     </div>

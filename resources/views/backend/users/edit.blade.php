@@ -62,13 +62,15 @@
                     <div class="panel-body">
                         {{ Form::bsText('created_at', $user->created_at->formatLocalized('%c'), ['readonly' => true]) }}
                         {{ Form::bsText('updated_at', $user->updated_at->formatLocalized('%c'), ['readonly' => true]) }}
-                        @if ($user->member !== null)
-                            <a href="{{ route('backend.member.edit', $user->member) }}">
-                                <span class="glyphicon glyphicon-link"></span>
-                                Verknüpftes Mitglied:
-                                {{ $user->member->getFullName() }}
-                            </a>
-                        @endif
+                        @permission('backend.manage.members')
+                            @if ($user->member !== null)
+                                <a href="{{ route('backend.member.edit', $user->member) }}">
+                                    <span class="glyphicon glyphicon-link"></span>
+                                    {{ trans('backend.related_member') }}:
+                                    {{ $user->member->getFullName() }}
+                                </a>
+                            @endif
+                        @endpermission
                     </div>
                 </div>
             </div>
