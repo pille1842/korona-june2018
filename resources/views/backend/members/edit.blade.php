@@ -313,7 +313,7 @@
                                 </td>
                                 <td>{{ $phonenumber->getFormatted() }}</td>
                                 <td>
-                                    {{ Form::open(['action' => ['Backend\PhonenumberController@destroy', $member, $phonenumber], 'method' => 'delete']) }}
+                                    {{ Form::open(['action' => ['Backend\PhonenumberController@destroy', $phonenumber], 'method' => 'delete']) }}
                                     <button class="btn btn-danger" onclick="return confirm('{{ trans('backend.really_delete_phonenumber', ['phonenumber' => $phonenumber->phonenumber]) }}')">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </button>
@@ -323,7 +323,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ Form::open(['action' => ['Backend\PhonenumberController@store', $member]]) }}
+                {{ Form::open(['action' => ['Backend\PhonenumberController@store']]) }}
                     <table class="table">
                         <tbody>
                             <tr>
@@ -346,6 +346,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    <input type="hidden" name="phoneable_type" value="Korona\Member">
+                    <input type="hidden" name="phoneable_id" value="{{ $member->id }}">
                 {{ Form::close() }}
             </div>
             <div role="tabpanel" class="table-responsive tab-pane" id="offices">

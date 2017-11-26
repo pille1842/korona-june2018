@@ -41,7 +41,7 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     Route::resource('address', 'AddressController');
 
     // Phone numbers
-    Route::resource('member/{member}/phonenumber', 'PhonenumberController');
+    Route::resource('phonenumber', 'PhonenumberController');
 
     // Offices
     Route::resource('member/{member}/office', 'OfficeController');

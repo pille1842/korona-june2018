@@ -143,7 +143,7 @@ class Member extends Model
 
     public function phonenumbers()
     {
-        return $this->hasMany(Phonenumber::class);
+        return $this->morphMany('Korona\Phonenumber', 'phoneable');
     }
 
     public function offices()

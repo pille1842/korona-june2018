@@ -38,21 +38,25 @@ class PhonenumberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Member $member, Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'type' => 'required|in:WORK,HOME,FAX,WORK_MOBILE,HOME_MOBILE,FAX_WORK,OTHER,OTHER_MOBILE',
             'country_id' => 'required|exists:countries,id',
-            'phonenumber' => 'required|phonenumber:' . Country::find($request->country_id)->short
+            'phonenumber' => 'required|phonenumber:' . Country::find($request->country_id)->short,
+            'phoneable_id' => 'required',
+            'phoneable_type' => 'required'
         ]);
 
         $phonenumber = new Phonenumber;
         $phonenumber->type = $request->type;
         $phonenumber->country_id = $request->country_id;
         $phonenumber->phonenumber = $request->phonenumber;
-        $member->phonenumbers()->save($phonenumber);
+        $phonenumber->phoneable_id = $request->phoneable_id;
+        $phonenumber->phoneable_type = $request->phoneable_type;
+        $phonenumber->save();
 
-        return redirect()->action('Backend\MemberController@edit', $member)
+        return redirect()->to($phonenumber->phoneable->getBackendEditUrl())
                ->with('success', trans('backend.saved'));
     }
 
@@ -96,11 +100,11 @@ class PhonenumberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member, Phonenumber $phonenumber)
+    public function destroy(Phonenumber $phonenumber)
     {
         $phonenumber->delete();
 
-        return redirect()->action('Backend\MemberController@edit', $member)
+        return redirect()->to($phonenumber->phoneable->getBackendEditUrl())
                ->with('success', trans('backend.phonenumber_deleted'));
     }
 }

@@ -63,25 +63,25 @@ class EventServiceProvider extends ServiceProvider
         });
 
         Phonenumber::creating(function ($phonenumber) {
-            $member = $phonenumber->member;
+            $phoneable = $phonenumber->phoneable;
             $revision = new \Venturecraft\Revisionable\Revision;
             $revision->user_id = Auth::user() ? Auth::user()->id : null;
             $revision->key = 'phonenumber';
             $revision->old_value = null;
             $revision->new_value = $phonenumber->identifiableName();
-            $member->revisionHistory()->save($revision);
-            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+            $phoneable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $phoneable, 'revisions' => [$revision]));
         });
 
         Phonenumber::deleting(function ($phonenumber) {
-            $member = $phonenumber->member;
+            $phoneable = $phonenumber->phoneable;
             $revision = new \Venturecraft\Revisionable\Revision;
             $revision->user_id = Auth::user() ? Auth::user()->id : null;
             $revision->key = 'phonenumber';
             $revision->new_value = null;
             $revision->old_value = $phonenumber->identifiableName();
-            $member->revisionHistory()->save($revision);
-            \Event::fire('revisionable.saved', array('model' => $member, 'revisions' => [$revision]));
+            $phoneable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $phoneable, 'revisions' => [$revision]));
         });
     }
 }

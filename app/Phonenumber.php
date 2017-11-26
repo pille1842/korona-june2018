@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Phonenumber extends Model
 {
-    public function member()
+    public function phoneable()
     {
-        return $this->belongsTo(Member::class);
+        return $this->morphTo();
     }
 
     public function country()

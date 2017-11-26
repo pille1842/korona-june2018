@@ -14,8 +14,8 @@ class CreatePhonenumbersTable extends Migration
     {
         Schema::create('phonenumbers', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('member_id')->unsigned()->index();
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->string('phoneable_type');
+            $table->integer('phoneable_id')->unsigned();
             $table->enum('type', ['WORK', 'HOME', 'FAX', 'WORK_MOBILE', 'HOME_MOBILE', 'FAX_WORK', 'OTHER', 'OTHER_MOBILE']);
             $table->string('phonenumber');
             $table->integer('country_id')->unsigned()->index();
