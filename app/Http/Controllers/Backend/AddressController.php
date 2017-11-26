@@ -47,8 +47,7 @@ class AddressController extends Controller
             'country_id' => 'exists:countries,id',
             'is_main' => 'boolean',
             'addressable_type' => 'required',
-            'addressable_id' => 'required',
-            'redirect' => 'required'
+            'addressable_id' => 'required'
         ]);
 
         $address = new Address;
@@ -70,7 +69,7 @@ class AddressController extends Controller
             $addressable->save();
         }
 
-        return redirect()->to($request->redirect)
+        return redirect()->to($address->addressable->getBackendEditUrl())
                ->with('success', trans('backend.saved'));
     }
 

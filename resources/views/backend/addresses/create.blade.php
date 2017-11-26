@@ -28,7 +28,6 @@
                 {{ Form::bsText('province') }}
                 {{ Form::bsSelect('country_id', $countries, 43, ['data-live-search' => 'true', 'data-size' => 5]) }}
                 {{ Form::bsCheckbox('is_main', '1', false) }}
-                <input type="hidden" name="redirect" value="{{ $redirect }}">
                 <input type="hidden" name="addressable_type" value="{{ $addressable_type }}">
                 <input type="hidden" name="addressable_id" value="{{ $addressable_id }}">
             </div>
