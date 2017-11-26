@@ -161,6 +161,7 @@ return [
         'member_id' => 'Mitglied',
         'subscribable' => 'kann von Mitgliedern abonniert werden',
         'subscriptions' => 'Abonnements',
+        'file' => 'Datei',
     ],
 
 ];

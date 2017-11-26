@@ -3,6 +3,7 @@
 namespace Korona\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use Carbon\Carbon;
 use Image;
@@ -99,6 +100,7 @@ class MemberController extends Controller
             'nickname' => 'string|max:255',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
+            'inverse_name_order' => 'boolean',
             'birthname' => 'max:255',
             'sex' => 'in:MALE,FEMALE',
             'title_prefix' => 'max:255',
@@ -106,8 +108,7 @@ class MemberController extends Controller
             'profession' => 'max:255',
             'birthday' => 'date_format:d.m.Y',
             'status' => 'string|in:'.implode(',', settings('fraternity.member_status_enum')),
-            'picture' => 'string',
-            'profile_picture' => 'exists:images,id,imageable_type,Korona\Member,imageable_id,'.$member->id,
+            'active' => 'boolean'
         ]);
 
         if ($request->birthday == $member->birthday->format('d.m.Y')) {
@@ -130,33 +131,6 @@ class MemberController extends Controller
         $member->birthday = $request->birthday;
         $member->status = $request->status;
         $member->active = $request->has('active');
-
-        if ($request->has('picture')) {
-            $imageData = Image::make($request->picture);
-            $image = new \Korona\Media\Image();
-            $image->name = 'picture_'.$member->id.'_'.date('Y-m-d_H-i-s');
-            $image->type = 'jpg';
-            $image->public = false;
-            $image->imageable_type = 'Korona\Member';
-            $image->imageable_id = $member->id;
-            $image->generatePath();
-            $image->saveFile($imageData);
-            $image->save();
-            $member->profile_picture = $image->id;
-        }
-
-        if ($request->has('profile_picture')) {
-            $member->profile_picture = $request->profile_picture;
-        }
-
-        if ($request->has('delete_picture')) {
-            $image = \Korona\Media\Image::find($member->profile_picture);
-            if ($image !== null) {
-                $member->profile_picture = null;
-                $member->save();
-                $image->delete();
-            }
-        }
 
         $member->subscriptions()->detach();
         if ($request->subscriptions !== null) {
@@ -209,5 +183,47 @@ class MemberController extends Controller
 
         return redirect()->route('backend.member.trash')
                ->with('success', trans('backend.member_restored', ['member' => $member->getFullName()]));
+    }
+
+    public function uploadPicture(Member $member, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->messages()->first(),
+                'code' => 400
+            ], 400);
+        }
+
+        try {
+            $image = Image::make($request->file('file'))->resize(500, 500)
+                     ->save(storage_path('app/local/profile/'.$member->id.'.jpg'));
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'code' => 500
+            ], 500);
+        }
+
+        $member->picture = storage_path('app/local/profile/'.$member->id.'.jpg');
+        $member->save();
+
+        return response()->json('success', 200);
+    }
+
+    public function deletePicture(Member $member)
+    {
+        if (file_exists($member->picture)) {
+            @unlink($member->picture);
+        }
+
+        $member->picture = null;
+        $member->save();
+
+        return redirect()->route('backend.member.edit', $member)
+               ->with('success', trans('backend.profile_picture_deleted'));
     }
 }

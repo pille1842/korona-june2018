@@ -22,47 +22,6 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
-                    </div>
-                    <div class="panel-body">
-                        @if ($errors->has('picture'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('picture') }}
-                            </div>
-                        @endif
-                        @if ($errors->has('profile_picture'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('profile_picture') }}
-                            </div>
-                        @endif
-                        <div class="text-center">
-                            <img src="{{ $member->profilePictureRoute() }}" class="img-responsive img-rounded" id="picture-img">
-                        </div>
-                        <div id="image-cropper" style="display:none;">
-                            <div class="cropit-preview"></div>
-                            <input type="range" class="cropit-image-zoom-input" />
-                            <input type="file" class="cropit-image-input" />
-                            <input type="hidden" name="picture" id="picture" value="" />
-                            <input type="hidden" name="profile_picture" id="profile_picture" value="" />
-                        </div>
-                        <div class="form-group">
-                            <br/>
-                            <button type="button" class="btn btn-default btn-block" id="btn-upload-picture">
-                                <span class="glyphicon glyphicon-upload"></span> {{ trans('backend.upload_picture') }}
-                            </button>
-                            <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#choosePictureModal" id="btn-choose-picture">
-                                <span class="glyphicon glyphicon-th"></span> {{ trans('backend.choose_picture') }}
-                            </button>
-                            @if ($member->picture !== null)
-                                {{ Form::bsCheckbox('delete_picture', '1', false, trans('backend.delete_picture')) }}
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
                         <h3 class="panel-title">{{ trans('backend.personal_details') }}</h3>
                     </div>
                     <div class="panel-body">
@@ -131,6 +90,36 @@
                 </div>
             </div>
         {{ Form::close() }}
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
+                </div>
+                <div class="panel-body">
+                    @if (! $member->picture)
+                        {{ Form::open(['route' => ['backend.member.picture.upload', $member], 'class' => 'dropzone', 'id' => 'profile-picture-dropzone']) }}
+                        <div class="fallback">
+                            <input name="file" type="file">
+                        </div>
+                        {{ Form::close() }}
+                    @else
+                        <p>
+                            <img src="{{ route('image', $member) }}" alt="" class="img-responsive img-rounded">
+                        </p>
+                        {{ Form::open(['route' => ['backend.member.picture.delete', $member], 'method' => 'delete']) }}
+                        <button type="button" class="btn btn-danger btn-block"
+                                onclick="confirm('{{ trans('backend.really_delete_profile_picture') }}') &amp;&amp; form.submit();">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            {{ trans('backend.delete_profile_picture') }}
+                        </button>
+                        {{ Form::close() }}
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -417,40 +406,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="choosePictureModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('backend.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">
-                        {{ trans('backend.choose_picture') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        @forelse ($member->images as $image)
-                            <div class="col-xs-4">
-                                <a href="#" class="btn-choose-this-picture" data-id="{{ $image->id }}" data-url="{{ route('image', $image) }}">
-                                    <img class="img-responsive img-rounded" src="{{ route('image', $image) }}">
-                                </a>
-                            </div>
-                        @empty
-                            <div class="col-xs-12">
-                                <em>{{ trans('backend.no_pictures') }}</em>
-                            </div>
-                        @endforelse
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" value="" id="chosen-picture">
-                    <input type="hidden" value="" id="chosen-picture-url">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('backend.close') }}</button>
-                    <button type="button" class="btn btn-primary" id="btn-set-chosen-picture">{{ trans('backend.adopt') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 @push('stylesheets')
@@ -464,31 +419,12 @@
 
 @push('scripts')
     <script>
-        $("#btn-upload-picture").click(function () {
-            $("#image-cropper").toggle(true);
-            $(this).toggle(false);
-            $("#btn-choose-picture").toggle(false);
-            $("#picture-img").toggle(false);
-            $('#image-cropper').cropit();
-            $("#k-edit-form").submit(function () {
-                $("#picture").val($("#image-cropper").cropit('export', {
-                    type: 'image/jpeg',
-                    quality: .9,
-                }));
-            });
-        });
-        $(".btn-choose-this-picture").click(function () {
-            $(".chosen-picture").removeClass('chosen-picture');
-            $(this).find('img').addClass('chosen-picture');
-            $("#chosen-picture").val($(this).data('id'));
-            $("#chosen-picture-url").val($(this).data('url'));
-        });
-        $("#btn-set-chosen-picture").click(function () {
-            $("#profile_picture").val($("#chosen-picture").val());
-            $('#choosePictureModal').modal('hide');
-            $("#btn-choose-picture").toggle(false);
-            $("#btn-upload-picture").toggle(false);
-            $("#picture-img").attr('src', $("#chosen-picture-url").val());
+        $(document).ready(function () {
+            Dropzone.options.profilePictureDropzone = {
+                success: function(file, done) {
+                    location.reload();
+                }
+            }
         });
 
         $(function() {
@@ -508,4 +444,4 @@
 @include('components.tool.datatable', ['target' => '#k-history-table', 'params' => "order: [[1, 'desc'], [0, 'desc']]"])
 @include('components.tool.select')
 @include('components.tool.toggle')
-@include('components.tool.cropit')
+@include('components.tool.dropzone')

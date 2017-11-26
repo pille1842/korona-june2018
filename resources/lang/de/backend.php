@@ -81,11 +81,9 @@ return [
     'roles' => 'Seitenrollen',
     'active' => 'aktiv',
     'inactive' => 'inaktiv',
-    'upload_picture' => 'Bild hochladen',
-    'choose_picture' => 'Bild auswählen',
     'adopt' => 'Übernehmen',
-    'delete_picture' => 'Profilbild löschen',
-    'no_pictures' => 'Dieses Mitglied hat keine Bilder hochgeladen.',
+    'delete_profile_picture' => 'Profilbild löschen',
+    'really_delete_profile_picture' => 'Profilbild wirklich löschen?',
     'create_address' => 'Neue Adresse erstellen',
     'addresses' => 'Postadressen',
     'edit_address' => 'Adresse :address von :addressable bearbeiten',
@@ -140,6 +138,9 @@ return [
     'subscriptions' => 'Abonnements',
     'person' => 'Person',
     'mailinglist_deleted' => 'Mailingliste :mailinglist wurde gelöscht.',
+    'profile_picture_deleted' => 'Das Profilbild wurde gelöscht.',
+    'related_user' => 'Verknüpfter Benutzer',
+    'related_member' => 'Verknüpftes Mitglied',
 
     'setting' => [
         'fraternity' => [

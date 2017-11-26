@@ -19,7 +19,7 @@ class Member extends Model implements PersonInterface
 
     protected $dontKeepRevisionOf = [
         'user_id',
-        'profile_picture',
+        'picture',
         'address_id'
     ];
 
@@ -118,23 +118,13 @@ class Member extends Model implements PersonInterface
         return $this->hasMany(Member::class, 'parent_id');
     }
 
-    public function picture()
-    {
-        return $this->BelongsTo(Media\Image::class, 'profile_picture');
-    }
-
     public function profilePictureRoute()
     {
-        if ($this->picture !== null) {
-            return route('image', $this->picture);
+        if ($this->picture) {
+            return route('image', $this);
         } else {
             return asset('images/no_profile_picture.jpg');
         }
-    }
-
-    public function images()
-    {
-        return $this->morphMany(Media\Image::class, 'imageable');
     }
 
     public function addresses()

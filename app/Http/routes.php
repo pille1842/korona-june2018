@@ -17,6 +17,15 @@ Route::group(['middleware' => ['auth', 'checkpassword']], function () {
     Route::get('home', 'Internal\HomeController@index');
     Route::get('password', 'Internal\PasswordController@getForm');
     Route::post('password', 'Internal\PasswordController@changePassword');
+
+    // Profile pictures
+    Route::get('member/{member}/picture', function (\Korona\Member $member) {
+        if ($member->picture !== null) {
+            return response()->file($member->picture);
+        } else {
+            return response()->json(['error' => 'File not found'], 404);
+        }
+    })->name('image');
 });
 
 // Backend routes
@@ -32,6 +41,8 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
 
     // Members
     Route::resource('member', 'MemberController');
+    Route::post('member/{member}/picture', 'MemberController@uploadPicture')->name('backend.member.picture.upload');
+    Route::delete('member/{member}/picture', 'MemberController@deletePicture')->name('backend.member.picture.delete');
     Route::get('trash/member', 'MemberController@trash')->name('backend.member.trash');
     Route::delete('trash/member/{id}', 'MemberController@purge')->name('backend.member.purge');
     Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');
@@ -85,12 +96,4 @@ Route::group(['prefix' => 'ajax'], function () {
     Route::get('slug', function (Request $request) {
         return str_slug($request::input('input'));
     })->name('slug');
-
-    Route::get('image/{image}', function (\Korona\Media\Image $image) {
-        if (Auth::user() === null && ! $image->public) {
-            return response()->json(['error' => 'Permission denied.'], 403);
-        }
-
-        return response()->file(storage_path($image->getStoragePath().$image->getFileName()));
-    })->name('image');
 });
