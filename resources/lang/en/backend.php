@@ -137,6 +137,7 @@ return [
     'subscribers' => 'Subscribers',
     'subscriptions' => 'Subscriptions',
     'person' => 'Person',
+    'mailinglist_deleted' => 'Mailinglist :mailinglist has been deleted.',
 
     'setting' => [
         'fraternity' => [

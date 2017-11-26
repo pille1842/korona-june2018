@@ -139,6 +139,7 @@ return [
     'subscribers' => 'Abonnenten',
     'subscriptions' => 'Abonnements',
     'person' => 'Person',
+    'mailinglist_deleted' => 'Mailingliste :mailinglist wurde gelöscht.',
 
     'setting' => [
         'fraternity' => [

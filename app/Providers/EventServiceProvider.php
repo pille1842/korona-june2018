@@ -8,6 +8,7 @@ use Korona\Address;
 use Korona\Member;
 use Korona\Person;
 use Korona\Phonenumber;
+use Korona\Mailinglist;
 use Auth;
 
 class EventServiceProvider extends ServiceProvider
@@ -91,6 +92,7 @@ class EventServiceProvider extends ServiceProvider
                 $member->addresses()->delete();
                 $member->phonenumbers()->delete();
                 $member->offices()->delete();
+                $member->subscriptions()->detach();
                 $member->revisionHistory()->delete();
             }
         });
@@ -99,8 +101,14 @@ class EventServiceProvider extends ServiceProvider
             if ($person->deleted_at) {
                 $person->addresses()->delete();
                 $person->phonenumbers()->delete();
+                $person->subscriptions()->detach();
                 $person->revisionHistory()->delete();
             }
+        });
+
+        Mailinglist::deleting(function ($mailinglist) {
+            $mailinglist->members()->detach();
+            $mailinglist->people()->detach();
         });
     }
 }
