@@ -159,6 +159,8 @@ return [
         'symbol' => 'Symbol',
         'template' => 'Vorlage',
         'member_id' => 'Mitglied',
+        'subscribable' => 'kann von Mitgliedern abonniert werden',
+        'subscriptions' => 'Abonnements',
     ],
 
 ];

@@ -157,6 +157,11 @@ class Member extends Model implements PersonInterface
         return $this->hasOne(Address::class, 'address_id');
     }
 
+    public function subscriptions()
+    {
+        return $this->morphToMany('Korona\Mailinglist', 'subscribable');
+    }
+
     public function formBirthdayAttribute($value)
     {
         return Carbon::parse($value)->format('d.m.Y');

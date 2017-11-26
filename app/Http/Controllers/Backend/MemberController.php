@@ -11,6 +11,7 @@ use Korona\Http\Controllers\Controller;
 use Korona\Http\Requests;
 use Korona\Member;
 use Korona\Repositories\MemberRepository;
+use Korona\Mailinglist;
 
 class MemberController extends Controller
 {
@@ -77,7 +78,17 @@ class MemberController extends Controller
             return $item;
         })->pluck('displayName', 'id');
 
-        return view('backend.members.edit', compact('member', 'members', 'countries'));
+        $mailinglists = Mailinglist::all()->pluck('name', 'id');
+
+        if ($member->subscriptions !== null) {
+            $subscriptions = $member->subscriptions->map(function ($item) {
+                return $item->id;
+            })->all();
+        } else {
+            $subscriptions = [];
+        }
+
+        return view('backend.members.edit', compact('member', 'members', 'countries', 'mailinglists', 'subscriptions'));
     }
 
     public function update(Request $request, Member $member)
@@ -144,6 +155,13 @@ class MemberController extends Controller
                 $member->profile_picture = null;
                 $member->save();
                 $image->delete();
+            }
+        }
+
+        $member->subscriptions()->detach();
+        if ($request->subscriptions !== null) {
+            foreach ($request->subscriptions as $subscription) {
+                $member->subscriptions()->attach(Mailinglist::find($subscription));
             }
         }
 

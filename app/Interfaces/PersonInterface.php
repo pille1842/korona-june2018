@@ -9,4 +9,5 @@ interface PersonInterface
     public function addresses();
     public function address();
     public function phonenumbers();
+    public function subscriptions();
 }

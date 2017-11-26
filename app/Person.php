@@ -100,4 +100,9 @@ class Person extends Model implements PersonInterface
     {
         return $this->hasOne(Address::class, 'address_id');
     }
+
+    public function subscriptions()
+    {
+        return $this->morphToMany('Korona\Mailinglist', 'subscribable');
+    }
 }

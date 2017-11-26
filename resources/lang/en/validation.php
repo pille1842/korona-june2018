@@ -159,6 +159,8 @@ return [
         'symbol' => 'Symbol',
         'template' => 'Template',
         'member_id' => 'Member',
+        'subscribable' => 'Members can subscribe to this list',
+        'subscriptions' => 'Subscriptions',
     ],
 
 ];

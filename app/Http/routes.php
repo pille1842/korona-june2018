@@ -56,6 +56,9 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     // Roles
     Route::resource('role', 'RolesController');
 
+    // Mailinglists
+    Route::resource('mailinglist', 'MailinglistController');
+
     // Milestone Types
     Route::resource('milestonetype', 'MilestonetypeController');
 

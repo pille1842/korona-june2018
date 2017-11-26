@@ -131,6 +131,14 @@ return [
     'people_trash' => 'Gelöschte Personen',
     'person_restored' => 'Die Person :person wurde wiederhergestellt.',
     'really_purge_person' => 'Person :person wirklich endgültig löschen? Dies kann nicht rückgängig gemacht werden!',
+    'mailinglist' => 'Mailingliste',
+    'edit_mailinglist' => 'Mailingliste :mailinglist bearbeiten',
+    'mailinglists' => 'Mailinglisten',
+    'create_mailinglist' => 'Neue Mailingliste erstellen',
+    'really_delete_mailinglist' => 'Mailingliste :mailinglist wirklich löschen? Dies kann nicht rückgängig gemacht werden!',
+    'subscribers' => 'Abonnenten',
+    'subscriptions' => 'Abonnements',
+    'person' => 'Person',
 
     'setting' => [
         'fraternity' => [

@@ -129,6 +129,14 @@ return [
     'people_trash' => 'Trashed People',
     'person_restored' => 'Person :person has been restored.',
     'really_purge_person' => 'Do you really want to delete person :person? This cannot be undone!',
+    'mailinglist' => 'Mailinglist',
+    'edit_mailinglist' => 'Edit mailinglist :mailinglist',
+    'mailinglists' => 'Mailinglists',
+    'create_mailinglist' => 'Create a new mailinglist',
+    'really_delete_mailinglist' => 'Do you really want to delete mailinglist :mailinglist? This cannot be undone!',
+    'subscribers' => 'Subscribers',
+    'subscriptions' => 'Subscriptions',
+    'person' => 'Person',
 
     'setting' => [
         'fraternity' => [

@@ -9,6 +9,7 @@ use Korona\Country;
 use Korona\Http\Controllers\Controller;
 use Korona\Http\Requests;
 use Korona\Person;
+use Korona\Mailinglist;
 
 class PersonController extends Controller
 {
@@ -69,7 +70,17 @@ class PersonController extends Controller
             return $item;
         })->pluck('displayName', 'id');
 
-        return view('backend.people.edit', compact('person', 'countries'));
+        $mailinglists = Mailinglist::all()->pluck('name', 'id');
+
+        if ($person->subscriptions !== null) {
+            $subscriptions = $person->subscriptions->map(function ($item) {
+                return $item->id;
+            })->all();
+        } else {
+            $subscriptions = [];
+        }
+
+        return view('backend.people.edit', compact('person', 'countries', 'mailinglists', 'subscriptions'));
     }
 
     public function update(Request $request, Person $person)
@@ -94,6 +105,13 @@ class PersonController extends Controller
         $person->title_prefix = $request->title_prefix;
         $person->title_suffix = $request->title_suffix;
         $person->notes = $request->notes;
+
+        $person->subscriptions()->detach();
+        if ($request->subscriptions !== null) {
+            foreach ($request->subscriptions as $subscription) {
+                $person->subscriptions()->attach(Mailinglist::find($subscription));
+            }
+        }
 
         $person->save();
 
