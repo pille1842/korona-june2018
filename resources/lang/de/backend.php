@@ -121,6 +121,16 @@ return [
     'user_purged' => 'Benutzer :user wurde endgültig gelöscht.',
     'member_purged' => 'Das Mitglied :member wurde endgültig gelöscht.',
     'member_has_no_main_address' => 'Keine der Adressen dieses Mitglieds ist als Hauptadresse für den Postempfang markiert.',
+    'people' => 'Personen',
+    'create_person' => 'Neue Person erstellen',
+    'edit_person' => 'Person :person bearbeiten',
+    'person_has_no_main_address' => 'Keine der Adressen dieser Person ist als Hauptadresse für den Postempfang markiert.',
+    'notes' => 'Notizen',
+    'really_delete_person' => 'Soll die Person :person wirklich gelöscht werden?',
+    'person_deleted' => 'Die Person :person wurde in den Papierkorb verschoben.',
+    'people_trash' => 'Gelöschte Personen',
+    'person_restored' => 'Die Person :person wurde wiederhergestellt.',
+    'really_purge_person' => 'Person :person wirklich endgültig löschen? Dies kann nicht rückgängig gemacht werden!',
 
     'setting' => [
         'fraternity' => [

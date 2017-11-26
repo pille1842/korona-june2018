@@ -29,6 +29,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Kann Mitglieder verwalten',
             'slug' => 'backend.manage.members'
         ]);
+        $backendManagePeoplePermission = Permission::create([
+            'name' => 'Kann Personen verwalten',
+            'slug' => 'backend.manage.people'
+        ]);
         $backendManageRolesPermission = Permission::create([
             'name' => 'Kann Seitenrollen verwalten',
             'slug' => 'backend.manage.roles'
@@ -66,6 +70,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole->attachPermission($accessBackendPermission);
         $adminRole->attachPermission($backendManageUsersPermission);
         $adminRole->attachPermission($backendManageMembersPermission);
+        $adminRole->attachPermission($backendManagePeoplePermission);
         $adminRole->attachPermission($backendManageRolesPermission);
         $adminRole->attachPermission($backendManageSettingsPermission);
         $adminRole->attachPermission($backendSeeLogsPermission);

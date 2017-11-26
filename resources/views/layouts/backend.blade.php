@@ -34,6 +34,9 @@
                                 @permission('backend.manage.members')
                                     <li><a href="{{ route('backend.member.index') }}">{{ trans('backend.members') }}</a></li>
                                 @endpermission
+                                @permission('backend.manage.people')
+                                    <li><a href="{{ route('backend.person.index') }}">{{ trans('backend.people') }}</a></li>
+                                @endpermission
                             </ul>
                         </li>
                         <li class="dropdown">

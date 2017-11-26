@@ -37,6 +37,13 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');
     Route::post('trash/member/{id}', 'MemberController@restore')->name('backend.member.restore');
 
+    // People
+    Route::resource('person', 'PersonController');
+    Route::get('trash/person', 'PersonController@trash')->name('backend.person.trash');
+    Route::delete('trash/person/{id}', 'PersonController@purge')->name('backend.person.purge');
+    Route::delete('trash/person', 'PersonController@emptyTrash')->name('backend.person.empty_trash');
+    Route::post('trash/person/{id}', 'PersonController@restore')->name('backend.person.restore');
+
     // Addresses
     Route::resource('address', 'AddressController');
 

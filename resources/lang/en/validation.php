@@ -132,6 +132,8 @@ return [
         'sex' => 'Sex',
         'title_prefix' => 'Title (prefix)',
         'title_suffix' => 'Title (suffix)',
+        'appellation' => 'Appellation',
+        'notes' => 'Notes',
         'profession' => 'Profession',
         'user_id' => 'User account',
         'parent_id' => 'Parent',

@@ -119,6 +119,16 @@ return [
     'user_purged' => 'User :user has been deleted.',
     'member_purged' => 'Member :member has been permanently deleted.',
     'member_has_no_main_address' => 'None of this member\'s addresses is marked as the main address for receiving letters.',
+    'people' => 'People',
+    'create_person' => 'Create a new person',
+    'edit_person' => 'Edit person :person',
+    'person_has_no_main_address' => 'None of this person\'s addresses is marked as the main address for receiving letters.',
+    'notes' => 'Notes',
+    'really_delete_person' => 'Do you really want to delete person :person?',
+    'person_deleted' => 'Person :person has been moved to the trash.',
+    'people_trash' => 'Trashed People',
+    'person_restored' => 'Person :person has been restored.',
+    'really_purge_person' => 'Do you really want to delete person :person? This cannot be undone!',
 
     'setting' => [
         'fraternity' => [

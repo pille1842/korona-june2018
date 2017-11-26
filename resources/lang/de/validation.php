@@ -132,6 +132,8 @@ return [
         'sex' => 'Geschlecht',
         'title_prefix' => 'Titel (Präfix)',
         'title_suffix' => 'Titel (Suffix)',
+        'appellation' => 'Anrede',
+        'notes' => 'Notizen',
         'profession' => 'Beruf',
         'user_id' => 'Benutzerkonto',
         'parent_id' => 'Leibbursch',
