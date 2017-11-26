@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Venturecraft\Revisionable\RevisionableTrait;
 use Carbon\Carbon;
 use Collective\Html\Eloquent\FormAccessible;
+use Korona\Interfaces\PersonInterface;
 
-class Member extends Model
+class Member extends Model implements PersonInterface
 {
     use RevisionableTrait;
     use SoftDeletes;

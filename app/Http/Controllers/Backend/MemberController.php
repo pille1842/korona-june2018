@@ -173,7 +173,11 @@ class MemberController extends Controller
 
     public function emptyTrash()
     {
-        Member::onlyTrashed()->forceDelete();
+        $members = Member::onlyTrashed()->get();
+
+        foreach ($members as $member) {
+            $member->forceDelete();
+        }
 
         return redirect()->route('backend.member.trash')
                ->with('success', trans('backend.trash_emptied'));

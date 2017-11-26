@@ -5,6 +5,8 @@ namespace Korona\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Korona\Address;
+use Korona\Member;
+use Korona\Person;
 use Korona\Phonenumber;
 use Auth;
 
@@ -82,6 +84,23 @@ class EventServiceProvider extends ServiceProvider
             $revision->old_value = $phonenumber->identifiableName();
             $phoneable->revisionHistory()->save($revision);
             \Event::fire('revisionable.saved', array('model' => $phoneable, 'revisions' => [$revision]));
+        });
+
+        Member::deleting(function ($member) {
+            if ($member->deleted_at) {
+                $member->addresses()->delete();
+                $member->phonenumbers()->delete();
+                $member->offices()->delete();
+                $member->revisionHistory()->delete();
+            }
+        });
+
+        Person::deleting(function ($person) {
+            if ($person->deleted_at) {
+                $person->addresses()->delete();
+                $person->phonenumbers()->delete();
+                $person->revisionHistory()->delete();
+            }
         });
     }
 }
