@@ -147,6 +147,14 @@ return [
     'picture_crop_error' => 'There was an error while cropping the picture.',
     'drop_pictures_here' => 'Drop pictures in this area',
     'file_too_big' => 'The file is too large. Maximum :size MB are allowed.',
+    'emails' => 'Email Addresses',
+    'person_has_no_main_email' => 'None of this person\'s email addresses is marked as the main address for receiving emails.',
+    'member_has_no_main_email' => 'None of this member\'s email addresses is marked as the main address for receiving emails.',
+    'is_main_email' => 'is main address',
+    'edit_email' => 'Edit email address :email of :emailable',
+    'really_delete_email' => 'Do you really want to delete email address :email?',
+    'create_email' => 'Create new email address',
+    'email_deleted' => 'Email address :email has been deleted.',
 
     'setting' => [
         'fraternity' => [

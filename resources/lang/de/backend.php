@@ -147,6 +147,14 @@ return [
     'picture_crop_error' => 'Beim Zuschneiden des Bildes ist ein Fehler aufgetreten.',
     'drop_pictures_here' => 'Bilder in dieses Feld ziehen',
     'file_too_big' => 'Die Datei ist zu groß. Maximal :size MB erlaubt.',
+    'emails' => 'E-Mail-Adressen',
+    'person_has_no_main_email' => 'Keine der E-Mail-Adressen dieser Person ist als Hauptadresse für den Mailempfang markiert.',
+    'member_has_no_main_email' => 'Keine der E-Mail-Adressen dieses Mitglieds ist als Hauptadresse für den Mailempfang markiert.',
+    'is_main_email' => 'ist die Hauptadresse',
+    'edit_email' => 'E-Mail-Adresse :email von :emailable bearbeiten',
+    'really_delete_email' => 'E-Mail-Adresse :email wirklich löschen?',
+    'create_email' => 'Neue E-Mail-Adresse erstellen',
+    'email_deleted' => 'E-Mail-Adresse :email wurde gelöscht.',
 
     'setting' => [
         'fraternity' => [

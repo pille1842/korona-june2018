@@ -20,7 +20,8 @@ class Member extends Model implements PersonInterface
     protected $dontKeepRevisionOf = [
         'user_id',
         'picture',
-        'address_id'
+        'address_id',
+        'email_id'
     ];
 
     protected $revisionFormattedFields = [
@@ -46,6 +47,7 @@ class Member extends Model implements PersonInterface
         'status' => 'Status',
         'active' => 'aktiv',
         'address' => 'Adresse',
+        'email' => 'E-Mail-Adresse',
         'phonenumber' => 'Telefonnummer',
     ];
 
@@ -123,6 +125,11 @@ class Member extends Model implements PersonInterface
         return $this->morphMany('Korona\Address', 'addressable');
     }
 
+    public function emails()
+    {
+        return $this->morphMany('Korona\Email', 'emailable');
+    }
+
     public function phonenumbers()
     {
         return $this->morphMany('Korona\Phonenumber', 'phoneable');
@@ -136,6 +143,11 @@ class Member extends Model implements PersonInterface
     public function address()
     {
         return $this->hasOne(Address::class, 'address_id');
+    }
+
+    public function email()
+    {
+        return $this->hasOne(Email::class, 'email_id');
     }
 
     public function subscriptions()

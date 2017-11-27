@@ -5,6 +5,7 @@ namespace Korona\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Korona\Address;
+use Korona\Email;
 use Korona\Member;
 use Korona\Person;
 use Korona\Phonenumber;
@@ -63,6 +64,28 @@ class EventServiceProvider extends ServiceProvider
             $revision->old_value = $address->identifiableName();
             $addressable->revisionHistory()->save($revision);
             \Event::fire('revisionable.saved', array('model' => $addressable, 'revisions' => [$revision]));
+        });
+
+        Email::creating(function ($email) {
+            $emailable = $email->emailable;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'email';
+            $revision->old_value = null;
+            $revision->new_value = $email->identifiableName();
+            $emailable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $emailable, 'revisions' => [$revision]));
+        });
+
+        Email::deleting(function ($email) {
+            $emailable = $email->emailable;
+            $revision = new \Venturecraft\Revisionable\Revision;
+            $revision->user_id = Auth::user() ? Auth::user()->id : null;
+            $revision->key = 'email';
+            $revision->new_value = null;
+            $revision->old_value = $email->identifiableName();
+            $emailable->revisionHistory()->save($revision);
+            \Event::fire('revisionable.saved', array('model' => $emailable, 'revisions' => [$revision]));
         });
 
         Phonenumber::creating(function ($phonenumber) {

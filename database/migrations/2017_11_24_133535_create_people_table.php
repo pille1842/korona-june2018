@@ -24,6 +24,7 @@ class CreatePeopleTable extends Migration
             $table->string('title_suffix');
             $table->text('notes');
             $table->integer('address_id');
+            $table->integer('email_id');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,6 +16,7 @@ class Person extends Model implements PersonInterface
 
     protected $dontKeepRevisionOf = [
         'address_id',
+        'email_id',
         'notes'
     ];
 
@@ -34,6 +35,7 @@ class Person extends Model implements PersonInterface
         'appellation' => 'Anrede',
         'profession' => 'Beruf',
         'address' => 'Adresse',
+        'email' => 'E-Mail-Adresse',
         'phonenumber' => 'Telefonnummer',
     ];
 
@@ -89,6 +91,16 @@ class Person extends Model implements PersonInterface
     public function addresses()
     {
         return $this->morphMany('Korona\Address', 'addressable');
+    }
+
+    public function emails()
+    {
+        return $this->morphMany('Korona\Email', 'emailable');
+    }
+
+    public function email()
+    {
+        return $this->hasOne(Email::class, 'email_id');
     }
 
     public function phonenumbers()

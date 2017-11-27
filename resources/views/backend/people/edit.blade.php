@@ -83,6 +83,11 @@
                 </a>
             </li>
             <li role="presentation">
+                <a href="#emails" aria-controls="emails" role="tab" data-toggle="tab">
+                    {{ trans('backend.emails') }}
+                </a>
+            </li>
+            <li role="presentation">
                 <a href="#phonenumbers" aria-controls="phonenumbers" role="tab" data-toggle="tab">
                     {{ trans('backend.phonenumbers') }}
                 </a>
@@ -214,6 +219,52 @@
                 <a class="btn btn-success" href="{{ action('Backend\AddressController@create', ['addressable_type' => 'Korona\Person', 'addressable_id' => $person->id, 'redirect' => route('backend.person.edit', $person)]) }}">
                     <span class="glyphicon glyphicon-plus"></span>
                     {{ trans('backend.create_address') }}
+                </a>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="emails">
+                @if (count($person->emails) > 0 && $person->email_id == null)
+                    <div class="alert alert-warning">
+                        <p>
+                            {{ trans('backend.person_has_no_main_email') }}
+                        </p>
+                    </div>
+                @endif
+                <table class="table" id="k-emails-table">
+                    <thead>
+                        <tr>
+                            <th>{{ trans('validation.attributes.email') }}</th>
+                            <th>{{ trans('backend.is_main_email') }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($person->emails as $email)
+                            <tr>
+                                <td>{{ $email->email }}</td>
+                                <td>
+                                    @if($person->email_id == $email->id)
+                                        <span class="glyphicon glyphicon-ok text-success"></span>
+                                    @else
+                                        <span class="glyphicon glyphicon-remove text-danger"></span>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ Form::open(['action' => ['Backend\EmailController@destroy', $email], 'method' => 'delete']) }}
+                                    <a href="{{ action('Backend\EmailController@edit', $email) }}" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <button class="btn btn-danger" onclick="return confirm('{{ trans('backend.really_delete_email', ['email' => $email->email]) }}')">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                    {{ Form::close() }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <a class="btn btn-success" href="{{ action('Backend\EmailController@create', ['emailable_type' => 'Korona\Person', 'emailable_id' => $person->id, 'redirect' => route('backend.person.edit', $person)]) }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    {{ trans('backend.create_email') }}
                 </a>
             </div>
             <div role="tabpanel" class="table-responsive tab-pane" id="phonenumbers">

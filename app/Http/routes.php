@@ -60,6 +60,9 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     // Addresses
     Route::resource('address', 'AddressController');
 
+    // Email addresses
+    Route::resource('email', 'EmailController');
+
     // Phone numbers
     Route::resource('phonenumber', 'PhonenumberController');
 

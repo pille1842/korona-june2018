@@ -30,7 +30,8 @@ class CreateMembersTable extends Migration
             $table->string('status');
             $table->date('birthday');
             $table->boolean('active');
-            $table->boolean('address_id');
+            $table->integer('address_id');
+            $table->integer('email_id');
             $table->timestamps();
             $table->softDeletes();
         });

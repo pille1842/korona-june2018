@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Korona\Http\Requests;
 use Korona\Http\Controllers\Controller;
 use Korona\Address;
-use Korona\Member;
 use Korona\Country;
 
 class AddressController extends Controller
