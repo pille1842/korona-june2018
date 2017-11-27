@@ -20,6 +20,7 @@
                 <tr>
                     <th>{{ trans('validation.attributes.id') }}</th>
                     <th>{{ trans('validation.attributes.name') }}</th>
+                    <th>{{ trans('backend.subscribers') }}</th>
                     <th>{{ trans('validation.attributes.subscribable') }}</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -29,6 +30,7 @@
                     <tr>
                         <td>{{ $mailinglist->id }}</td>
                         <td>{{ $mailinglist->name }}</td>
+                        <td>{{ $mailinglist->members->count() + $mailinglist->people->count() }}</td>
                         <td>
                             @if($mailinglist->subscribable)
                                 <span class="glyphicon glyphicon-ok text-success"></span>
@@ -55,6 +57,7 @@
 @endsection
 
 @include('components.tool.datatable', ['target' => '#k-mailinglist-table', 'params' => 'columns: [
+    null,
     null,
     null,
     {orderable: false},
