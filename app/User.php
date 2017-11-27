@@ -22,4 +22,13 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     {
         return $this->hasOne(Member::class);
     }
+
+    public function profilePictureRoute()
+    {
+        if ($this->picture) {
+            return route('image', $this);
+        } else {
+            return asset('images/no_profile_picture.jpg');
+        }
+    }
 }

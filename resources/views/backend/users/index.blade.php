@@ -26,6 +26,8 @@
                 <tr>
                     <th>{{ trans('validation.attributes.id') }}</th>
                     <th>{{ trans('validation.attributes.login') }}</th>
+                    <th>{{ trans('validation.attributes.email') }}</th>
+                    <th>{{ trans('backend.roles') }}</th>
                     <th>{{ trans('validation.attributes.active') }}</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -34,7 +36,14 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->login }}</td>
+                        <td>
+                            <img src="{{ $user->profilePictureRoute() }}" alt="" style="width:30px;">
+                            {{ $user->login }}
+                        </td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            {{ implode(', ', $user->getRoles()->pluck('name')->toArray()) }}
+                        </td>
                         <td>
                             @if($user->active)
                                 <span class="glyphicon glyphicon-ok text-success"></span>
@@ -61,6 +70,8 @@
 @endsection
 
 @include('components.tool.datatable', ['target' => '#k-users-table', 'params' => 'columns: [
+    null,
+    null,
     null,
     null,
     {orderable: false},

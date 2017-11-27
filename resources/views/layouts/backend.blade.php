@@ -61,7 +61,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ Auth::user()->member->profilePictureRoute() }}" style="height:18px;">
+                                <img src="{{ Auth::user()->profilePictureRoute() }}" style="height:18px;">
                                 {{ Auth::user()->member->getShortName() }}
                                 <span class="caret"></span>
                             </a>

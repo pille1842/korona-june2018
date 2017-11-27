@@ -14,6 +14,8 @@ use Korona\Repositories\MemberRepository;
 use Korona\Repositories\UserRepository;
 use Bican\Roles\Models\Role;
 use Bican\Roles\Models\Permission;
+use Illuminate\Support\Facades\Validator;
+use Image;
 
 class UserController extends Controller
 {
@@ -223,5 +225,90 @@ class UserController extends Controller
                 $m->subject(trans('mail.password_email_subject'));
             }
         );
+    }
+
+    public function uploadPicture(User $user, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->messages()->first(),
+                'code' => 400
+            ], 400);
+        }
+
+        try {
+            $image = Image::make($request->file('file'))
+                     ->save(storage_path('app/local/profile/'.$user->id.'.jpg'));
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'code' => 500
+            ], 500);
+        }
+
+        $user->picture = storage_path('app/local/profile/'.$user->id.'.jpg');
+        $user->save();
+
+        return response()->json('success', 200);
+    }
+
+    public function deletePicture(User $user)
+    {
+        if (file_exists($user->picture)) {
+            @unlink($user->picture);
+        }
+
+        $user->picture = null;
+        $user->save();
+
+        return redirect()->route('backend.user.edit', $user)
+               ->with('success', trans('backend.profile_picture_deleted'));
+    }
+
+    public function getCropForm(User $user)
+    {
+        if (! $user->picture) {
+            return redirect()->route('backend.member.edit', $user)
+                   ->with('error', trans('backend.no_picture_error'));
+        }
+
+        return view('backend.users.cropform', compact('user'));
+    }
+
+    public function cropPicture(User $user, Request $request)
+    {
+        $this->validate($request, [
+            'x' => 'required|numeric',
+            'y' => 'required|numeric',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric'
+        ]);
+
+        if (! $user->picture) {
+            return redirect()->route('backend.user.edit', $user)
+                   ->with('error', trans('backend.no_picture_error'));
+        }
+
+        $x = round($request->x);
+        $y = round($request->y);
+        $width = round($request->width);
+        $height = round($request->height);
+
+        try {
+            $image = Image::make($user->picture)
+                     ->crop($width, $height, $x, $y)
+                     ->resize(500, 500)
+                     ->save($user->picture);
+        } catch (Exception $e) {
+            return redirect()->route('backend.user.cropform', $user)
+                   ->with('error', trans('backend.picture_crop_error'));
+        }
+
+        return redirect()->route('backend.user.edit', $user)
+               ->with('success', trans('backend.picture_cropped'));
     }
 }

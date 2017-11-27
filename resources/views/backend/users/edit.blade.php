@@ -105,6 +105,36 @@
         {{ Form::close() }}
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
+                </div>
+                <div class="panel-body">
+                    @if (! $user->picture)
+                        {{ Form::open(['route' => ['backend.user.picture.upload', $user], 'class' => 'dropzone', 'id' => 'profile-picture-dropzone']) }}
+                        <div class="fallback">
+                            <input name="file" type="file">
+                        </div>
+                        {{ Form::close() }}
+                    @else
+                        <p>
+                            <img src="{{ route('image', $user) }}" alt="" class="img-responsive img-rounded">
+                        </p>
+                        {{ Form::open(['route' => ['backend.user.picture.delete', $user], 'method' => 'delete']) }}
+                        <button type="button" class="btn btn-danger btn-block"
+                                onclick="confirm('{{ trans('backend.really_delete_profile_picture') }}') &amp;&amp; form.submit();">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            {{ trans('backend.delete_profile_picture') }}
+                        </button>
+                        {{ Form::close() }}
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="effectivePermissionsModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -163,8 +193,20 @@
             $("#btnGeneratePassword").removeAttr('disabled');
             $(this).attr("disabled", true);
         })
+
+        $(document).ready(function () {
+            Dropzone.options.profilePictureDropzone = {
+                maxFilesize: 8,
+                dictDefaultMessage: '{{ trans('backend.drop_pictures_here') }}',
+                dictFileTooBig: '{{ trans('backend.file_too_big', ['size' => '8']) }}',
+                success: function(file, done) {
+                    window.location.assign('{{ route('backend.user.picture.cropform', $user) }}');
+                }
+            }
+        });
     </script>
 @endpush
 
 @include('components.tool.select')
 @include('components.tool.toggle')
+@include('components.tool.dropzone')

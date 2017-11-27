@@ -138,6 +138,15 @@ return [
     'subscriptions' => 'Subscriptions',
     'person' => 'Person',
     'mailinglist_deleted' => 'Mailinglist :mailinglist has been deleted.',
+    'profile_picture_deleted' => 'The profile picture has been deleted.',
+    'related_user' => 'Linked user',
+    'related_member' => 'Linked member',
+    'no_picture_error' => 'There is no profile picture.',
+    'crop_picture' => 'Crop picture',
+    'picture_cropped' => 'The cropped picture has been saved.',
+    'picture_crop_error' => 'There was an error while cropping the picture.',
+    'drop_pictures_here' => 'Drop pictures in this area',
+    'file_too_big' => 'The file is too large. Maximum :size MB are allowed.',
 
     'setting' => [
         'fraternity' => [

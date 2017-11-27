@@ -93,36 +93,6 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ trans('backend.profile_picture') }}</h3>
-                </div>
-                <div class="panel-body">
-                    @if (! $member->picture)
-                        {{ Form::open(['route' => ['backend.member.picture.upload', $member], 'class' => 'dropzone', 'id' => 'profile-picture-dropzone']) }}
-                        <div class="fallback">
-                            <input name="file" type="file">
-                        </div>
-                        {{ Form::close() }}
-                    @else
-                        <p>
-                            <img src="{{ route('image', $member) }}" alt="" class="img-responsive img-rounded">
-                        </p>
-                        {{ Form::open(['route' => ['backend.member.picture.delete', $member], 'method' => 'delete']) }}
-                        <button type="button" class="btn btn-danger btn-block"
-                                onclick="confirm('{{ trans('backend.really_delete_profile_picture') }}') &amp;&amp; form.submit();">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            {{ trans('backend.delete_profile_picture') }}
-                        </button>
-                        {{ Form::close() }}
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
                 <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
@@ -408,25 +378,8 @@
 
 @endsection
 
-@push('stylesheets')
-    <style>
-        .cropit-preview {
-            width: 350px;
-            height: 350px;
-        }
-    </style>
-@endpush
-
 @push('scripts')
     <script>
-        $(document).ready(function () {
-            Dropzone.options.profilePictureDropzone = {
-                success: function(file, done) {
-                    location.reload();
-                }
-            }
-        });
-
         $(function() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 localStorage.setItem('lastBackendMembersTab', $(this).attr('href'));
@@ -444,4 +397,3 @@
 @include('components.tool.datatable', ['target' => '#k-history-table', 'params' => "order: [[1, 'desc'], [0, 'desc']]"])
 @include('components.tool.select')
 @include('components.tool.toggle')
-@include('components.tool.dropzone')

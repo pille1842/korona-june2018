@@ -19,9 +19,9 @@ Route::group(['middleware' => ['auth', 'checkpassword']], function () {
     Route::post('password', 'Internal\PasswordController@changePassword');
 
     // Profile pictures
-    Route::get('member/{member}/picture', function (\Korona\Member $member) {
-        if ($member->picture !== null) {
-            return response()->file($member->picture);
+    Route::get('user/{user}/picture', function (\Korona\User $user) {
+        if ($user->picture !== null) {
+            return response()->file($user->picture);
         } else {
             return response()->json(['error' => 'File not found'], 404);
         }
@@ -34,6 +34,10 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
 
     // Users
     Route::resource('user', 'UserController');
+    Route::post('user/{user}/picture', 'UserController@uploadPicture')->name('backend.user.picture.upload');
+    Route::delete('user/{user}/picture', 'UserController@deletePicture')->name('backend.user.picture.delete');
+    Route::get('user/{user}/picture/crop', 'UserController@getCropForm')->name('backend.user.picture.cropform');
+    Route::post('user/{user}/picture/crop', 'UserController@cropPicture')->name('backend.user.picture.crop');
     Route::get('trash/user', 'UserController@trash')->name('backend.user.trash');
     Route::delete('trash/user/{id}', 'UserController@purge')->name('backend.user.purge');
     Route::delete('trash/user', 'UserController@emptyTrash')->name('backend.user.empty_trash');
@@ -41,8 +45,6 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
 
     // Members
     Route::resource('member', 'MemberController');
-    Route::post('member/{member}/picture', 'MemberController@uploadPicture')->name('backend.member.picture.upload');
-    Route::delete('member/{member}/picture', 'MemberController@deletePicture')->name('backend.member.picture.delete');
     Route::get('trash/member', 'MemberController@trash')->name('backend.member.trash');
     Route::delete('trash/member/{id}', 'MemberController@purge')->name('backend.member.purge');
     Route::delete('trash/member', 'MemberController@emptyTrash')->name('backend.member.empty_trash');

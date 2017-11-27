@@ -141,6 +141,12 @@ return [
     'profile_picture_deleted' => 'Das Profilbild wurde gelöscht.',
     'related_user' => 'Verknüpfter Benutzer',
     'related_member' => 'Verknüpftes Mitglied',
+    'no_picture_error' => 'Es ist kein Profilbild vorhanden.',
+    'crop_picture' => 'Bild zuschneiden',
+    'picture_cropped' => 'Das zugeschnittene Profilbild wurde gespeichert.',
+    'picture_crop_error' => 'Beim Zuschneiden des Bildes ist ein Fehler aufgetreten.',
+    'drop_pictures_here' => 'Bilder in dieses Feld ziehen',
+    'file_too_big' => 'Die Datei ist zu groß. Maximal :size MB erlaubt.',
 
     'setting' => [
         'fraternity' => [

@@ -32,6 +32,7 @@
     "bootstrap-select": "^1.12.2",
     "bootstrap-tokenfield": "^0.12.1",
     "bootstrap-toggle": "^2.2.2",
-    "dropzone": "^5.1.1"
+    "dropzone": "^5.1.1",
+    "cropper": "^3.1.3"
   }
 }

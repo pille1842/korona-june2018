@@ -118,15 +118,6 @@ class Member extends Model implements PersonInterface
         return $this->hasMany(Member::class, 'parent_id');
     }
 
-    public function profilePictureRoute()
-    {
-        if ($this->picture) {
-            return route('image', $this);
-        } else {
-            return asset('images/no_profile_picture.jpg');
-        }
-    }
-
     public function addresses()
     {
         return $this->morphMany('Korona\Address', 'addressable');

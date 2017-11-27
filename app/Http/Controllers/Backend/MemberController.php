@@ -3,10 +3,8 @@
 namespace Korona\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 use Carbon\Carbon;
-use Image;
 use Korona\Country;
 use Korona\Http\Controllers\Controller;
 use Korona\Http\Requests;
@@ -183,47 +181,5 @@ class MemberController extends Controller
 
         return redirect()->route('backend.member.trash')
                ->with('success', trans('backend.member_restored', ['member' => $member->getFullName()]));
-    }
-
-    public function uploadPicture(Member $member, Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|image'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => $validator->messages()->first(),
-                'code' => 400
-            ], 400);
-        }
-
-        try {
-            $image = Image::make($request->file('file'))->resize(500, 500)
-                     ->save(storage_path('app/local/profile/'.$member->id.'.jpg'));
-        } catch (Exception $e) {
-            return response()->json([
-                'error' => $e->getMessage(),
-                'code' => 500
-            ], 500);
-        }
-
-        $member->picture = storage_path('app/local/profile/'.$member->id.'.jpg');
-        $member->save();
-
-        return response()->json('success', 200);
-    }
-
-    public function deletePicture(Member $member)
-    {
-        if (file_exists($member->picture)) {
-            @unlink($member->picture);
-        }
-
-        $member->picture = null;
-        $member->save();
-
-        return redirect()->route('backend.member.edit', $member)
-               ->with('success', trans('backend.profile_picture_deleted'));
     }
 }
