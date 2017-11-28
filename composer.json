@@ -14,7 +14,8 @@
         "webpatser/laravel-uuid": "^2.0",
         "intervention/image": "^2.3",
         "giggsey/libphonenumber-for-php": "^8.5",
-        "rap2hpoutre/laravel-log-viewer": "^0.10.2"
+        "rap2hpoutre/laravel-log-viewer": "^0.10.2",
+        "codedge/laravel-fpdf": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -14,7 +14,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Response::macro('attachment', function ($content, $type, $filename) {
+
+            $headers = [
+                'Content-type'        => $type,
+                'Content-Disposition' => 'attachment;filename="'.$filename.'"',
+            ];
+
+            return \Response::make($content, 200, $headers);
+
+        });
     }
 
     /**

@@ -162,6 +162,8 @@ return [
         'subscribable' => 'kann von Mitgliedern abonniert werden',
         'subscriptions' => 'Abonnements',
         'file' => 'Datei',
+        'mailinglist' => 'Mailingliste',
+        'foreign' => 'Adressen im Ausland (anstatt Inland)',
     ],
 
 ];

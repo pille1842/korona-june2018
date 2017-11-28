@@ -155,6 +155,19 @@ return [
     'really_delete_email' => 'E-Mail-Adresse :email wirklich löschen?',
     'create_email' => 'Neue E-Mail-Adresse erstellen',
     'email_deleted' => 'E-Mail-Adresse :email wurde gelöscht.',
+    'settings_snailmail' => 'Briefpost',
+    'mail' => 'Post und E-Mail',
+    'snailmail' => 'Briefpost',
+    'labels' => 'Etiketten (Avery ZweckForm 3422)',
+    'getlabels' => 'Etiketten als PDF herunterladen',
+    'receiversinfo' => 'Empfänger dieser Liste',
+    'country' => 'Land',
+    'count' => 'Anzahl',
+    'total_domestic' => 'Total Inland',
+    'total_foreign' => 'Total Ausland',
+    'no_address' => 'Empfänger ohne Hauptadresse',
+    'internetmarke' => 'Internetmarke',
+    'getinternetmarke' => 'Internetmarke-CSV herunterladen',
 
     'setting' => [
         'fraternity' => [
@@ -169,6 +182,17 @@ return [
         ],
         'mail' => [
             'member_changed_receivers' => 'E-Mail-Empfänger bei Änderungen an Mitgliedern',
+        ],
+        'snailmail' => [
+            'sender' => 'Absenderadresse auf Etiketten',
+            'internetmarke_name' => 'Internetmarke: Absendername',
+            'internetmarke_zusatz' => 'Internetmarke: Absender-Adresszusatz',
+            'internetmarke_strasse' => 'Internetmarke: Absender-Straße',
+            'internetmarke_nummer' => 'Internetmarke: Absender-Hausnummer',
+            'internetmarke_plz' => 'Internetmarke: Absender-Postleitzahl',
+            'internetmarke_stadt' => 'Internetmarke: Absender-Stadt',
+            'internetmarke_land' => 'Internetmarke: Absender-Land',
+            'internetmarke_adress_typ' => 'Internetmarke: Absender-Adresstyp',
         ],
     ],
 

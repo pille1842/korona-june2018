@@ -142,7 +142,7 @@ class Member extends Model implements PersonInterface
 
     public function address()
     {
-        return $this->hasOne(Address::class, 'address_id');
+        return $this->hasOne(Address::class, 'id', 'address_id');
     }
 
     public function email()

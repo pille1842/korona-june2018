@@ -78,6 +78,12 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     // Milestone Types
     Route::resource('milestonetype', 'MilestonetypeController');
 
+    // Snail Mail
+    Route::get('snailmail', 'SnailmailController@index')->name('backend.snailmail.index');
+    Route::get('snailmail/receiversinfo', 'SnailmailController@getReceiversInfo')->name('backend.snailmail.receiversinfo');
+    Route::get('snailmail/labels', 'SnailmailController@getLabels')->name('backend.snailmail.labels');
+    Route::get('snailmail/internetmarke', 'SnailmailController@getInternetmarke')->name('backend.snailmail.internetmarke');
+
     // Settings
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');
     Route::post('settings', 'SettingsController@save')->name('backend.settings.save');

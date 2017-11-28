@@ -44,6 +44,17 @@
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ trans('backend.mail') }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @permission('backend.access.snailmail')
+                                    <li><a href="{{ route('backend.snailmail.index') }}">{{ trans('backend.snailmail') }}</a></li>
+                                @endpermission
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 {{ trans('backend.system') }}
                                 <span class="caret"></span>
                             </a>
