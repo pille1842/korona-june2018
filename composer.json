@@ -15,7 +15,8 @@
         "intervention/image": "^2.3",
         "giggsey/libphonenumber-for-php": "^8.5",
         "rap2hpoutre/laravel-log-viewer": "^0.10.2",
-        "codedge/laravel-fpdf": "^1.2"
+        "codedge/laravel-fpdf": "^1.2",
+        "parsedown/laravel": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
