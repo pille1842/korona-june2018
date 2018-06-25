@@ -74,6 +74,7 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
 
     // Mailinglists
     Route::resource('mailinglist', 'MailinglistController');
+    Route::post('mailinglist/{mailinglist}/unsubscribe', 'MailinglistController@unsubscribe');
 
     // Milestone Types
     Route::resource('milestonetype', 'MilestonetypeController');
@@ -83,6 +84,13 @@ Route::group(['middleware' => ['permission:access.backend', 'checkpassword'], 'p
     Route::get('snailmail/receiversinfo', 'SnailmailController@getReceiversInfo')->name('backend.snailmail.receiversinfo');
     Route::get('snailmail/labels', 'SnailmailController@getLabels')->name('backend.snailmail.labels');
     Route::get('snailmail/internetmarke', 'SnailmailController@getInternetmarke')->name('backend.snailmail.internetmarke');
+
+    // Mailings
+    Route::get('mailing/receiversinfo', 'MailingController@getReceiversInfo')->name('backend.mailing.receiversinfo');
+    Route::resource('mailing', 'MailingController');
+    Route::post('mailing/{mailing}/copy', 'MailingController@copy')->name('backend.mailing.copy');
+    Route::post('mailing/{mailing}/send', 'MailingController@send')->name('backend.mailing.send');
+    Route::get('mailing/{mailing}/preview', 'MailingController@preview')->name('backend.mailing.preview');
 
     // Settings
     Route::get('settings', 'SettingsController@index')->name('backend.settings.index');

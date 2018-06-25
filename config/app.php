@@ -156,6 +156,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Krucas\Settings\Providers\SettingsServiceProvider::class,
+        Parsedown\Providers\ParsedownServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         /*

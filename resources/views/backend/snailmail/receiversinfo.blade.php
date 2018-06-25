@@ -13,7 +13,10 @@
     <tbody>
         @foreach ($countries as $country => $number)
             <tr>
-                <td>{{ $country }}</td>
+                <td>
+                    <img src="{{ asset('images/flags/' . strtolower(Korona\Country::find($country)->short) . '.png') }}" alt="" aria-hidden="true">
+                    {{ Korona\Country::find($country)->name }}
+                </td>
                 <td>{{ $number }}</td>
             </tr>
         @endforeach
@@ -37,3 +40,8 @@
         @endif
     </tbody>
 </table>
+
+<p>
+    <span class="glyphicon glyphicon-eye-open"></span>
+    {{ $receiversType }}
+</p>

@@ -12,4 +12,6 @@ interface PersonInterface
     public function email();
     public function phonenumbers();
     public function subscriptions();
+    public function getFormalSalutation();
+    public function getInformalSalutation();
 }

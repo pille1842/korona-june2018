@@ -30,6 +30,7 @@
                     @if (settings('fraternity.has_nicknames'))
                         <th>{{ trans('validation.attributes.nickname') }}</th>
                     @endif
+                    <th>{{ trans('validation.attributes.status') }}</th>
                     <th>{{ trans('validation.attributes.active') }}</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -43,6 +44,7 @@
                         @if (settings('fraternity.has_nicknames'))
                             <td>{{ $member->nickname }}</td>
                         @endif
+                        <td>{{ $member->status }}</td>
                         <td>
                             @if($member->active)
                                 <span class="glyphicon glyphicon-ok text-success"></span>
@@ -74,11 +76,13 @@
         null,
         null,
         null,
+        null,
         {orderable: false},
         {orderable: false}
     ]'])
 @else
     @include('components.tool.datatable', ['target' => '#k-members-table', 'params' => 'columns: [
+        null,
         null,
         null,
         null,

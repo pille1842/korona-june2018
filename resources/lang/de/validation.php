@@ -164,6 +164,14 @@ return [
         'file' => 'Datei',
         'mailinglist' => 'Mailingliste',
         'foreign' => 'Adressen im Ausland (anstatt Inland)',
+        'layout' => 'Layout',
+        'subject' => 'Betreff',
+        'text' => 'Text',
+        'sent_at' => 'Sendedatum',
+        'sender' => 'Absender',
+        'receiver' => 'Empfänger',
+        'addmembers' => 'Mitglieder hinzufügen',
+        'addpeople' => 'Personen hinzufügen',
     ],
 
 ];

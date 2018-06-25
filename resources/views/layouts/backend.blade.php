@@ -51,6 +51,9 @@
                                 @permission('backend.access.snailmail')
                                     <li><a href="{{ route('backend.snailmail.index') }}">{{ trans('backend.snailmail') }}</a></li>
                                 @endpermission
+                                @permission('backend.access.mailings')
+                                    <li><a href="{{ route('backend.mailing.index') }}">{{ trans('backend.mailings') }}</a></li>
+                                @endpermission
                             </ul>
                         </li>
                         <li class="dropdown">

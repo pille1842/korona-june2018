@@ -19,6 +19,7 @@ class BootstrapFormsProvider extends ServiceProvider
         Form::component('bsEmail', 'components.form.email', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
         Form::component('bsTextarea', 'components.form.textarea', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
+        Form::component('bsMarkdown', 'components.form.markdown', ['name', 'value' => null, 'attributes' => [], 'label' => null]);
         Form::component('bsPassword', 'components.form.password', ['name', 'attributes' => [], 'label' => null]);
         Form::component('bsSlug', 'components.form.slug', ['name', 'value' => null, 'source', 'attributes' => [], 'label' => null]);
         Form::component('bsSelect', 'components.form.select', ['name', 'options', 'value' => null, 'attributes' => [], 'label' => null]);

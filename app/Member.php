@@ -67,9 +67,9 @@ class Member extends Model implements PersonInterface
         return $this->getShortName();
     }
 
-    public function getFullName($withTitle = false)
+    public function getFullName($withTitle = false, $withStatus = false)
     {
-        return trim($this->getCivilName($withTitle) . ' ' . $this->getQualifiedNickname());
+        return trim(($withStatus ? $this->status : '') . ' ' . $this->getCivilName($withTitle) . ' ' . $this->getQualifiedNickname());
     }
 
     public function getCivilName($withTitle = false)
@@ -98,6 +98,22 @@ class Member extends Model implements PersonInterface
     public function getQualifiedNickname()
     {
         return $this->nickname ? settings('fraternity.vulgo') . ' ' . $this->nickname : settings('fraternity.sine_nomine');
+    }
+
+    public function getFormalSalutation()
+    {
+        $salutation  = settings('mail.salutation_formal_member_' . strtolower($this->sex)) . ' ';
+        $salutation .= trim($this->title_prefix . ' ' . $this->lastname . ' ' . $this->title_suffix);
+
+        return $salutation;
+    }
+
+    public function getInformalSalutation()
+    {
+        $salutation  = settings('mail.salutation_informal_member_' . strtolower($this->sex)) . ' ';
+        $salutation .= $this->nickname ? $this->nickname : $this->firstname;;
+
+        return $salutation;
     }
 
     public function getBackendEditUrl()
@@ -147,7 +163,7 @@ class Member extends Model implements PersonInterface
 
     public function email()
     {
-        return $this->hasOne(Email::class, 'email_id');
+        return $this->hasOne(Email::class, 'id', 'email_id');
     }
 
     public function subscriptions()

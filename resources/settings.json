@@ -72,8 +72,57 @@
                 {
                     "name": "member_changed_receivers",
                     "trans": "backend.setting.mail.member_changed_receivers",
-                    "type": "csv",
+                    "type": "mailinglist",
+                    "validation": "exists:mailinglists,id",
                     "value": ""
+                },
+                {
+                    "name": "salutation_formal_person_female",
+                    "trans": "backend.setting.mail.salutation_formal_person_female",
+                    "type": "string",
+                    "value": "Sehr geehrte Frau"
+                },
+                {
+                    "name": "salutation_informal_person_female",
+                    "trans": "backend.setting.mail.salutation_informal_person_female",
+                    "type": "string",
+                    "value": "Liebe"
+                },
+                {
+                    "name": "salutation_formal_person_male",
+                    "trans": "backend.setting.mail.salutation_formal_person_male",
+                    "type": "string",
+                    "value": "Sehr geehrter Herr"
+                },
+                {
+                    "name": "salutation_informal_person_male",
+                    "trans": "backend.setting.mail.salutation_informal_person_male",
+                    "type": "string",
+                    "value": "Lieber"
+                },
+                {
+                    "name": "salutation_formal_member_male",
+                    "trans": "backend.setting.mail.salutation_formal_member_male",
+                    "type": "string",
+                    "value": "Sehr geehrter Herr"
+                },
+                {
+                    "name": "salutation_formal_member_female",
+                    "trans": "backend.setting.mail.salutation_formal_member_female",
+                    "type": "string",
+                    "value": "Sehr geehrte Frau"
+                },
+                {
+                    "name": "salutation_informal_member_male",
+                    "trans": "backend.setting.mail.salutation_informal_member_male",
+                    "type": "string",
+                    "value": "Lieber"
+                },
+                {
+                    "name": "salutation_informal_member_female",
+                    "trans": "backend.setting.mail.salutation_informal_member_female",
+                    "type": "string",
+                    "value": "Liebe"
                 }
             ]
         },

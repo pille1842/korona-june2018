@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Korona\Country;
 use Korona\Http\Controllers\Controller;
 use Korona\Http\Requests;
+use Korona\Mailinglist;
 
 class SettingsController extends Controller
 {
@@ -18,9 +19,10 @@ class SettingsController extends Controller
     public function index()
     {
         $countries = Country::all()->pluck('name', 'id');
+        $mailinglists = Mailinglist::all()->pluck('name', 'id');
         $settings = json_decode(file_get_contents(resource_path('settings.json')), true);
 
-        return view('backend.settings.index', compact('countries', 'settings'));
+        return view('backend.settings.index', compact('countries', 'mailinglists', 'settings'));
     }
 
     public function save(Request $request)

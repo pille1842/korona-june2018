@@ -41,4 +41,15 @@ class MemberRepository
             return $item;
         })->pluck('displayName', 'id')->prepend('', '')->all();
     }
+
+    public function getSelectDataWithPrimaryEmail()
+    {
+        return $this->getAll()->map(function ($item) {
+            if ($item->email == null) {
+                return null;
+            }
+            $item->displayName = $item->getFullName() . ' <' . $item->email->email . '>';
+            return $item;
+        })->pluck('displayName', 'id')->prepend('', '')->all();
+    }
 }

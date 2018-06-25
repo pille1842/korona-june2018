@@ -45,6 +45,18 @@ class RolesAndPermissionsSeeder extends Seeder
             'name' => 'Kann Dateien für den Postversand herunterladen',
             'slug' => 'backend.access.snailmail'
         ]);
+        $backendAccessMailingsPermission = Permission::create([
+            'name' => 'Kann Mailings verwalten',
+            'slug' => 'backend.access.mailings'
+        ]);
+        $backendSendMailingsPermission = Permission::create([
+            'name' => 'Kann Mailings abschicken',
+            'slug' => 'backend.mailings.send'
+        ]);
+        $backendSetMailingSenderPermission = Permission::create([
+            'name' => 'Kann den Absender von Mailings ändern',
+            'slug' => 'backend.mailings.setsender'
+        ]);
         $backendManageSettingsPermission = Permission::create([
             'name' => 'Kann Systemeinstellungen verwalten',
             'slug' => 'backend.manage.settings'
@@ -82,6 +94,9 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole->attachPermission($backendManageMailinglistsPermission);
         $adminRole->attachPermission($backendManageRolesPermission);
         $adminRole->attachPermission($backendAccessSnailmailPermission);
+        $adminRole->attachPermission($backendAccessMailingsPermission);
+        $adminRole->attachPermission($backendSendMailingsPermission);
+        $adminRole->attachPermission($backendSetMailingSenderPermission);
         $adminRole->attachPermission($backendManageSettingsPermission);
         $adminRole->attachPermission($backendSeeLogsPermission);
 

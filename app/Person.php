@@ -50,7 +50,7 @@ class Person extends Model implements PersonInterface
         return $this->getShortName();
     }
 
-    public function getFullName($withTitle = false)
+    public function getFullName($withTitle = false, $withStatus = false)
     {
         return trim($this->getCivilName($withTitle) . ' ' . $this->getQualifiedNickname());
     }
@@ -83,6 +83,26 @@ class Person extends Model implements PersonInterface
         return $this->nickname ? settings('fraternity.vulgo') . ' ' . $this->nickname : '';
     }
 
+    public function getFormalSalutation()
+    {
+        if ($this->appellation) {
+            $salutation = $this->appellation;
+        } else {
+            $salutation = settings('mail.salutation_formal_person_' . strtolower($this->sex)) . ' ';
+            $salutation .= trim($this->title_prefix . ' ' . $this->lastname . ' ' . $this->title_suffix);
+        }
+
+        return $salutation;
+    }
+
+    public function getInformalSalutation()
+    {
+        $salutation  = settings('mail.salutation_informal_person_' . strtolower($this->sex)) . ' ';
+        $salutation .= $this->nickname ? $this->nickname : $this->firstname;
+
+        return $salutation;
+    }
+
     public function getBackendEditUrl()
     {
         return route('backend.person.edit', $this);
@@ -100,7 +120,7 @@ class Person extends Model implements PersonInterface
 
     public function email()
     {
-        return $this->hasOne(Email::class, 'email_id');
+        return $this->hasOne(Email::class, 'id', 'email_id');
     }
 
     public function phonenumbers()

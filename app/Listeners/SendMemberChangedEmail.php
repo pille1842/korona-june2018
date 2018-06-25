@@ -2,9 +2,10 @@
 
 namespace Korona\Listeners;
 
-use Korona\Events\MemberChanged;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Korona\Events\MemberChanged;
+use Korona\Mailinglist;
 use Mail;
 
 class SendMemberChangedEmail
@@ -27,9 +28,18 @@ class SendMemberChangedEmail
      */
     public function handle(MemberChanged $event)
     {
-        $receivers = settings('mail.member_changed_receivers');
-        if (! is_array($receivers)) {
-            return;
+        $mailinglist = Mailinglist::findOrFail(settings('mail.member_changed_receivers'));
+
+        $receivers = [];
+        foreach ($mailinglist->members as $member) {
+            if ($member->email != null) {
+                $receivers[] = $member->email->email;
+            }
+        }
+        foreach ($mailinglist->people as $person) {
+            if ($person->email != null) {
+                $receivers[] = $person->email->email;
+            }
         }
         $receivers = array_filter($receivers, function ($value) {
             return filter_var($value, FILTER_VALIDATE_EMAIL);
@@ -37,6 +47,7 @@ class SendMemberChangedEmail
         if (empty($receivers)) {
             return;
         }
+
         Mail::send(['mail.member_changed', 'mail.plain.member_changed'],
             ['member' => $event->model, 'revisions' => $event->revisions],
             function ($m) use ($event, $receivers) {

@@ -19,7 +19,7 @@ class InternetmarkeGenerator extends SnailmailGenerator
         $sender_plz = settings('snailmail.internetmarke_plz');
         $sender_stadt = settings('snailmail.internetmarke_stadt');
         $country_id = settings('snailmail.internetmarke_land');
-        $sender_land = Country::find($country_id)->code3;
+        $sender_land = Country::find($country_id)->short3;
         $sender_adress_typ = settings('snailmail.internetmarke_adress_typ');
 
         $csv .= "{$sender_name};{$sender_zusatz};{$sender_strasse};" .
@@ -42,7 +42,7 @@ class InternetmarkeGenerator extends SnailmailGenerator
             $csv .= $address->street . ';;';
             $csv .= $address->zipcode . ';';
             $csv .= $address->city . ';';
-            $csv .= $address->country->code3 . ";HOUSE\r\n";
+            $csv .= $address->country->short3 . ";HOUSE\r\n";
         }
         $csv = iconv('UTF-8', 'CP1252', $csv);
 

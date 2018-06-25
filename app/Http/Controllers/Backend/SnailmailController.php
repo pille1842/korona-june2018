@@ -73,13 +73,24 @@ class SnailmailController extends Controller
                 } else {
                     $receivers_foreign += 1;
                 }
-                if (! isset($countries[$receiver->address->country->name])) {
-                    $countries[$receiver->address->country->name] = 0;
+                if (! isset($countries[$receiver->address->country->id])) {
+                    $countries[$receiver->address->country->id] = 0;
                 }
-                $countries[$receiver->address->country->name] += 1;
+                $countries[$receiver->address->country->id] += 1;
             }
         }
 
-        return view('backend.snailmail.receiversinfo', compact('countries', 'receivers_domestic', 'receivers_foreign', 'noaddress'));
+        if (count($members) > 0 && count($people) > 0) {
+            $receiversType = trans('backend.received_by_members_and_people');
+        } elseif (count($members) > 0 && count($people) == 0) {
+            $receiversType = trans('backend.received_by_members');
+        } elseif (count($members) == 0 && count($people) > 0) {
+            $receiversType = trans('backend.received_by_people');
+        } else {
+            $receiversType = trans('backend.received_by_noone');
+        }
+
+        return view('backend.snailmail.receiversinfo',
+               compact('countries', 'receivers_domestic', 'receivers_foreign', 'noaddress', 'receiversType'));
     }
 }
