@@ -24,5 +24,6 @@ return [
     'password_forgotten' => 'Passwort vergessen?',
     'reset_password' => 'Passwort zurücksetzen',
     'change_password' => 'Passwort ändern',
+    'login_required' => 'Du musst dich anmelden, um auf diese Seite zugreifen zu können.',
 
 ];

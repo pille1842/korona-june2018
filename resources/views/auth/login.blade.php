@@ -9,7 +9,7 @@
         <div class="panel-heading">{{ trans('auth.login') }}</div>
         <div class="panel-body">
             {{ Form::open(['url' => 'login', 'class' => 'form']) }}
-                {{ Form::bsText('login') }}
+                {{ Form::bsText('login', null, ['autofocus' => true]) }}
                 {{ Form::bsPassword('password') }}
                 {{ Form::bsCheckbox('remember', '1') }}
                 <button type="submit" class="btn btn-primary">
